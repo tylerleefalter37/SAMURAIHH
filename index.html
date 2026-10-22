@@ -59,7 +59,7 @@
             justify-content: center;
             align-items: center;
             background-image: 
-                radial-gradient(circle at 50% 10%, rgba(158, 27, 27, 0.2) 0%, transparent 65%),
+                radial-gradient(circle at 50% 10%, rgba(158, 27, 27, 0.22) 0%, transparent 65%),
                 radial-gradient(circle at 50% 100%, rgba(12, 11, 10, 0.98) 0%, #000 100%);
         }
 
@@ -576,10 +576,12 @@
             </div>
             <div class="crest-mon" id="lbl-clan-mon" onclick="ToggleGekokujoModal()">野伏</div>
             <div class="hud-actions">
+                <button class="hud-btn" id="btn-manual-open" style="color:var(--gold-bright);">[?] MANUAL</button>
                 <button class="hud-btn" id="btn-land-open">LANDS</button>
                 <button class="hud-btn" id="btn-dynasty-open">DYNASTY</button>
                 <button class="hud-btn" id="btn-baggage-open">SATCHEL</button>
                 <button class="hud-btn" id="btn-god-toggle">GOD: OFF</button>
+                <button class="hud-btn" id="btn-audio-toggle">AUDIO: ON</button>
             </div>
         </header>
 
@@ -650,6 +652,17 @@
         <!-- STATIONARY BOTTOM DOCK: ROWS OF 4 BUTTONS -->
         <section id="command-dock"></section>
 
+        <!-- MODAL: MANUAL (BUSHI WAR COMPENDIUM) -->
+        <div class="modal-overlay" id="manual-modal">
+            <div class="modal-body" style="border-color: var(--gold-bright);">
+                <div class="modal-title" style="color: var(--gold-bright);">
+                    <span>THE BUSHI WAR COMPENDIUM: COMPLETE MANUAL</span>
+                    <button class="modal-close" onclick="ToggleManualModal()">×</button>
+                </div>
+                <div class="modal-scrollable" id="manual-pane"></div>
+            </div>
+        </div>
+
         <!-- MODAL: HYŌJŌSHO COUNCIL & 8 WAR CRIMES SENTENCING -->
         <div class="modal-overlay" id="council-modal">
             <div class="modal-body" style="border-color: var(--shogun-purple);">
@@ -689,7 +702,7 @@
                     <button class="modal-close" onclick="ToggleLandModal()">×</button>
                 </div>
                 <div style="font-size:0.62rem; color:var(--parchment-dim);">
-                    Purchase deeded fief parcels across provinces. Each parcel passively harvests raw commodities directly into your stores every season.
+                    Purchase deeded fief parcels across provinces. 10 new deeds generated each season. Each parcel passively harvests raw commodities directly into your stores.
                 </div>
                 <div class="modal-scrollable" id="land-pane"></div>
             </div>
@@ -707,7 +720,7 @@
                     <button class="tab-btn" id="tab-cas-weapons" onclick="SwitchCastleTab('weapons')">22 WEAPONS</button>
                     <button class="tab-btn" id="tab-cas-bows" onclick="SwitchCastleTab('bows')">BOWS &amp; ARQUEBUS</button>
                     <button class="tab-btn" id="tab-cas-armor" onclick="SwitchCastleTab('armor')">SUITS OF ARMOR</button>
-                    <button class="tab-btn" id="tab-cas-keep" onclick="SwitchCastleTab('keep')">CASTLE KEEP</button>
+                    <button class="tab-btn" id="tab-cas-keep" onclick="SwitchCastleTab('keep')">18 CASTLE EXPANSIONS</button>
                     <button class="tab-btn" id="tab-cas-beasts" onclick="SwitchCastleTab('beasts')">WAR BEASTS</button>
                 </div>
                 <div class="modal-scrollable" id="castle-pane"></div>
@@ -811,6 +824,12 @@
                 if (this.ctx && this.ctx.state === 'suspended') {
                     this.ctx.resume().catch(() => {});
                 }
+            },
+
+            toggleMute() {
+                this.muted = !this.muted;
+                const btn = document.getElementById('btn-audio-toggle');
+                if (btn) btn.textContent = `AUDIO: ${this.muted ? 'OFF' : 'ON'}`;
             },
 
             playBonsho() {
@@ -973,7 +992,7 @@
         };
 
         /* =========================================================================
-           DATA: 22 WEAPONS, BOWS, ARMORS, COMMODITIES, CASTLE, WARLORDS
+           DATA TABLES: 22 WEAPONS, 18 CASTLE EXPANSIONS, COMMODITIES, ETC.
            ========================================================================= */
         const GEAR_TABLE = {
             weapons: [
@@ -1026,6 +1045,26 @@
                 { id: 'f_kumataka', name: 'Mountain Hawk-Eagle', atk: 38, cost: 280, desc: 'Knocks charging ashigaru flat.' },
                 { id: 'f_inuwashi', name: 'Golden Divine Eagle', atk: 52, cost: 480, desc: 'Emperor of skies; rips through helm guards and throats.' },
                 { id: 'f_hound', name: 'Kai-Ken War Hound', atk: 58, cost: 550, desc: 'Tiger-striped hound; drags armored foes down into mud.' }
+            ],
+            castle: [
+                { id: 'c_tenshu_1', name: 'Tenshudai Keep Level II', cost: 120, koku: 20, desc: 'Multi-story fortress; grants +30 Max HP.' },
+                { id: 'c_tenshu_2', name: 'Tenshudai Keep Level III', cost: 260, koku: 40, desc: 'Citadel with stone foundation; grants +60 Max HP.' },
+                { id: 'c_tenshu_3', name: 'Imperial Golden Tenshu Level IV', cost: 520, koku: 80, desc: 'Azuchi-style gold roof tiles; +100 Max HP, +50 Ryō/season.' },
+                { id: 'c_ishigaki', name: 'Cyclopean Ishigaki Stone Walls', cost: 180, koku: 30, desc: 'Sloped megalith ramparts; adds +35 Koku Prestige.' },
+                { id: 'c_moat', name: 'Double Water Moat (Hori)', cost: 160, koku: 25, desc: 'Deep moat system; reduces incoming ambush risk.' },
+                { id: 'c_yagura', name: 'Matchlock Corner Yagura Turrets', cost: 220, koku: 35, desc: 'Hatamoto bodyguards gain +20% damage in battle.' },
+                { id: 'c_dungeon', name: 'Subterranean Torture Dungeon', cost: 140, koku: 15, desc: 'Holds up to 20 captives for tribunal sentencing.' },
+                { id: 'c_tea', name: 'Wabi-Sabi Grand Tea Pavilion', cost: 200, koku: 30, desc: 'Restores player Ki by +30 permanently.' },
+                { id: 'c_foundry', name: 'Clan Tatara Iron Foundry', cost: 280, koku: 45, desc: '+20 flat melee damage and yields +2 free iron each season.' },
+                { id: 'c_dojo', name: 'Kenjutsu Master Dojo', cost: 190, koku: 35, desc: 'Unlocks training of up to 6 sworn Disciples.' },
+                { id: 'c_aviary', name: 'Takaba Falconry Aviary', cost: 170, koku: 25, desc: 'Required to purchase and deploy War Beasts.' },
+                { id: 'c_stables', name: 'Mikawa Warhorse Stables', cost: 230, koku: 40, desc: 'Enhances combat evasion probability by +15%.' },
+                { id: 'c_brewery', name: 'Castle Sake Brewery (Kura)', cost: 185, koku: 20, desc: '+25 Ryō and +2 Casks of Sake per travel cycle.' },
+                { id: 'c_shrine', name: 'Bishamonten Battle Shrine', cost: 210, koku: 35, desc: 'Raises Max Ki by +25 and settles war nerves.' },
+                { id: 'c_shinobi', name: 'Shadow Shinobi Spy Network', cost: 320, koku: 50, desc: 'Reveals enemy intent and grants first strike in duels.' },
+                { id: 'c_armory', name: 'Reinforced Weapon Vault', cost: 250, koku: 30, desc: '+10% weapon damage across all arms in your arsenal.' },
+                { id: 'c_granary', name: 'Deep High Silo Granary', cost: 160, koku: 20, desc: 'Expands rice storage capacity by 500 bushels.' },
+                { id: 'c_nanban_port', name: 'Nanban Gateway Port', cost: 420, koku: 65, desc: 'Reduces commodity buy cost by 15% across markets.' }
             ]
         };
 
@@ -1126,7 +1165,7 @@
         ];
 
         /* =========================================================================
-           STATE MACHINE
+           STATE MACHINE WITH COMPREHENSIVE SANITIZATION
            ========================================================================= */
         let State = {
             mode: 'EXPLORE',
@@ -1144,7 +1183,7 @@
                 koku: 0,
                 kills: 0,
                 weaponId: 'w_katana',
-                weaponForgeLevels: {}, // weaponId -> 0 to 10
+                weaponForgeLevels: {},
                 bowId: 'b_none',
                 armorId: 'a_tattered',
                 falconId: 'f_none',
@@ -1153,19 +1192,13 @@
                 claimedGifts: [],
                 heirs: [],
                 consorts: [],
-                deeds: [], // Array of procedural land parcels
+                deeds: [],
                 hatamoto: { count: 0, tier: 1 },
                 farms: { acres: 15, irrigationLevel: 1, bushelsStored: 80 },
                 commodities: { rice: 10, iron: 8, powder: 2, silk: 2, timber: 10, sake: 4 },
                 prisoners: [],
                 governance: {},
-                trophies: {
-                    heads: [], // { name, caste, rank: 'Gokujō'|'Jōtō'|'Chūtō'|'Kakyū', prepared: bool, value: num }
-                    noses: [],
-                    ears: 0,
-                    teethCommon: 0,
-                    teethGold: 0
-                }
+                trophies: { heads: [], noses: [], ears: 0, teethCommon: 0, teethGold: 0 }
             },
             currentMarketPrices: {},
             availableDeeds: [],
@@ -1174,6 +1207,47 @@
             chronicleLog: [],
             isTyping: false
         };
+
+        function SanitizeState() {
+            if (!State.player) State.player = {};
+            const p = State.player;
+            p.hp = typeof p.hp === 'number' ? p.hp : 100;
+            p.maxHp = typeof p.maxHp === 'number' ? p.maxHp : 100;
+            p.ki = typeof p.ki === 'number' ? p.ki : 100;
+            p.maxKi = typeof p.maxKi === 'number' ? p.maxKi : 100;
+            p.poise = typeof p.poise === 'number' ? p.poise : 100;
+            p.maxPoise = typeof p.maxPoise === 'number' ? p.maxPoise : 100;
+            p.stance = p.stance || 'chudan';
+            p.gold = typeof p.gold === 'number' ? p.gold : 60;
+            p.koku = typeof p.koku === 'number' ? p.koku : 0;
+            p.generation = p.generation || 1;
+            p.weaponId = p.weaponId || 'w_katana';
+            p.bowId = p.bowId || 'b_none';
+            p.armorId = p.armorId || 'a_tattered';
+            p.falconId = p.falconId || 'f_none';
+
+            p.deeds = Array.isArray(p.deeds) ? p.deeds : [];
+            p.prisoners = Array.isArray(p.prisoners) ? p.prisoners : [];
+            p.claimedGifts = Array.isArray(p.claimedGifts) ? p.claimedGifts : [];
+            p.usurpedThrones = Array.isArray(p.usurpedThrones) ? p.usurpedThrones : [];
+            p.heirs = Array.isArray(p.heirs) ? p.heirs : [];
+            p.consorts = Array.isArray(p.consorts) ? p.consorts : [];
+            p.purchasedCastle = Array.isArray(p.purchasedCastle) ? p.purchasedCastle : [];
+            p.weaponForgeLevels = (p.weaponForgeLevels && typeof p.weaponForgeLevels === 'object') ? p.weaponForgeLevels : {};
+
+            p.commodities = Object.assign({ rice: 10, iron: 8, powder: 2, silk: 2, timber: 10, sake: 4 }, p.commodities || {});
+            p.farms = Object.assign({ acres: 15, irrigationLevel: 1, bushelsStored: 80 }, p.farms || {});
+            p.hatamoto = Object.assign({ count: 0, tier: 1 }, p.hatamoto || {});
+            p.governance = p.governance || {};
+
+            p.trophies = Object.assign({ heads: [], noses: [], ears: 0, teethCommon: 0, teethGold: 0 }, p.trophies || {});
+            p.trophies.heads = Array.isArray(p.trophies.heads) ? p.trophies.heads : [];
+            p.trophies.noses = Array.isArray(p.trophies.noses) ? p.trophies.noses : [];
+
+            State.availableDeeds = Array.isArray(State.availableDeeds) ? State.availableDeeds : [];
+            State.chronicleLog = Array.isArray(State.chronicleLog) ? State.chronicleLog : [];
+            State.currentMarketPrices = State.currentMarketPrices || {};
+        }
 
         /* =========================================================================
            INITIALIZATION & STAT CALCULATIONS
@@ -1185,8 +1259,9 @@
             if (primer) primer.style.display = 'none';
 
             LoadSave();
+            SanitizeState();
             RefreshMarketPrices();
-            GenerateProceduralDeeds();
+            if (State.availableDeeds.length === 0) GenerateProceduralDeeds();
             RecalculatePlayerStats();
 
             if (State.chronicleLog.length === 0) {
@@ -1204,20 +1279,29 @@
             const startBtn = document.getElementById('btn-start-game');
             if (startBtn) startBtn.addEventListener('click', InitEngine);
 
+            document.getElementById('btn-manual-open').addEventListener('click', ToggleManualModal);
             document.getElementById('btn-land-open').addEventListener('click', ToggleLandModal);
             document.getElementById('btn-dynasty-open').addEventListener('click', ToggleDynastyModal);
             document.getElementById('btn-baggage-open').addEventListener('click', ToggleBaggageModal);
             document.getElementById('btn-god-toggle').addEventListener('click', ToggleGodModal);
+            document.getElementById('btn-audio-toggle').addEventListener('click', () => AudioSys.toggleMute());
         });
 
         function RecalculatePlayerStats() {
             const p = State.player;
             const armor = GEAR_TABLE.armors.find(a => a.id === p.armorId) || GEAR_TABLE.armors[0];
-            const takedaPerk = p.claimedGifts.includes('takeda') ? 30 : 0;
-            const uesugiPerk = p.claimedGifts.includes('uesugi') ? 40 : 0;
+            const hasTenshu1 = p.purchasedCastle.includes('c_tenshu_1');
+            const hasTenshu2 = p.purchasedCastle.includes('c_tenshu_2');
+            const hasTenshu3 = p.purchasedCastle.includes('c_tenshu_3');
+            const hasTea = p.purchasedCastle.includes('c_tea');
+            const hasShrine = p.purchasedCastle.includes('c_shrine');
 
-            p.maxHp = 100 + armor.maxHpBonus;
-            p.maxKi = 100 + uesugiPerk;
+            const hpBonus = (hasTenshu1 ? 30 : 0) + (hasTenshu2 ? 60 : 0) + (hasTenshu3 ? 100 : 0);
+            const kiBonus = (hasTea ? 30 : 0) + (hasShrine ? 25 : 0) + (p.claimedGifts.includes('uesugi') ? 40 : 0);
+            const takedaPerk = p.claimedGifts.includes('takeda') ? 30 : 0;
+
+            p.maxHp = 100 + armor.maxHpBonus + hpBonus;
+            p.maxKi = 100 + kiBonus;
             p.maxPoise = 100 + takedaPerk;
             p.hp = Math.min(p.hp, p.maxHp);
             p.poise = Math.min(p.poise, p.maxPoise);
@@ -1231,45 +1315,50 @@
             });
         }
 
+        // GENERATES 10 PROCEDURAL DEEDS PER CYCLE
         function GenerateProceduralDeeds() {
-            const prefixes = ["Mikawa", "Echigo", "Owari", "Kai", "Seto", "Kanto", "Sakai", "Shinano"];
+            const prefixes = ["Mikawa", "Echigo", "Owari", "Kai", "Seto", "Kanto", "Sakai", "Shinano", "Aki", "Mutsu", "Satsuma", "Tamba", "Hizen", "Tosa"];
             const types = [
-                { name: "Paddy Flats", res: "rice", amt: 12, cost: 70, koku: 8 },
-                { name: "Iron Mine Vein", res: "iron", amt: 5, cost: 110, koku: 12 },
-                { name: "Black Powder Mill", res: "powder", amt: 3, cost: 140, koku: 15 },
-                { name: "Loom Workshop", res: "silk", amt: 4, cost: 95, koku: 10 },
-                { name: "Cedar Timberland", res: "timber", amt: 8, cost: 75, koku: 6 },
-                { name: "Spring Brewery", res: "sake", amt: 5, cost: 105, koku: 10 }
+                { name: "Paddy Floodplain", res: "rice", amt: 15, cost: 70, koku: 8 },
+                { name: "Iron Ore Vein", res: "iron", amt: 6, cost: 110, koku: 12 },
+                { name: "Black Powder Watermill", res: "powder", amt: 4, cost: 140, koku: 15 },
+                { name: "Sericulture Silk Looms", res: "silk", amt: 5, cost: 95, koku: 10 },
+                { name: "Cypress Mountain Timberland", res: "timber", amt: 10, cost: 75, koku: 6 },
+                { name: "Spring Water Sake Kura", res: "sake", amt: 6, cost: 105, koku: 10 },
+                { name: "Coastal Salt & Pearl Shoal", res: "rice", amt: 12, cost: 85, koku: 9 },
+                { name: "Tatara Smelting Basin", res: "iron", amt: 7, cost: 130, koku: 14 },
+                { name: "Sulfur Volcanic Fumarole", res: "powder", amt: 5, cost: 155, koku: 16 },
+                { name: "Tea Terraces of Uji", res: "sake", amt: 7, cost: 115, koku: 11 }
             ];
             State.availableDeeds = [];
-            for (let i = 0; i < 4; i++) {
+            for (let i = 0; i < 10; i++) {
                 const pref = prefixes[Math.floor(Math.random() * prefixes.length)];
-                const typ = types[Math.floor(Math.random() * types.length)];
+                const typ = types[i % types.length];
                 State.availableDeeds.push({
                     id: 'deed_' + Date.now() + '_' + i,
                     name: `${pref} ${typ.name}`,
                     res: typ.res,
                     amt: typ.amt,
-                    cost: typ.cost + Math.floor(Math.random() * 20),
+                    cost: typ.cost + Math.floor(Math.random() * 25),
                     koku: typ.koku
                 });
             }
         }
 
         function SaveGame() {
-            try { localStorage.setItem('SENGOKU_SUPREME_V9', JSON.stringify(State)); }
+            try { localStorage.setItem('SENGOKU_SUPREME_V10_BULLETPROOF', JSON.stringify(State)); }
             catch (e) {}
         }
 
         function LoadSave() {
             try {
-                const raw = localStorage.getItem('SENGOKU_SUPREME_V9');
+                const raw = localStorage.getItem('SENGOKU_SUPREME_V10_BULLETPROOF');
                 if (raw) State = Object.assign(State, JSON.parse(raw));
             } catch (e) {}
         }
 
         function ResetGame() {
-            localStorage.removeItem('SENGOKU_SUPREME_V9');
+            localStorage.removeItem('SENGOKU_SUPREME_V10_BULLETPROOF');
             location.reload();
         }
 
@@ -1459,6 +1548,9 @@
 
             let dmgMod = (p.stance === 'jodan' ? 1.35 : (p.stance === 'gedan' ? 0.85 : 1.0)) * weapon.dmgMod * forgeMod;
             if (p.claimedGifts.includes('oda')) dmgMod *= 1.20;
+            if (p.purchasedCastle.includes('c_armory')) dmgMod *= 1.10;
+            if (p.purchasedCastle.includes('c_foundry')) dmgMod += 0.20;
+
             let defenseMod = (1.0 - armor.defMod) * (p.claimedGifts.includes('tokugawa') ? 0.85 : 1.0);
 
             if (State.godMode) { dmgMod = 99.0; defenseMod = 0.0; }
@@ -1530,7 +1622,8 @@
                 case 'hatamoto': {
                     if (p.hatamoto.count <= 0) { LogProse("You have no Hatamoto bodyguards in service!", "lead"); return; }
                     AudioSys.playWarConch();
-                    let guardDmg = p.hatamoto.count * (p.hatamoto.tier * 7);
+                    let yaguraBonus = p.purchasedCastle.includes('c_yagura') ? 1.2 : 1.0;
+                    let guardDmg = Math.round(p.hatamoto.count * (p.hatamoto.tier * 7) * yaguraBonus);
                     f.hp -= guardDmg;
                     f.poise -= 65;
                     TriggerFX('shake');
@@ -1741,7 +1834,7 @@
         }
 
         /* =========================================================================
-           PROGRESSION CYCLE & DEED COMMODITY HARVEST
+           PROGRESSION CYCLE & 10 DEEDS COMMODITY HARVEST
            ========================================================================= */
         function ProgressCycle() {
             State.regionIdx = (State.regionIdx + 1) % REGIONS.length;
@@ -1749,6 +1842,7 @@
 
             const p = State.player;
             RefreshMarketPrices();
+            GenerateProceduralDeeds(); // REFRESHES 10 DEEDS EVERY SEASON
 
             // Harvest deeded land parcels
             let deedLogs = [];
@@ -1756,6 +1850,14 @@
                 p.commodities[d.res] = (p.commodities[d.res] || 0) + d.amt;
                 deedLogs.push(`+${d.amt} ${d.res}`);
             });
+
+            // Castle estate passive harvests
+            if (p.purchasedCastle.includes('c_foundry')) p.commodities.iron = (p.commodities.iron || 0) + 2;
+            if (p.purchasedCastle.includes('c_brewery')) {
+                p.gold += 25;
+                p.commodities.sake = (p.commodities.sake || 0) + 2;
+            }
+            if (p.purchasedCastle.includes('c_tenshu_3')) p.gold += 50;
 
             // Farm harvest
             let harvest = Math.round(p.farms.acres * (p.farms.irrigationLevel * 1.5));
@@ -1861,11 +1963,11 @@
                 </button>
                 <button class="cmd-btn" onclick="ToggleCastleModal()">
                     <div class="cmd-title">Forge &amp; Arms</div>
-                    <div class="cmd-desc">+10 Weapons</div>
+                    <div class="cmd-desc">18 Upgrades</div>
                 </button>
                 <button class="cmd-btn" onclick="ToggleLandModal()" style="border-color: var(--koku-green);">
                     <div class="cmd-title" style="color:#a8ff9e;">Land Deeds</div>
-                    <div class="cmd-desc">Fief Parcels</div>
+                    <div class="cmd-desc">10 Parcels</div>
                 </button>
                 <button class="cmd-btn" onclick="ToggleMarketTradeModal()">
                     <div class="cmd-title">Market Trade</div>
@@ -1879,6 +1981,66 @@
                     <div class="cmd-title">Tenshu Rest</div>
                     <div class="cmd-desc">Heal Vitality</div>
                 </button>
+            `;
+        }
+
+        /* =========================================================================
+           MODAL: COMPREHENSIVE BUSHI WAR MANUAL
+           ========================================================================= */
+        function ToggleManualModal() {
+            const m = document.getElementById('manual-modal');
+            m.classList.toggle('open');
+            if (m.classList.contains('open')) RenderManualPane();
+        }
+
+        function RenderManualPane() {
+            const pane = document.getElementById('manual-pane');
+            pane.innerHTML = `
+                <div class="trade-row" style="flex-direction:column; align-items:flex-start; line-height:1.6;">
+                    <div class="trade-name" style="color:var(--gold-bright);">1. KENJUTSU STANCES &amp; DUELING</div>
+                    <div class="trade-desc">
+                        - <strong>上段 Jōdan</strong>: +35% Attack Damage. Cleaves deep into iron armor and shatters enemy poise.<br>
+                        - <strong>中段 Chūdan</strong>: Balanced guard. Unlocks maximum riposte damage when executing Deflect/Parry.<br>
+                        - <strong>下段 Gedan</strong>: Low stance. Maximizes evasion (+20 Ki recovery per action) to wear down aggressive foes.<br>
+                        - <strong>Free Duels</strong>: Visit the [Blood Duels] grounds anytime to challenge 4 tiers of foes for immediate head trophies and trade goods.
+                    </div>
+                </div>
+                <div class="trade-row" style="flex-direction:column; align-items:flex-start; line-height:1.6;">
+                    <div class="trade-name" style="color:var(--crimson-glow);">2. THE 8 BRUTAL FEUDAL PUNISHMENTS</div>
+                    <div class="trade-desc">
+                        When capturing enemies alive, sentence them in the Council Chamber:<br>
+                        - <strong>Tameshigiri</strong>: Convict is cleaved across the torso—<strong>permanently upgrades equipped weapon +1 level for free</strong>!<br>
+                        - <strong>Kogokumon</strong>: Head spiked on a public pillar; yields high-grade Kubi trophy.<br>
+                        - <strong>Kama-yude</strong>: Boiled alive in an iron cauldron; boosts Koku prestige (+30).<br>
+                        - <strong>Nokogiribiki</strong>: Bamboo sawing; yields salted ears, common teeth, and dread.<br>
+                        - <strong>Haritsuke</strong>: Spear crucifixion; quells local unrest and stabilizes realm.<br>
+                        - <strong>Seppuku</strong>: Honorable disembowelment with clean stroke; grants voluntary noble gold.<br>
+                        - <strong>Forced Conscription</strong>: Drafts captive into your Hatamoto unit.<br>
+                        - <strong>Ransom</strong>: Extracts raw gold coins.
+                    </div>
+                </div>
+                <div class="trade-row" style="flex-direction:column; align-items:flex-start; line-height:1.6;">
+                    <div class="trade-name" style="color:var(--gold-weathered);">3. KUBI-JIKKEN (HEAD GRADING &amp; PREPARATION)</div>
+                    <div class="trade-desc">
+                        Severed heads possess historical rank grades: <strong>極上 Gokujō</strong> (Daimyo), <strong>上等 Jōtō</strong> (Champion), <strong>中等 Chūtō</strong> (Veteran), and <strong>下級 Kakyū</strong> (Levy).<br>
+                        - Visit the <strong>Kubi-Arai</strong> chamber in the Council Hall to wash blood, oil topknots, and blacken teeth with Ohaguro on cedar boards. Prepared heads fetch up to <strong>300% more bounty</strong>!
+                    </div>
+                </div>
+                <div class="trade-row" style="flex-direction:column; align-items:flex-start; line-height:1.6;">
+                    <div class="trade-name" style="color:var(--koku-green);">4. 10 SEASONAL LAND DEEDS &amp; COMMODITIES</div>
+                    <div class="trade-desc">
+                        - 10 new deeded properties refresh in the <strong>Land Registry</strong> each season.<br>
+                        - Parcels passively harvest raw commodities (Rice, Iron, Powder, Silk, Timber, Sake) into your satchel on every cycle turn.<br>
+                        - Sell surplus commodities at the <strong>Rakuichi-Rakuza</strong> exchange to build an immense treasury.
+                    </div>
+                </div>
+                <div class="trade-row" style="flex-direction:column; align-items:flex-start; line-height:1.6;">
+                    <div class="trade-name" style="color:var(--shogun-purple);">5. TATARA FORGE (+10) &amp; GEKOKUJŌ</div>
+                    <div class="trade-desc">
+                        - Upgrade any of the 22 weapons up to <strong>+10</strong> using Ryō and Raw Iron bars.<br>
+                        - Slay the 7 Great Daimyos in single combat to usurp their provinces, claim their ancestral relics, and attain the supreme title of <strong>Sei-i Taishōgun (征夷大将軍)</strong>!
+                    </div>
+                </div>
             `;
         }
 
@@ -2126,7 +2288,7 @@
         }
 
         /* =========================================================================
-           MODAL: PROCEDURAL LAND REGISTRY (TOCHI-CHŌ)
+           MODAL: PROCEDURAL LAND REGISTRY (10 DEEDS)
            ========================================================================= */
         function ToggleLandModal() {
             const m = document.getElementById('land-modal');
@@ -2137,7 +2299,7 @@
         function RenderLandPane() {
             const pane = document.getElementById('land-pane');
             pane.innerHTML = `
-                <div style="font-size:0.68rem; color:var(--gold-bright); margin-bottom:4px;">AVAILABLE LAND DEEDS (SEASONAL REGISTRY):</div>
+                <div style="font-size:0.68rem; color:var(--gold-bright); margin-bottom:4px;">AVAILABLE LAND DEEDS (10 SEASONAL REGISTRY PARCELS):</div>
             `;
             const p = State.player;
             State.availableDeeds.forEach((d, idx) => {
@@ -2285,16 +2447,36 @@
                     `;
                 });
             } else if (currentCastleTab === 'keep') {
-                pane.innerHTML = `
-                    <div class="trade-row">
-                        <div class="trade-info">
-                            <div class="trade-name">CYCLOPEAN ISHIGAKI STONE WALLS [Cost: 180 Ryō]</div>
-                            <div class="trade-desc">Megiddo sloped walls; grants +30 Koku.</div>
+                GEAR_TABLE.castle.forEach(c => {
+                    const isBuilt = p.purchasedCastle.includes(c.id);
+                    pane.innerHTML += `
+                        <div class="trade-row">
+                            <div class="trade-info">
+                                <div class="trade-name">${c.name} ${isBuilt ? '<span style="color:var(--koku-green);">[BUILT]</span>' : ''}</div>
+                                <div class="trade-desc">${c.desc} | +${c.koku} Koku Prestige</div>
+                            </div>
+                            <button class="trade-btn" ${isBuilt || p.gold < c.cost ? 'disabled' : ''} onclick="BuildCastleUpgrade('${c.id}')">
+                                ${isBuilt ? 'ERECTED' : `BUILD (${c.cost})`}
+                            </button>
                         </div>
-                        <button class="trade-btn" ${p.gold < 180 ? 'disabled' : ''} onclick="p.gold -= 180; p.koku += 30; UpdateUI();">BUILD</button>
-                    </div>
-                `;
+                    `;
+                });
             }
+        }
+
+        function BuildCastleUpgrade(id) {
+            AudioSys.unlock();
+            const p = State.player;
+            const item = GEAR_TABLE.castle.find(c => c.id === id);
+            if (!item || p.purchasedCastle.includes(id) || p.gold < item.cost) return;
+            p.gold -= item.cost;
+            p.koku += item.koku;
+            p.purchasedCastle.push(item.id);
+            AudioSys.playBonsho();
+            RecalculatePlayerStats();
+            LogProse(`FORTIFICATION ERECTED: ${item.name} constructed (+${item.koku} Koku)!`, "lead", "普請");
+            UpdateUI();
+            RenderCastlePane();
         }
 
         function UpgradeWeaponForge() {
@@ -2418,7 +2600,7 @@
                         <div class="trade-name">UPGRADE TRAINING: TIER ${p.hatamoto.tier} [Cost: 110 Ryō]</div>
                         <div class="trade-desc">Increases Hatamoto combat damage.</div>
                     </div>
-                    <button class="trade-btn" ${p.gold < 110 || p.hatamoto.tier >= 3 ? 'disabled' : ''} onclick="p.gold -= 110; p.hatamoto.tier++; RenderHatamotoPane();">UPGRADE</button>
+                    <button class="trade-btn" ${p.gold < 110 || p.hatamoto.tier >= 3 ? 'disabled' : ''} onclick="UpgradeHatamotoTier()">UPGRADE</button>
                 </div>
             `;
         }
@@ -2431,6 +2613,18 @@
             p.hatamoto.count++;
             AudioSys.playBonsho();
             LogProse("HATAMOTO ENROLLED: A sworn retainer takes up your clan banner.", "lead");
+            UpdateUI();
+            RenderHatamotoPane();
+        }
+
+        function UpgradeHatamotoTier() {
+            AudioSys.unlock();
+            const p = State.player;
+            if (p.gold < 110 || p.hatamoto.tier >= 3) return;
+            p.gold -= 110;
+            p.hatamoto.tier++;
+            AudioSys.playBonsho();
+            LogProse(`Hatamoto training upgraded to Tier ${p.hatamoto.tier}!`, "lead");
             UpdateUI();
             RenderHatamotoPane();
         }
