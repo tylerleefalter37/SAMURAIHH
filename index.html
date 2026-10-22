@@ -59,11 +59,11 @@
             justify-content: center;
             align-items: center;
             background-image: 
-                radial-gradient(circle at 50% 10%, rgba(158, 27, 27, 0.18) 0%, transparent 65%),
+                radial-gradient(circle at 50% 10%, rgba(158, 27, 27, 0.2) 0%, transparent 65%),
                 radial-gradient(circle at 50% 100%, rgba(12, 11, 10, 0.98) 0%, #000 100%);
         }
 
-        .shake { animation: screenShake 0.32s cubic-bezier(.36,.07,.19,.97) both; }
+        .shake { animation: screenShake 0.3s cubic-bezier(.36,.07,.19,.97) both; }
         @keyframes screenShake {
             10%, 90% { transform: translate3d(-3px, 1px, 0); }
             20%, 80% { transform: translate3d(4px, -2px, 0); }
@@ -71,7 +71,7 @@
             40%, 60% { transform: translate3d(5px, -3px, 0); }
         }
 
-        .blood-flash { animation: bloodFlashAnim 0.45s ease-out; }
+        .blood-flash { animation: bloodFlashAnim 0.4s ease-out; }
         @keyframes bloodFlashAnim {
             0% { box-shadow: inset 0 0 160px 60px rgba(186, 30, 30, 0.95); }
             100% { box-shadow: inset 0 0 0 0 transparent; }
@@ -85,7 +85,6 @@
             background-color: var(--bg-charcoal);
             border-left: 1px solid var(--border-weathered);
             border-right: 1px solid var(--border-weathered);
-            box-shadow: 0 0 70px rgba(0, 0, 0, 0.98);
             display: flex;
             flex-direction: column;
             position: relative;
@@ -95,59 +94,51 @@
         /* HEADER */
         header {
             flex-shrink: 0;
-            background: linear-gradient(180deg, #1d1815 0%, var(--bg-card) 100%);
+            background: linear-gradient(180deg, #1b1714 0%, var(--bg-card) 100%);
             border-bottom: 1px solid var(--border-weathered);
-            padding: max(6px, env(safe-area-inset-top)) 10px 6px 10px;
+            padding: max(6px, env(safe-area-inset-top)) 8px 5px 8px;
             display: grid;
             grid-template-columns: 1.2fr auto 2.8fr;
             align-items: center;
             gap: 6px;
         }
-
-        .header-location { display: flex; flex-direction: column; }
         .region-title {
             font-family: 'Cinzel', serif;
-            font-size: 0.82rem;
+            font-size: 0.78rem;
             font-weight: 700;
             color: var(--gold-bright);
-            letter-spacing: 0.5px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
         .time-badge {
-            font-size: 0.62rem;
+            font-size: 0.58rem;
             color: var(--parchment-dim);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
-
         .crest-mon {
             text-align: center;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: var(--crimson-pure);
             text-shadow: 0 0 10px rgba(158, 27, 27, 0.7);
-            letter-spacing: 2px;
             cursor: pointer;
         }
         .crest-mon.shogun-glow {
             color: var(--shogun-purple);
-            text-shadow: 0 0 16px rgba(139, 69, 198, 0.9);
+            text-shadow: 0 0 15px rgba(139, 69, 198, 0.9);
         }
-
         .hud-actions {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 3px;
+            gap: 2px;
         }
-
         .hud-btn {
-            background: #100e0d;
+            background: #110f0e;
             border: 1px solid var(--border-weathered);
             color: var(--parchment-dim);
-            padding: 4px 2px;
+            padding: 4px 1px;
             font-family: 'Cinzel', serif;
-            font-size: 0.58rem;
+            font-size: 0.56rem;
             text-align: center;
             cursor: pointer;
             border-radius: 2px;
@@ -155,7 +146,7 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
-        .hud-btn:active { background: #221c17; color: var(--gold-bright); }
+        .hud-btn:active { background: #221d18; color: var(--gold-bright); }
         .hud-btn.god-active { border-color: var(--god-gold); color: var(--god-gold); }
 
         /* VITALS GRID */
@@ -163,9 +154,9 @@
             flex-shrink: 0;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            background: #0f0d0c;
+            background: #0d0c0b;
             border-bottom: 1px solid var(--border-weathered);
-            padding: 6px 10px;
+            padding: 4px 8px;
             gap: 8px;
         }
         .entity-vitals { display: flex; flex-direction: column; gap: 2px; }
@@ -174,44 +165,38 @@
             justify-content: space-between;
             align-items: baseline;
             font-family: 'Cinzel', serif;
-            font-size: 0.74rem;
+            font-size: 0.72rem;
         }
-        .vitals-subtext {
-            font-size: 0.62rem;
-            color: var(--gold-weathered);
-            font-family: 'Noto Serif JP', serif;
-        }
-
+        .vitals-subtext { font-size: 0.60rem; color: var(--gold-weathered); }
         .bar-wrap {
-            height: 6px;
+            height: 5px;
             background: #060505;
             border: 1px solid #231e1a;
             position: relative;
             overflow: hidden;
         }
-        .bar-fill { height: 100%; width: 100%; transition: width 0.25s ease-out; }
+        .bar-fill { height: 100%; width: 100%; transition: width 0.2s ease-out; }
         .bar-hp { background: linear-gradient(90deg, #6b1414, var(--crimson-glow)); }
         .bar-ki { background: linear-gradient(90deg, #1c5e5e, var(--ki-cyan)); }
         .bar-poise { background: linear-gradient(90deg, #7a4f18, var(--poise-amber)); }
-
         .stat-meta {
             display: flex;
             justify-content: space-between;
-            font-size: 0.58rem;
+            font-size: 0.56rem;
             color: var(--parchment-dim);
             font-family: 'Cinzel', monospace;
         }
 
-        /* FEUDAL LEDGER: MOBILE 4-COLUMN STRIP */
+        /* 8-CELL COMPACT LEDGER (2 ROWS OF 4) */
         .ledger-rack {
             flex-shrink: 0;
             background: #090807;
             border-bottom: 1px solid var(--border-crimson);
-            padding: 4px 8px;
+            padding: 3px 6px;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 3px 6px;
-            font-size: 0.62rem;
+            gap: 2px 4px;
+            font-size: 0.58rem;
             color: var(--parchment-dim);
         }
         .ledger-cell {
@@ -220,7 +205,7 @@
             justify-content: space-between;
             background: #110f0e;
             padding: 2px 4px;
-            border: 1px solid #201c18;
+            border: 1px solid #1e1a16;
             border-radius: 2px;
         }
         .ledger-val { color: var(--gold-bright); font-weight: 700; font-family: 'Cinzel', monospace; }
@@ -234,7 +219,7 @@
             flex-shrink: 0;
             background: linear-gradient(180deg, #201010 0%, #120909 100%);
             border-bottom: 1px solid var(--border-crimson);
-            padding: 5px 10px;
+            padding: 4px 8px;
             display: none;
             align-items: center;
             justify-content: space-between;
@@ -242,24 +227,23 @@
         #telegraph-chamber.active { display: flex; }
         .telegraph-indicator {
             font-family: 'Cinzel', serif;
-            font-size: 0.70rem;
-            letter-spacing: 1px;
+            font-size: 0.68rem;
             color: var(--crimson-glow);
             display: flex;
             align-items: center;
             gap: 6px;
         }
         .telegraph-pulse {
-            width: 7px;
-            height: 7px;
+            width: 6px;
+            height: 6px;
             border-radius: 50%;
             background: var(--crimson-glow);
             box-shadow: 0 0 6px var(--crimson-glow);
-            animation: pulse 0.9s infinite alternate;
+            animation: pulse 0.8s infinite alternate;
         }
         @keyframes pulse { 0% { opacity: 0.3; transform: scale(0.8); } 100% { opacity: 1; transform: scale(1.3); } }
         .telegraph-text {
-            font-size: 0.66rem;
+            font-size: 0.64rem;
             color: #ffb5b5;
             font-style: italic;
             white-space: nowrap;
@@ -272,98 +256,95 @@
         #stage-chronicle {
             flex: 1 1 auto;
             min-height: 0;
-            padding: 10px 12px;
+            padding: 8px 10px;
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            background: radial-gradient(circle at 50% 50%, rgba(20, 17, 15, 0.45) 0%, rgba(10, 9, 8, 0.92) 100%);
+            gap: 6px;
+            background: radial-gradient(circle at 50% 50%, rgba(18, 15, 14, 0.5) 0%, rgba(9, 8, 7, 0.94) 100%);
         }
-
         .prose-entry {
-            line-height: 1.55;
-            font-size: 0.82rem;
+            line-height: 1.5;
+            font-size: 0.80rem;
             color: var(--parchment);
-            animation: fadeIn 0.25s ease-out;
+            animation: fadeIn 0.2s ease-out;
             border-left: 2px solid transparent;
-            padding-left: 8px;
+            padding-left: 6px;
         }
-        .prose-entry.lead { border-left-color: var(--gold-weathered); color: #f4ede1; }
+        .prose-entry.lead { border-left-color: var(--gold-weathered); color: #f7eedf; }
         .prose-entry.combat { border-left-color: var(--crimson-pure); }
-        .prose-entry.harvest { border-left-color: #941717; background: rgba(148, 23, 23, 0.08); padding: 4px 8px; }
-        .prose-entry.market { border-left-color: var(--gold-bright); background: rgba(197, 160, 89, 0.06); padding: 4px 8px; }
-        .prose-entry.usurp { border-left-color: var(--shogun-purple); background: rgba(139, 69, 198, 0.12); padding: 4px 8px; }
-        .prose-entry.hawk { border-left-color: var(--hawk-azure); background: rgba(74, 136, 181, 0.09); padding: 4px 8px; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: translateY(0); } }
+        .prose-entry.harvest { border-left-color: #941717; background: rgba(148, 23, 23, 0.08); padding: 3px 6px; }
+        .prose-entry.market { border-left-color: var(--gold-bright); background: rgba(197, 160, 89, 0.06); padding: 3px 6px; }
+        .prose-entry.usurp { border-left-color: var(--shogun-purple); background: rgba(139, 69, 198, 0.12); padding: 3px 6px; }
+        .prose-entry.council { border-left-color: #3fa9a9; background: rgba(63, 169, 169, 0.08); padding: 3px 6px; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(2px); } to { opacity: 1; transform: translateY(0); } }
 
         .hanko-stamp {
             display: inline-block;
             border: 2px solid var(--hanko-red);
             color: var(--hanko-red);
-            padding: 2px 5px;
+            padding: 1px 4px;
             font-family: 'Noto Serif JP', serif;
             font-weight: 900;
-            font-size: 0.82rem;
+            font-size: 0.80rem;
             letter-spacing: 1px;
             transform: rotate(-4deg);
-            margin: 2px 6px 2px 0;
-            box-shadow: 0 0 5px rgba(186, 30, 30, 0.35);
+            margin: 2px 4px 2px 0;
+            box-shadow: 0 0 4px rgba(186, 30, 30, 0.3);
         }
         .hanko-stamp.purple {
             border-color: var(--shogun-purple);
             color: var(--shogun-purple);
-            box-shadow: 0 0 7px rgba(139, 69, 198, 0.45);
+            box-shadow: 0 0 6px rgba(139, 69, 198, 0.4);
         }
 
         /* KENJUTSU STANCE STRIP */
         .stance-bar {
             flex-shrink: 0;
-            background: #0e0d0c;
+            background: #0c0b0a;
             border-top: 1px solid var(--border-weathered);
-            padding: 4px 8px;
+            padding: 3px 6px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 4px;
         }
-        .stance-label { font-family: 'Cinzel', serif; font-size: 0.62rem; color: var(--parchment-dim); }
+        .stance-label { font-family: 'Cinzel', serif; font-size: 0.58rem; color: var(--parchment-dim); }
         .stance-triggers { display: flex; gap: 4px; }
         .stance-btn {
             background: var(--bg-card);
             border: 1px solid var(--border-weathered);
             color: var(--parchment-dim);
-            padding: 3px 7px;
+            padding: 2px 6px;
             font-family: 'Noto Serif JP', serif;
-            font-size: 0.68rem;
+            font-size: 0.64rem;
             cursor: pointer;
             border-radius: 2px;
         }
         .stance-btn.active {
             border-color: var(--gold-weathered);
-            background: #27211a;
+            background: #251e17;
             color: var(--gold-bright);
-            box-shadow: 0 0 8px rgba(197, 160, 89, 0.25);
+            box-shadow: 0 0 6px rgba(197, 160, 89, 0.2);
         }
 
-        /* STATIONARY BOTTOM COMMAND DOCK (LOCKED IN 4 COLUMNS) */
+        /* STATIONARY BOTTOM DOCK: STRICT ROWS OF 4 BUTTONS */
         #command-dock {
             flex-shrink: 0;
-            background: #080707;
+            background: #070606;
             border-top: 2px solid var(--border-crimson);
-            padding: 5px 6px calc(6px + env(safe-area-inset-bottom)) 6px;
+            padding: 4px 4px calc(4px + env(safe-area-inset-bottom)) 4px;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 4px;
+            gap: 3px;
             z-index: 50;
         }
-
         .cmd-btn {
-            min-height: 46px;
-            background: #141210;
+            min-height: 44px;
+            background: #13110f;
             border: 1px solid var(--border-weathered);
             border-radius: 2px;
-            padding: 4px 3px;
+            padding: 3px 2px;
             color: var(--parchment);
             cursor: pointer;
             display: flex;
@@ -371,17 +352,16 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            transition: all 0.1s ease;
         }
         .cmd-btn:active:not(:disabled) {
-            background: #2a231d;
+            background: #27201a;
             border-color: var(--gold-bright);
             transform: scale(0.97);
         }
         .cmd-btn:disabled { opacity: 0.35; cursor: not-allowed; }
         .cmd-title {
             font-family: 'Cinzel', serif;
-            font-size: 0.66rem;
+            font-size: 0.62rem;
             font-weight: 700;
             color: #f7ede0;
             line-height: 1.1;
@@ -391,19 +371,18 @@
             max-width: 100%;
         }
         .cmd-desc, .cmd-cost {
-            font-size: 0.54rem;
+            font-size: 0.52rem;
             color: var(--ki-cyan);
             line-height: 1.1;
-            margin-top: 2px;
+            margin-top: 1px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
             max-width: 100%;
         }
-        .cmd-btn.btn-wide-2 { grid-column: span 2; }
         .cmd-btn.btn-wide-4 { grid-column: span 4; }
 
-        /* MODALS */
+        /* MODALS: VERTICAL SCROLL ARCHITECTURE */
         .modal-overlay {
             position: fixed;
             inset: 0;
@@ -413,30 +392,29 @@
             justify-content: center;
             align-items: flex-end;
             z-index: 999;
-            padding: 0;
         }
         .modal-overlay.open { display: flex; }
         .modal-body {
             background: var(--bg-charcoal);
             border: 1px solid var(--gold-weathered);
             border-bottom: none;
-            border-radius: 12px 12px 0 0;
+            border-radius: 10px 10px 0 0;
             box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.98);
             width: 100%;
             max-width: 900px;
-            height: 88dvh;
-            padding: 12px 14px calc(14px + env(safe-area-inset-bottom)) 14px;
+            height: 90dvh;
+            padding: 8px 10px calc(12px + env(safe-area-inset-bottom)) 10px;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 6px;
         }
         .modal-title {
             font-family: 'Cinzel', serif;
-            font-size: 0.95rem;
+            font-size: 0.88rem;
             color: var(--gold-bright);
             letter-spacing: 1px;
             border-bottom: 1px solid var(--border-weathered);
-            padding-bottom: 6px;
+            padding-bottom: 4px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -445,35 +423,38 @@
             background: transparent;
             border: none;
             color: var(--parchment-dim);
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             line-height: 1;
             padding: 2px 8px;
             cursor: pointer;
         }
 
-        .modal-tabs {
-            display: flex;
+        /* VERTICAL TAB STRIP */
+        .modal-tabs-vertical {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
             gap: 3px;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            padding-bottom: 4px;
             border-bottom: 1px solid var(--border-weathered);
+            padding-bottom: 4px;
         }
         .tab-btn {
-            flex-shrink: 0;
             background: var(--bg-card);
             border: 1px solid var(--border-weathered);
             color: var(--parchment-dim);
-            padding: 4px 8px;
+            padding: 5px 6px;
             font-family: 'Cinzel', serif;
-            font-size: 0.62rem;
+            font-size: 0.60rem;
             cursor: pointer;
             border-radius: 2px;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         .tab-btn.active {
             border-color: var(--gold-bright);
             color: var(--gold-bright);
-            background: #25201a;
+            background: #272018;
         }
 
         .modal-scrollable {
@@ -483,87 +464,86 @@
             -webkit-overflow-scrolling: touch;
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 5px;
             padding-right: 2px;
         }
-
         .trade-row {
             background: #141210;
             border: 1px solid var(--border-weathered);
-            padding: 7px 9px;
+            padding: 6px 8px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             border-radius: 2px;
         }
         .trade-info { flex: 1; min-width: 0; }
         .trade-name {
             font-family: 'Cinzel', serif;
-            font-size: 0.74rem;
+            font-size: 0.72rem;
             color: #f5eedf;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
         .trade-desc {
-            font-size: 0.60rem;
+            font-size: 0.58rem;
             color: var(--parchment-dim);
             margin-top: 1px;
             line-height: 1.25;
         }
         .trade-btn {
             flex-shrink: 0;
-            background: #211c18;
+            background: #201b17;
             border: 1px solid var(--gold-weathered);
             color: var(--gold-bright);
             padding: 5px 8px;
             font-family: 'Cinzel', serif;
-            font-size: 0.62rem;
+            font-size: 0.60rem;
             cursor: pointer;
             border-radius: 2px;
             white-space: nowrap;
         }
-        .trade-btn:disabled { opacity: 0.35; border-color: #352e27; cursor: not-allowed; }
+        .trade-btn:disabled { opacity: 0.35; border-color: #332b24; cursor: not-allowed; }
 
-        /* AUDIO PRIMER MODAL */
+        /* PRIMER MODAL */
         #audio-primer {
             position: fixed;
             inset: 0;
-            background: rgba(6, 5, 5, 0.98);
+            background: rgba(5, 4, 4, 0.98);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 9999;
             text-align: center;
-            padding: 24px;
+            padding: 20px;
         }
         .primer-hanko {
             border: 4px solid var(--hanko-red);
-            padding: 12px 24px;
+            padding: 10px 22px;
             color: var(--hanko-red);
             font-family: 'Noto Serif JP', serif;
             font-weight: 900;
-            font-size: 1.8rem;
-            letter-spacing: 5px;
-            margin-bottom: 18px;
-            box-shadow: 0 0 25px rgba(186, 30, 30, 0.4);
+            font-size: 1.7rem;
+            letter-spacing: 4px;
+            margin-bottom: 16px;
+            box-shadow: 0 0 25px rgba(186, 30, 30, 0.35);
         }
         .primer-prompt {
-            font-size: 0.82rem;
+            font-size: 0.80rem;
             color: var(--parchment);
-            margin-bottom: 22px;
-            max-width: 440px;
-            line-height: 1.7;
+            margin-bottom: 20px;
+            max-width: 420px;
+            line-height: 1.6;
         }
         .btn-enter {
             background: #781414;
             border: 1px solid var(--crimson-glow);
             color: #fff;
-            padding: 12px 30px;
+            padding: 10px 28px;
             font-family: 'Cinzel', serif;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             letter-spacing: 2px;
             cursor: pointer;
             border-radius: 2px;
@@ -578,25 +558,25 @@
 
     <main id="game-frame">
 
-        <!-- iOS Audio Primer & Start Screen -->
+        <!-- Audio Primer Modal -->
         <div id="audio-primer">
             <div class="primer-hanko">天下布武</div>
             <p class="primer-prompt">
-                Sengoku Supreme: War Falcons, Arquebusiers, Disciples &amp; Dynasties.<br>
-                Subjugate the 7 Great Daimyos, harvest heads for inspection, and seize total hegemony as Sei-i Taishōgun.
+                Sengoku Supreme: Brutal Feudal Punishments, Head Grading, +10 Tatara Weapons &amp; Procedural Fiefdoms.<br>
+                Sentence war criminals with 8 executions, wash heads for Kubi-Jikken, forge legendary tamahagane steel, and claim the Shogunate.
             </p>
-            <button class="btn-enter" id="btn-start-game">ENTER THE CRUCIBLE</button>
+            <button class="btn-enter" id="btn-start-game">SEIZE SUPREME THRONE</button>
         </div>
 
         <!-- Header -->
         <header>
             <div class="header-location">
                 <span class="region-title" id="lbl-region">Owari Approaches</span>
-                <span class="time-badge" id="lbl-time">Torrential Dusk</span>
+                <span class="time-badge" id="lbl-time">Torrential Dusk (Autumn)</span>
             </div>
             <div class="crest-mon" id="lbl-clan-mon" onclick="ToggleGekokujoModal()">野伏</div>
             <div class="hud-actions">
-                <button class="hud-btn" id="btn-gekokujo-open" style="border-color: var(--shogun-purple); color: #dcb3ff;">WARLORDS</button>
+                <button class="hud-btn" id="btn-land-open">LANDS</button>
                 <button class="hud-btn" id="btn-dynasty-open">DYNASTY</button>
                 <button class="hud-btn" id="btn-baggage-open">SATCHEL</button>
                 <button class="hud-btn" id="btn-god-toggle">GOD: OFF</button>
@@ -633,16 +613,16 @@
             </div>
         </section>
 
-        <!-- 4-Column Feudal Ledger Strip -->
+        <!-- 8-Cell Compact Feudal Ledger -->
         <section class="ledger-rack">
             <div class="ledger-cell"><span>RYŌ</span><span class="ledger-val" id="lbl-gold">60</span></div>
             <div class="ledger-cell"><span>KOKU</span><span class="ledger-val green" id="lbl-koku">0</span></div>
+            <div class="ledger-cell"><span>RICE</span><span class="ledger-val" id="lbl-rice-bushels">80</span></div>
+            <div class="ledger-cell"><span>CAPTIVES</span><span class="ledger-val crimson" id="lbl-prisoners-count">0</span></div>
             <div class="ledger-cell"><span>THRONES</span><span class="ledger-val purple" id="lbl-thrones-count">0/7</span></div>
-            <div class="ledger-cell"><span>HAWK</span><span class="ledger-val azure" id="lbl-falcon-name">NONE</span></div>
-            <div class="ledger-cell"><span>PUPILS</span><span class="ledger-val" id="lbl-pupil-count">0/6</span></div>
+            <div class="ledger-cell"><span>GUARD</span><span class="ledger-val azure" id="lbl-hatamoto-count">0/12</span></div>
+            <div class="ledger-cell"><span>DEEDS</span><span class="ledger-val" id="lbl-deeds-count">0</span></div>
             <div class="ledger-cell"><span>HEADS</span><span class="ledger-val crimson" id="lbl-heads-count">0</span></div>
-            <div class="ledger-cell"><span>NOSES</span><span class="ledger-val" id="lbl-noses-count">0</span></div>
-            <div class="ledger-cell"><span>EAR/TEETH</span><span class="ledger-val" id="lbl-ear-tooth-count">0/0</span></div>
         </section>
 
         <!-- Telegraph Warning Chamber -->
@@ -654,7 +634,7 @@
             <div class="telegraph-text" id="lbl-telegraph-desc">Muscles coil to strike downward.</div>
         </section>
 
-        <!-- Stage Chronicle (Scrollable) -->
+        <!-- Stage Chronicle -->
         <section id="stage-chronicle" onclick="FastForwardProse()"></section>
 
         <!-- Posture / Stance Strip -->
@@ -667,18 +647,101 @@
             </div>
         </section>
 
-        <!-- STATIONARY 4-COLUMN COMMAND DOCK -->
+        <!-- STATIONARY BOTTOM DOCK: ROWS OF 4 BUTTONS -->
         <section id="command-dock"></section>
+
+        <!-- MODAL: HYŌJŌSHO COUNCIL & 8 WAR CRIMES SENTENCING -->
+        <div class="modal-overlay" id="council-modal">
+            <div class="modal-body" style="border-color: var(--shogun-purple);">
+                <div class="modal-title" style="color: #dcb3ff;">
+                    <span>HYŌJŌSHO COUNCIL &amp; WAR CRIMES TRIBUNAL</span>
+                    <button class="modal-close" onclick="ToggleCouncilModal()">×</button>
+                </div>
+                <div class="modal-tabs-vertical">
+                    <button class="tab-btn active" id="tab-c-crimes" onclick="SwitchCouncilTab('crimes')">SENTENCE (8 CRIMES)</button>
+                    <button class="tab-btn" id="tab-c-kubi" onclick="SwitchCouncilTab('kubi')">KUBI-ARAI (HEAD GRADING)</button>
+                    <button class="tab-btn" id="tab-c-gifts" onclick="SwitchCouncilTab('gifts')">7 DAIMYO RELICS</button>
+                    <button class="tab-btn" id="tab-c-governance" onclick="SwitchCouncilTab('governance')">BAKUKAKU MINISTERS</button>
+                </div>
+                <div class="modal-scrollable" id="council-pane"></div>
+            </div>
+        </div>
+
+        <!-- MODAL: FREE DUEL GROUNDS (CHISHIMADA BLOOD RING) -->
+        <div class="modal-overlay" id="duels-modal">
+            <div class="modal-body" style="border-color: var(--crimson-pure);">
+                <div class="modal-title" style="color: #ff9e9e;">
+                    <span>CHISHIMADA BLOOD RING: UNRESTRICTED DUELS</span>
+                    <button class="modal-close" onclick="ToggleDuelsModal()">×</button>
+                </div>
+                <div style="font-size:0.62rem; color:var(--parchment-dim);">
+                    Step into the blood sands. Slay challengers for high-grade heads, iron bullion, black powder, and precious treasures.
+                </div>
+                <div class="modal-scrollable" id="duels-pane"></div>
+            </div>
+        </div>
+
+        <!-- MODAL: PROCEDURAL LAND REGISTRY (TOCHI-CHŌ) -->
+        <div class="modal-overlay" id="land-modal">
+            <div class="modal-body" style="border-color: var(--koku-green);">
+                <div class="modal-title" style="color: #a8ff9e;">
+                    <span>FEUDAL LAND REGISTRY (TOCHI-CHŌ)</span>
+                    <button class="modal-close" onclick="ToggleLandModal()">×</button>
+                </div>
+                <div style="font-size:0.62rem; color:var(--parchment-dim);">
+                    Purchase deeded fief parcels across provinces. Each parcel passively harvests raw commodities directly into your stores every season.
+                </div>
+                <div class="modal-scrollable" id="land-pane"></div>
+            </div>
+        </div>
+
+        <!-- MODAL: CASTLE, 22 WEAPONS & TATARA FORGE -->
+        <div class="modal-overlay" id="castle-modal">
+            <div class="modal-body">
+                <div class="modal-title">
+                    <span>CASTLE ARSENAL, TATARA FORGE &amp; RETINUE</span>
+                    <button class="modal-close" onclick="ToggleCastleModal()">×</button>
+                </div>
+                <div class="modal-tabs-vertical">
+                    <button class="tab-btn active" id="tab-cas-forge" onclick="SwitchCastleTab('forge')">TATARA FORGE (+10)</button>
+                    <button class="tab-btn" id="tab-cas-weapons" onclick="SwitchCastleTab('weapons')">22 WEAPONS</button>
+                    <button class="tab-btn" id="tab-cas-bows" onclick="SwitchCastleTab('bows')">BOWS &amp; ARQUEBUS</button>
+                    <button class="tab-btn" id="tab-cas-armor" onclick="SwitchCastleTab('armor')">SUITS OF ARMOR</button>
+                    <button class="tab-btn" id="tab-cas-keep" onclick="SwitchCastleTab('keep')">CASTLE KEEP</button>
+                    <button class="tab-btn" id="tab-cas-beasts" onclick="SwitchCastleTab('beasts')">WAR BEASTS</button>
+                </div>
+                <div class="modal-scrollable" id="castle-pane"></div>
+            </div>
+        </div>
+
+        <!-- MODAL: COMMODITIES MARKET (RAKUICHI-RAKUZA) -->
+        <div class="modal-overlay" id="market-trade-modal">
+            <div class="modal-body" style="border-color: var(--gold-weathered);">
+                <div class="modal-title">
+                    <span>RAKUICHI-RAKUZA COMMODITIES EXCHANGE</span>
+                    <button class="modal-close" onclick="ToggleMarketTradeModal()">×</button>
+                </div>
+                <div class="modal-scrollable" id="market-trade-pane"></div>
+            </div>
+        </div>
+
+        <!-- MODAL: HATAMOTO GUARD -->
+        <div class="modal-overlay" id="hatamoto-modal">
+            <div class="modal-body" style="border-color: var(--hawk-azure);">
+                <div class="modal-title" style="color: #8ed0ff;">
+                    <span>HATAMOTO IMPERIAL BODYGUARD UNIT</span>
+                    <button class="modal-close" onclick="ToggleHatamotoModal()">×</button>
+                </div>
+                <div class="modal-scrollable" id="hatamoto-pane"></div>
+            </div>
+        </div>
 
         <!-- MODAL: GEKOKUJŌ (7 WARLORDS) -->
         <div class="modal-overlay" id="gekokujo-modal">
             <div class="modal-body" style="border-color: var(--shogun-purple);">
                 <div class="modal-title" style="color: #dcb3ff;">
-                    <span>GEKOKUJŌ (下剋上): THE THRONE SANCTUM</span>
+                    <span>GEKOKUJŌ: THE SEVEN SEATS OF HEGEMONY</span>
                     <button class="modal-close" onclick="ToggleGekokujoModal()">×</button>
-                </div>
-                <div style="font-size: 0.68rem; color: var(--parchment-dim);">
-                    Slay all 7 Great Daimyos in single combat to usurp their provinces and claim total hegemony as Sei-i Taishōgun (征夷大将軍).
                 </div>
                 <div class="modal-scrollable" id="gekokujo-pane"></div>
             </div>
@@ -688,35 +751,14 @@
         <div class="modal-overlay" id="dynasty-modal">
             <div class="modal-body">
                 <div class="modal-title">
-                    <span>BLOODLINE DYNASTY &amp; SUCCESSION</span>
+                    <span>BLOODLINE DYNASTY &amp; CONSORTS</span>
                     <button class="modal-close" onclick="ToggleDynastyModal()">×</button>
                 </div>
-                <div class="modal-tabs">
-                    <button class="tab-btn active" id="dyn-tab-heirs" onclick="SwitchDynastyTab('heirs')">HEIRS</button>
-                    <button class="tab-btn" id="dyn-tab-governors" onclick="SwitchDynastyTab('governors')">GOVERNORS</button>
-                    <button class="tab-btn" id="dyn-tab-consorts" onclick="SwitchDynastyTab('consorts')">CONSORTS</button>
+                <div class="modal-tabs-vertical">
+                    <button class="tab-btn active" id="tab-dyn-heirs" onclick="SwitchDynastyTab('heirs')">HEIRS</button>
+                    <button class="tab-btn" id="tab-dyn-consorts" onclick="SwitchDynastyTab('consorts')">CONSORTS</button>
                 </div>
                 <div class="modal-scrollable" id="dynasty-pane"></div>
-            </div>
-        </div>
-
-        <!-- MODAL: ARSENAL, MARKET & FIEF -->
-        <div class="modal-overlay" id="market-modal">
-            <div class="modal-body">
-                <div class="modal-title">
-                    <span>ARSENAL, FALCONRY &amp; FIEF HQ</span>
-                    <button class="modal-close" onclick="ToggleMarketModal()">×</button>
-                </div>
-                <div class="modal-tabs">
-                    <button class="tab-btn active" id="tab-btn-kubi" onclick="SwitchMarketTab('kubi')">HEAD INSPECTION</button>
-                    <button class="tab-btn" id="tab-btn-weapons" onclick="SwitchMarketTab('weapons')">WEAPONS</button>
-                    <button class="tab-btn" id="tab-btn-bows" onclick="SwitchMarketTab('bows')">BOWS &amp; SHOTS</button>
-                    <button class="tab-btn" id="tab-btn-armor" onclick="SwitchMarketTab('armor')">ARMOR</button>
-                    <button class="tab-btn" id="tab-btn-falconry" onclick="SwitchMarketTab('falconry')">WAR BEASTS</button>
-                    <button class="tab-btn" id="tab-btn-estate" onclick="SwitchMarketTab('estate')">CASTLE &amp; FIEF</button>
-                    <button class="tab-btn" id="tab-btn-pupils" onclick="SwitchMarketTab('pupils')">DISCIPLES</button>
-                </div>
-                <div class="modal-scrollable" id="market-content-pane"></div>
             </div>
         </div>
 
@@ -724,10 +766,10 @@
         <div class="modal-overlay" id="inv-modal">
             <div class="modal-body">
                 <div class="modal-title">
-                    <span>SATCHEL &amp; WAR LOADOUT</span>
+                    <span>SATCHEL, HEAD-SACK &amp; COMMODITIES</span>
                     <button class="modal-close" onclick="ToggleBaggageModal()">×</button>
                 </div>
-                <div class="modal-scrollable" id="baggage-content-pane"></div>
+                <div class="modal-scrollable" id="baggage-pane"></div>
             </div>
         </div>
 
@@ -735,7 +777,7 @@
         <div class="modal-overlay" id="god-modal">
             <div class="modal-body" style="border-color: var(--god-gold);">
                 <div class="modal-title" style="color: var(--god-gold);">
-                    <span>HEAVEN'S MANDATE: WAR CHEATS</span>
+                    <span>HEAVEN'S MANDATE: SUPREME CHEATS</span>
                     <button class="modal-close" onclick="ToggleGodModal()">×</button>
                 </div>
                 <div class="modal-scrollable" id="god-pane"></div>
@@ -746,7 +788,7 @@
 
     <script>
         /* =========================================================================
-           CRASH-PROOF SYNTHESIZED WEB AUDIO ENGINE
+           BULLETPROOF SYNTHESIZED WEB AUDIO API
            ========================================================================= */
         const AudioSys = {
             ctx: null,
@@ -762,7 +804,7 @@
                     this.masterGain = this.ctx.createGain();
                     this.masterGain.gain.setValueAtTime(0.65, this.ctx.currentTime);
                     this.masterGain.connect(this.ctx.destination);
-                } catch(e) { console.warn("AudioContext not permitted", e); }
+                } catch(e) {}
             },
 
             unlock() {
@@ -780,13 +822,13 @@
                         const g = this.ctx.createGain();
                         osc.type = 'sine';
                         osc.frequency.setValueAtTime(f, now);
-                        osc.frequency.exponentialRampToValueAtTime(f * 0.985, now + 4.0);
-                        g.gain.setValueAtTime(0.3, now);
-                        g.gain.exponentialRampToValueAtTime(0.001, now + 4.2);
+                        osc.frequency.exponentialRampToValueAtTime(f * 0.985, now + 3.8);
+                        g.gain.setValueAtTime(0.28, now);
+                        g.gain.exponentialRampToValueAtTime(0.001, now + 4.0);
                         osc.connect(g);
                         g.connect(this.masterGain);
                         osc.start(now);
-                        osc.stop(now + 4.3);
+                        osc.stop(now + 4.1);
                     });
                 } catch(e) {}
             },
@@ -931,22 +973,32 @@
         };
 
         /* =========================================================================
-           EXPANDED DATA TABLES
+           DATA: 22 WEAPONS, BOWS, ARMORS, COMMODITIES, CASTLE, WARLORDS
            ========================================================================= */
         const GEAR_TABLE = {
             weapons: [
+                { id: 'w_tanto', name: 'Yoroi-Tōshi Tanto', dmgMod: 0.85, cost: 25, desc: 'Armor-piercing dagger for grappling joints.' },
+                { id: 'w_wakizashi', name: 'Honorable Wakizashi', dmgMod: 0.95, cost: 45, desc: 'Companion blade; swift parrying counter-strokes.' },
                 { id: 'w_katana', name: 'Standard Uchigatana', dmgMod: 1.0, cost: 0, desc: 'Mass-forged infantry sidearm.' },
                 { id: 'w_dotanuki', name: 'Thick Dōtanuki', dmgMod: 1.25, cost: 85, desc: 'Heavy blade built to shatter iron ribs.' },
-                { id: 'w_nodachi', name: 'Five-Foot Nodachi', dmgMod: 1.45, cost: 160, desc: 'Sweeping greatsword with massive cleave reach.' },
-                { id: 'w_nagamaki', name: 'Warlord Nagamaki', dmgMod: 1.60, cost: 240, desc: 'Curved pole blade; shears clean through defensive guards.' },
+                { id: 'w_nodachi', name: 'Five-Foot Nodachi', dmgMod: 1.45, cost: 160, desc: 'Sweeping greatsword with massive reach.' },
+                { id: 'w_nagamaki', name: 'Warlord Nagamaki', dmgMod: 1.60, cost: 240, desc: 'Curved pole blade; slices clean through defensive guards.' },
                 { id: 'w_yari', name: 'Cross-Spear Jūmonji Yari', dmgMod: 1.35, cost: 130, desc: 'Piercing thrusts; deals high poise damage.' },
-                { id: 'w_tetsubo', name: 'Spiked Kanabō', dmgMod: 1.50, cost: 190, desc: 'Crushing studded club; shatters poise in one blow.' },
+                { id: 'w_omi_yari', name: 'Nine-Foot Ōmi-no-Yari', dmgMod: 1.50, cost: 210, desc: 'Tremendous reach; impales cavalry before they strike.' },
+                { id: 'w_kamayari', name: 'Hooked Sickle Kama-Yari', dmgMod: 1.40, cost: 180, desc: 'Hook hooks neck lames and pulls shields away.' },
+                { id: 'w_tetsubo', name: 'Studded Tetsubō Club', dmgMod: 1.50, cost: 175, desc: 'Dense oak reinforced with iron bands.' },
+                { id: 'w_kanabo', name: 'Demon Spiked Kanabō', dmgMod: 1.65, cost: 260, desc: 'Crushing stud club; shatters poise in one blow.' },
                 { id: 'w_kusarigama', name: 'Sickle & Chain Kusarigama', dmgMod: 1.30, cost: 150, desc: 'Entangles weapons to disarm opponents.' },
-                { id: 'w_sohei_naginata', name: 'Temple Sōhei Naginata', dmgMod: 1.55, cost: 260, desc: 'Monastic glaive favored in religious uprisings.' },
-                { id: 'w_chigiriki', name: 'Staff-Flail Chigiriki', dmgMod: 1.40, cost: 210, desc: 'Iron ball and chain whip; wraps around enemy shields.' },
-                { id: 'w_nanban_sabre', name: 'Nanban Steel Rapier', dmgMod: 1.50, cost: 340, desc: 'Imported Toledo steel; ignores 35% of enemy armor.' },
-                { id: 'w_muramasa', name: 'Demon Tamahagane Muramasa', dmgMod: 1.95, cost: 480, desc: 'Bloodthirsty blade. +50% decapitation strike rate.' },
-                { id: 'w_masamune', name: 'Saint Blade Honjō Masamune', dmgMod: 2.25, cost: 780, desc: 'The apex of Japanese steel; cuts iron like water.' }
+                { id: 'w_chigiriki', name: 'Staff-Flail Chigiriki', dmgMod: 1.42, cost: 195, desc: 'Weighted iron ball on a chain; swings over guards.' },
+                { id: 'w_sohei_naginata', name: 'Temple Sōhei Naginata', dmgMod: 1.55, cost: 270, desc: 'Monastic curved glaive favored in holy uprisings.' },
+                { id: 'w_ashigaru_pike', name: 'Torii Suneemon Pike', dmgMod: 1.30, cost: 110, desc: 'Bamboo and iron foot-pike built for spear walls.' },
+                { id: 'w_nanban_sabre', name: 'Toledo Steel Rapier', dmgMod: 1.50, cost: 340, desc: 'Nanban import; ignores 35% of enemy armor.' },
+                { id: 'w_zweihander', name: 'Nanban Great Zweihänder', dmgMod: 1.75, cost: 440, desc: 'Massive European double-edged iron sword.' },
+                { id: 'w_kotetsu', name: 'Tiger Blade Nagasone Kotetsu', dmgMod: 1.85, cost: 520, desc: 'Legendary Edo iron-cutter; slices bronze helmets.' },
+                { id: 'w_osafune', name: 'Osafune Kagemitsu Tachi', dmgMod: 1.95, cost: 600, desc: 'Master Bizen blade of peerless balance.' },
+                { id: 'w_muramasa', name: 'Demon Tamahagane Muramasa', dmgMod: 2.10, cost: 720, desc: 'Demon forge. +50% critical decapitation chance.' },
+                { id: 'w_masamune', name: 'Saint Blade Honjō Masamune', dmgMod: 2.30, cost: 850, desc: 'The apex of Japanese steel; cleaves iron like spring water.' },
+                { id: 'w_kusanagi', name: 'Imperial Kusanagi Replica', dmgMod: 2.50, cost: 1200, desc: 'Divine serpent blade; radiates imperial mandate.' }
             ],
             bows: [
                 { id: 'b_none', name: 'No War Bow', dmg: 0, cost: 0, desc: 'Unarmed in ranged Kyūjutsu.' },
@@ -954,164 +1006,55 @@
                 { id: 'b_daikyu', name: 'Asymmetrical Daikyū', dmg: 44, cost: 145, desc: 'Heavy two-meter war bow shooting willow-leaf piercers.' },
                 { id: 'b_black', name: 'Black Lacquered War Bow', dmg: 64, cost: 280, desc: 'Crafted with mulberry wood and rawhide binding.' },
                 { id: 'b_dragon', name: 'Dragon-Bone Composite Bow', dmg: 86, cost: 520, desc: 'Horn-and-whalebone core; punches through heavy cuirasses.' },
-                { id: 'b_matchlock', name: 'Sakai Matchlock Arquebus', dmg: 105, cost: 700, desc: 'Volley of lead and sulfur powder; deafening blast.' }
+                { id: 'b_matchlock', name: 'Sakai Matchlock Arquebus', dmg: 110, cost: 720, desc: 'Volley of lead ball and sulfur smoke.' }
             ],
             armors: [
-                { id: 'a_tattered', name: 'Ashigaru Raiment', defMod: 0.10, maxHpBonus: 0, cost: 0, desc: 'Boiled rawhide and bamboo.' },
-                { id: 'a_tatami', name: 'Collapsible Tatami Dō', defMod: 0.16, maxHpBonus: 15, cost: 55, desc: 'Articulated iron squares on hemp cloth.' },
+                { id: 'a_tattered', name: 'Ashigaru Raiment', defMod: 0.10, maxHpBonus: 0, cost: 0, desc: 'Boiled rawhide and bamboo straw.' },
+                { id: 'a_tatami', name: 'Collapsible Tatami Dō', defMod: 0.16, maxHpBonus: 15, cost: 55, desc: 'Articulated iron squares sewn onto hemp.' },
                 { id: 'a_kozane', name: 'Lacquered Kozane Dō', defMod: 0.24, maxHpBonus: 35, cost: 120, desc: 'Iron scales laced with durable silk cords.' },
-                { id: 'a_tosei', name: 'Bullet-Tested Tosei Gusoku', defMod: 0.35, maxHpBonus: 65, cost: 240, desc: 'Modern plate forged against matchlock balls.' },
-                { id: 'a_nanban', name: 'Nanban High Iron Cuirass', defMod: 0.45, maxHpBonus: 100, cost: 400, desc: 'European import breastplate; heavy impact reduction.' },
-                { id: 'a_demon', name: 'Demon Kabuto & Gusoku', defMod: 0.52, maxHpBonus: 130, cost: 560, desc: 'Frightening demon mask with heavy shoulder lames.' },
-                { id: 'a_oyoroi', name: 'Great Daimyo Ō-Yoroi', defMod: 0.60, maxHpBonus: 165, cost: 720, desc: 'Heirloom battle armor with towering gold horns.' },
-                { id: 'a_shogun', name: 'Imperial Dragon Shōgun Armor', defMod: 0.70, maxHpBonus: 220, cost: 1100, desc: 'Imperial war majesty; pinnacle of craftsmanship.' }
+                { id: 'a_tosei', name: 'Bullet-Tested Tosei Gusoku', defMod: 0.35, maxHpBonus: 65, cost: 240, desc: 'Modern Sengoku plate forged against matchlock rounds.' },
+                { id: 'a_nanban', name: 'Nanban High Iron Cuirass', defMod: 0.45, maxHpBonus: 100, cost: 400, desc: 'European import plate; massive impact negation.' },
+                { id: 'a_demon', name: 'Black Demon Kabuto & Gusoku', defMod: 0.52, maxHpBonus: 130, cost: 560, desc: 'Frightening demon mask with heavy shoulder lames.' },
+                { id: 'a_oyoroi', name: 'Great Daimyo Ō-Yoroi', defMod: 0.60, maxHpBonus: 165, cost: 720, desc: 'Heirloom warlord battle armor with towering gold horns.' },
+                { id: 'a_shogun', name: 'Imperial Dragon Shōgun Armor', defMod: 0.70, maxHpBonus: 220, cost: 1100, desc: 'Imperial war majesty; supreme defensive craftsmanship.' }
             ],
             falcons: [
-                { id: 'f_none', name: 'No Hunting Beast', atk: 0, cost: 0, desc: 'No bird or hound trained.' },
-                { id: 'f_kite', name: 'Black Kite (Tobi)', atk: 12, cost: 45, desc: 'Opportunistic raptor; distracts foe and pilfers small coin.' },
+                { id: 'f_none', name: 'No War Beast', atk: 0, cost: 0, desc: 'No hunting beast trained.' },
+                { id: 'f_kite', name: 'Black Kite (Tobi)', atk: 12, cost: 45, desc: 'Distracts foe and pilfers small coin.' },
                 { id: 'f_otaka', name: 'Northern Goshawk (Ōtaka)', atk: 20, cost: 85, desc: 'Tenacious woodland hawk; excels at eye-gouging.' },
-                { id: 'f_hayabusa', name: 'Peregrine Falcon (Hayabusa)', atk: 28, cost: 160, desc: 'Fastest diver in nature; strikes opponent temple mid-swing.' },
-                { id: 'f_kumataka', name: 'Mountain Hawk-Eagle', atk: 38, cost: 280, desc: 'Fierce raptor of the crags; knocks charging ashigaru flat.' },
-                { id: 'f_inuwashi', name: 'Golden Divine Eagle', atk: 52, cost: 480, desc: 'Emperor of the sky; rips through helm guards and throats.' },
-                { id: 'f_hound', name: 'Kai-Ken War Hound', atk: 58, cost: 550, desc: 'Tiger-striped war dog; drags armored foes down into the red mud.' }
-            ],
-            estate: [
-                { id: 'e_paddy', name: '10 Koku Rice Paddy', cost: 75, koku: 10, desc: '+10 Ryō tribute every travel cycle.' },
-                { id: 'e_basin', name: 'Great Irrigation Basin', cost: 150, koku: 25, desc: '+20 Ryō extra paddy revenue.' },
-                { id: 'e_manor', name: 'Fortified Buke-Yashiki Manor', cost: 180, koku: 30, desc: '+30 Max HP and max recovery at rest.' },
-                { id: 'e_smithy', name: 'Clan Tatara Smithy', cost: 250, koku: 45, desc: '+14 flat damage to all melee and bow attacks.' },
-                { id: 'e_dojo', name: 'Kenjutsu Training Dojo', cost: 200, koku: 35, desc: 'Unlocks training of up to 6 Disciples.' },
-                { id: 'e_castletown', name: 'Jōkamachi Castletown', cost: 380, koku: 70, desc: 'Merchant hub; yields +30 Ryō per cycle.' },
-                { id: 'e_kubizuka', name: 'Kubizuka (Severed Head Mound)', cost: 150, koku: 15, desc: 'Terrifies foes (-25 Enemy Starting Poise).' },
-                { id: 'e_aviary', name: 'Takaba Falconry Aviary', cost: 160, koku: 25, desc: 'Required to purchase and command war beasts.' },
-                { id: 'e_stables', name: 'Mikawa Warhorse Stables', cost: 220, koku: 40, desc: 'Enhances evasion probability by +15%.' },
-                { id: 'e_brewery', name: 'Castle Sake Brewery', cost: 175, koku: 20, desc: 'Produces sake; +18 Ryō per travel cycle.' },
-                { id: 'e_shrine', name: 'Bishamonten Battle Shrine', cost: 190, koku: 30, desc: 'Raises max Ki by +25 and settles war nerves.' },
-                { id: 'e_shinobi', name: 'Shadow Shinobi Cell', cost: 310, koku: 50, desc: 'Scouts out ambushes; grants first strike in duels.' }
+                { id: 'f_hayabusa', name: 'Peregrine Falcon (Hayabusa)', atk: 28, cost: 160, desc: 'Strikes opponent temple mid-swing.' },
+                { id: 'f_kumataka', name: 'Mountain Hawk-Eagle', atk: 38, cost: 280, desc: 'Knocks charging ashigaru flat.' },
+                { id: 'f_inuwashi', name: 'Golden Divine Eagle', atk: 52, cost: 480, desc: 'Emperor of skies; rips through helm guards and throats.' },
+                { id: 'f_hound', name: 'Kai-Ken War Hound', atk: 58, cost: 550, desc: 'Tiger-striped hound; drags armored foes down into mud.' }
             ]
         };
 
-        const ENEMY_ROSTER = [
-            {
-                caste: 'Ashigaru Levy', casteKey: 'ashigaru', name: 'Spear-Wall Foot Soldier',
-                hp: 75, maxHp: 75, poise: 60, maxPoise: 60, stance: 'chudan',
-                headValue: 25, noseValue: 10, goldToothChance: 0.1,
-                intents: [
-                    { label: 'SPEAR THRUST', desc: 'Drives bamboo point toward your throat.', dmg: 20, poiseDmg: 18 },
-                    { label: 'BUTT STRIKE', desc: 'Swings iron butt toward your temple.', dmg: 14, poiseDmg: 28 },
-                    { label: 'BRACED GUARD', desc: 'Plants spear butt deep in the mud.', dmg: 0, poiseDmg: 0 }
-                ]
-            },
-            {
-                caste: 'Matchlock Gunner', casteKey: 'gunner', name: 'Tanegashima Sniper',
-                hp: 65, maxHp: 65, poise: 50, maxPoise: 50, stance: 'gedan',
-                headValue: 35, noseValue: 14, goldToothChance: 0.15,
-                intents: [
-                    { label: 'MATCHLOCK VOLLEY', desc: 'Match cord drops to pan! EVADE or BLIND!', dmg: 48, poiseDmg: 60 },
-                    { label: 'BAYONET JAB', desc: 'Thrusts barrel muzzle into your ribs.', dmg: 16, poiseDmg: 15 },
-                    { label: 'RELOAD POWDER', desc: 'Pours black powder and ramrod ball.', dmg: 0, poiseDmg: 0 }
-                ]
-            },
-            {
-                caste: 'Kabukimono Duelist', casteKey: 'outlaw', name: 'Kabukimono Street Ruffian',
-                hp: 95, maxHp: 95, poise: 80, maxPoise: 80, stance: 'gedan',
-                headValue: 50, noseValue: 20, goldToothChance: 0.4,
-                intents: [
-                    { label: 'WILD DUAL SLASH', desc: 'Cross-cutting strikes with twin blades.', dmg: 28, poiseDmg: 30 },
-                    { label: 'SALT BLIND FLICK', desc: 'Flicks stinging lime powder toward your eyes.', dmg: 10, poiseDmg: 45 },
-                    { label: 'DERISIVE TAUNT', desc: 'Spits at your sandals, mocking your lineage.', dmg: 0, poiseDmg: 0 }
-                ]
-            },
-            {
-                caste: 'Renegade Bushi', casteKey: 'veteran', name: 'Outlaw Nodachi Veteran',
-                hp: 120, maxHp: 120, poise: 100, maxPoise: 100, stance: 'jodan',
-                headValue: 70, noseValue: 28, goldToothChance: 0.5,
-                intents: [
-                    { label: 'HELMET-CLEAVING OVERHEAD', desc: 'Two hands clenched on a five-foot blade.', dmg: 38, poiseDmg: 45 },
-                    { label: 'SWEEPING LEG REAP', desc: 'Sweeps the massive edge low along the mud.', dmg: 26, poiseDmg: 32 },
-                    { label: 'COLD CIRCLE', desc: 'Glares with red eyes, waiting for your lunge.', dmg: 0, poiseDmg: 0 }
-                ]
-            },
-            {
-                caste: 'Warrior Monk', casteKey: 'sohei', name: 'Ikkō-Ikki Naginata Sōhei',
-                hp: 135, maxHp: 135, poise: 120, maxPoise: 120, stance: 'chudan',
-                headValue: 90, noseValue: 35, goldToothChance: 0.35,
-                intents: [
-                    { label: 'NAGINATA FIGURE-EIGHT', desc: 'Circles the long glaive in a lethal whirlwind.', dmg: 32, poiseDmg: 40 },
-                    { label: 'IRON ROSARY CRUSH', desc: 'Hurls armored shoulder into your chest.', dmg: 22, poiseDmg: 55 },
-                    { label: 'CHANTING DHARMA', desc: 'Invokes Amitābha Buddha with absolute zeal.', dmg: 0, poiseDmg: 0 }
-                ]
-            },
-            {
-                caste: 'Shadow Assassin', casteKey: 'shinobi', name: 'Kōga Nightblade Shinobi',
-                hp: 85, maxHp: 85, poise: 70, maxPoise: 70, stance: 'gedan',
-                headValue: 80, noseValue: 30, goldToothChance: 0.3,
-                intents: [
-                    { label: 'POISON KUNAI FLURRY', desc: 'Hurls three venomed blades in a rapid fan.', dmg: 30, poiseDmg: 35 },
-                    { label: 'SHADOW HAMSTRING', desc: 'Slides behind you to sever the Achilles tendon.', dmg: 36, poiseDmg: 40 },
-                    { label: 'SMOKE DISAPPEAR', desc: 'Black smoke blooms; resets battle posture.', dmg: 0, poiseDmg: 0 }
-                ]
-            },
-            {
-                caste: 'Pirate Cutthroat', casteKey: 'wako', name: 'Wōkō Sea-Raider Veteran',
-                hp: 110, maxHp: 110, poise: 90, maxPoise: 90, stance: 'jodan',
-                headValue: 65, noseValue: 25, goldToothChance: 0.6,
-                intents: [
-                    { label: 'CURVED SABRE GOUGE', desc: 'A savage upward gutting sweep.', dmg: 34, poiseDmg: 35 },
-                    { label: 'GRAPPLING HOOK HURL', desc: 'Flings iron grappling hook into your armor collar.', dmg: 20, poiseDmg: 50 },
-                    { label: 'COARSE ROAR', desc: 'Guzzles sour rice liquor to bolster nerve.', dmg: 0, poiseDmg: 0 }
-                ]
-            },
-            {
-                caste: 'Mounted Samurai', casteKey: 'cavalry', name: 'Red-Armored Lancer',
-                hp: 155, maxHp: 155, poise: 140, maxPoise: 140, stance: 'jodan',
-                headValue: 120, noseValue: 45, goldToothChance: 0.7,
-                intents: [
-                    { label: 'MOUNTED LANCE CHARGE', desc: 'Warhorse thunders forward; couched heavy yari spear!', dmg: 48, poiseDmg: 65 },
-                    { label: 'HOOF TRAMPLE', desc: 'Warhorse rears up, iron horseshoes smashing down.', dmg: 28, poiseDmg: 50 },
-                    { label: 'WHEEL AROUND', desc: 'Circles on the gallop, preparing next charge.', dmg: 0, poiseDmg: 0 }
-                ]
-            },
-            {
-                caste: 'Inquisitor Bailiff', casteKey: 'bailiff', name: 'Torture Magistrate',
-                hp: 140, maxHp: 140, poise: 115, maxPoise: 115, stance: 'chudan',
-                headValue: 105, noseValue: 40, goldToothChance: 0.8,
-                intents: [
-                    { label: 'CLEAVER EXECUTION', desc: 'Heavy butcher blade aimed straight at your neck.', dmg: 40, poiseDmg: 45 },
-                    { label: 'IRON CHAIN BIND', desc: 'Whips a manacle chain across your sword hand.', dmg: 18, poiseDmg: 60 },
-                    { label: 'CALL FOR SPEARS', desc: 'Whistles loudly to intimidate your guard.', dmg: 0, poiseDmg: 0 }
-                ]
-            },
-            {
-                caste: 'Clan Champion', casteKey: 'champion', name: 'Grand Hatamoto General',
-                hp: 185, maxHp: 185, poise: 160, maxPoise: 160, stance: 'chudan',
-                headValue: 180, noseValue: 70, goldToothChance: 0.95,
-                intents: [
-                    { label: 'ANCESTRAL TACHI REAP', desc: 'Devastating two-handed cut whistling with intent.', dmg: 46, poiseDmg: 55 },
-                    { label: 'CRESTED KABUTO CRUSH', desc: 'Slams his gold-antlered helmet directly into your nose.', dmg: 30, poiseDmg: 60 },
-                    { label: 'WAR BANNER COMMAND', desc: 'Plants clan banner; stabilizes posture.', dmg: 0, poiseDmg: 0 }
-                ]
-            }
-        ];
+        const COMMODITIES = {
+            rice: { name: 'Rice Bushels (米俵)', basePrice: 12 },
+            iron: { name: 'Raw Iron Bars (砂鉄)', basePrice: 28 },
+            powder: { name: 'Black Powder (黒色火薬)', basePrice: 45 },
+            silk: { name: 'Kyoto Raw Silk (生糸)', basePrice: 38 },
+            timber: { name: 'Cypress Timber (桧材)', basePrice: 20 },
+            sake: { name: 'Nada Cask Sake (樽酒)', basePrice: 24 }
+        };
 
-        /* =========================================================================
-           THE 7 GREAT DAIMYO WARLORDS
-           ========================================================================= */
         const CLAN_WARLORDS = {
             oda: {
-                id: 'oda', clanName: 'Oda Clan of Owari (織田家)', leaderName: 'Oda Nobunaga (織田信長)',
-                title: 'The Demon King of the Sixth Heaven', mon: '織田', province: 'Owari & Mino', baseKoku: 50,
+                id: 'oda', clanName: 'Oda Clan of Owari', leaderName: 'Oda Nobunaga',
+                title: 'Demon King of the Sixth Heaven', mon: '織田', province: 'Owari & Mino', baseKoku: 50,
                 hp: 230, maxHp: 230, poise: 160, maxPoise: 160, stance: 'jodan', headValue: 350,
+                giftName: "Nobunaga's Skull Sake Goblet", giftDesc: "+20% Attack damage on killing blows",
                 intents: [
-                    { label: 'TRIPLE MATCHLOCK VOLLEY', desc: 'Nobunaga orders three ranks of gunners to fire!', dmg: 55, poiseDmg: 70 },
+                    { label: 'TRIPLE MATCHLOCK VOLLEY', desc: 'Orders three ranks of gunners to fire!', dmg: 55, poiseDmg: 70 },
                     { label: 'DEMON BLADE CLEAVE', desc: 'Two-handed slash meant to split helmet and skull.', dmg: 45, poiseDmg: 45 },
                     { label: 'CRUEL SNEER', desc: 'Dares you to step into his killing ground.', dmg: 0, poiseDmg: 0 }
                 ]
             },
             tokugawa: {
-                id: 'tokugawa', clanName: 'Tokugawa Clan of Mikawa (徳川家)', leaderName: 'Tokugawa Ieyasu (徳川家康)',
+                id: 'tokugawa', clanName: 'Tokugawa Clan of Mikawa', leaderName: 'Tokugawa Ieyasu',
                 title: 'The Patient Old Badger', mon: '徳川', province: 'Mikawa & Suruga', baseKoku: 45,
                 hp: 270, maxHp: 270, poise: 190, maxPoise: 190, stance: 'chudan', headValue: 300,
+                giftName: "Ieyasu's Iron War Fan (Gunbai)", giftDesc: "+15% permanent armor damage reduction",
                 intents: [
                     { label: 'SPEAR WALL RIPOSTE', desc: 'Braces on iron plate, preparing to impale your lunge.', dmg: 38, poiseDmg: 40 },
                     { label: 'TURTLE IRON COUNTER', desc: 'Impenetrable Chūdan guard.', dmg: 0, poiseDmg: 0 },
@@ -1119,9 +1062,10 @@
                 ]
             },
             takeda: {
-                id: 'takeda', clanName: 'Takeda Clan of Kai (武田家)', leaderName: 'Takeda Shingen (武田信玄)',
+                id: 'takeda', clanName: 'Takeda Clan of Kai', leaderName: 'Takeda Shingen',
                 title: 'The Tiger of Kai', mon: '武田', province: 'Kai & Shinano', baseKoku: 60,
                 hp: 250, maxHp: 250, poise: 175, maxPoise: 175, stance: 'jodan', headValue: 320,
+                giftName: "Furinkazan Red War Banner", giftDesc: "+30 Poise and +20 Flat Melee Damage",
                 intents: [
                     { label: 'FURINKAZAN CRUSH', desc: 'Fierce as Fire! Brings his massive iron war fan down.', dmg: 50, poiseDmg: 60 },
                     { label: 'RED CAVALRY CHARGE', desc: 'Drives forward like an avalanche with his heavy blade.', dmg: 40, poiseDmg: 45 },
@@ -1129,9 +1073,10 @@
                 ]
             },
             uesugi: {
-                id: 'uesugi', clanName: 'Uesugi Clan of Echigo (上杉家)', leaderName: 'Uesugi Kenshin (上杉謙信)',
-                title: 'The God of War (Bishamonten)', mon: '上杉', province: 'Echigo & Kanto', baseKoku: 55,
+                id: 'uesugi', clanName: 'Uesugi Clan of Echigo', leaderName: 'Uesugi Kenshin',
+                title: 'God of War (Bishamonten)', mon: '上杉', province: 'Echigo & Kanto', baseKoku: 55,
                 hp: 240, maxHp: 240, poise: 170, maxPoise: 170, stance: 'chudan', headValue: 340,
+                giftName: "Bishamonten's White Hood & Rosary", giftDesc: "+40 Max Ki and instant recovery at turn start",
                 intents: [
                     { label: 'AVATAR SWORD FLURRY', desc: 'A blinding four-stroke diagonal combination.', dmg: 46, poiseDmg: 40 },
                     { label: 'SILENT ZEN DRAW', desc: 'Blade clears scabbard in a silver blur.', dmg: 52, poiseDmg: 35 },
@@ -1139,9 +1084,10 @@
                 ]
             },
             date: {
-                id: 'date', clanName: 'Date Clan of Sendai (伊達家)', leaderName: 'Date Masamune (伊達政宗)',
+                id: 'date', clanName: 'Date Clan of Sendai', leaderName: 'Date Masamune',
                 title: 'The One-Eyed Dragon', mon: '伊達', province: 'Mutsu & Dewa', baseKoku: 55,
                 hp: 260, maxHp: 260, poise: 170, maxPoise: 170, stance: 'jodan', headValue: 360,
+                giftName: "The Crescent Moon Gold Crest", giftDesc: "+25% critical strike chance with all blades",
                 intents: [
                     { label: 'DRAGON CREST CLEAVE', desc: 'Slashes with crescent moon helmet blazing.', dmg: 48, poiseDmg: 55 },
                     { label: 'NANBAN PISTOL BLUNDER', desc: 'Fires a concealed matchlock pistol at point blank!', dmg: 58, poiseDmg: 70 },
@@ -1149,9 +1095,10 @@
                 ]
             },
             sanada: {
-                id: 'sanada', clanName: 'Sanada Clan of Shinano (真田家)', leaderName: 'Sanada Yukimura (真田幸村)',
+                id: 'sanada', clanName: 'Sanada Clan of Shinano', leaderName: 'Sanada Yukimura',
                 title: 'Crimson Demon of War', mon: '真田', province: 'Shinano & Osaka', baseKoku: 65,
                 hp: 285, maxHp: 285, poise: 195, maxPoise: 195, stance: 'jodan', headValue: 410,
+                giftName: "Six Coins of the Sanada (Rokumonsen)", giftDesc: "Cheat death once per battle at 1 HP",
                 intents: [
                     { label: 'SIX-COIN SPEAR RUN', desc: 'Charging cross-spear thrust to split your breastplate!', dmg: 55, poiseDmg: 65 },
                     { label: 'SUICIDE BANNER RUSH', desc: 'Throws his weight forward to shatter your balance.', dmg: 42, poiseDmg: 75 },
@@ -1159,9 +1106,10 @@
                 ]
             },
             mori: {
-                id: 'mori', clanName: 'Mōri Clan of Chūgoku (毛利家)', leaderName: 'Mōri Motonari (毛利元就)',
+                id: 'mori', clanName: 'Mōri Clan of Chūgoku', leaderName: 'Mōri Motonari',
                 title: 'The Grand Plotter', mon: '毛利', province: 'Aki & San-yo', baseKoku: 55,
                 hp: 245, maxHp: 245, poise: 160, maxPoise: 160, stance: 'chudan', headValue: 375,
+                giftName: "Trio of Indivisible Arrows", giftDesc: "+50% War Bow and Arquebus damage",
                 intents: [
                     { label: 'THREE ARROWS SALVO', desc: 'Three whistling arrows loosed simultaneously!', dmg: 52, poiseDmg: 45 },
                     { label: 'POISON CONCEALED BLADE', desc: 'A quick parrying sweep laced with viper venom.', dmg: 35, poiseDmg: 30 },
@@ -1170,74 +1118,12 @@
             }
         };
 
-        const RANDOM_EVENTS = [
-            {
-                title: "PORTUGUESE BLACK SHIP WEAPONEER",
-                text: "Nanban merchants in ruff collars offer black powder kegs from Sakai.",
-                action: () => {
-                    State.player.gold = Math.max(0, State.player.gold - 25);
-                    LogProse("You trade 25 Ryō for imported Portuguese black powder.", "market", "南蛮");
-                }
-            },
-            {
-                title: "FALLEN BATTLEFIELD SCAVENGER",
-                text: "You stumble across an abandoned skirmish pit littered with fallen samurai.",
-                action: () => {
-                    State.player.trophies.ears += 4;
-                    State.player.gold += 35;
-                    LogProse("You scavenge 4 severed ears and 35 Ryō from unclaimed dead.", "harvest", "落武者");
-                }
-            },
-            {
-                title: "ZEN TEA MASTER's REFUGE",
-                text: "A hermit monk prepares hot matcha under a weeping willow.",
-                action: () => {
-                    State.player.ki = State.player.maxKi;
-                    State.player.poise = State.player.maxPoise;
-                    LogProse("A quiet tea ceremony purges battle hysteria. Ki and Poise fully restored.", "normal", "茶道");
-                }
-            },
-            {
-                title: "AMBUSH BY CORRUPT BAILIFFS",
-                text: "Four provincial guards demand toll. You intimidate them with your blood-rusted scabbard.",
-                action: () => {
-                    State.player.gold += 40;
-                    LogProse("The bailiffs drop 40 Ryō in bribe coin and flee into the brush.", "lead", "喝破");
-                }
-            }
-        ];
-
-        const HEIR_TRAITS = [
-            { id: 'flenser', name: 'Brutal Flenser', desc: '+35% value on harvested heads and noses.' },
-            { id: 'administrator', name: 'Tax Magistrate', desc: '+50% Koku tribute from governed province.' },
-            { id: 'tactician', name: 'Master Tactician', desc: 'Disciples bring back +40% coin and never fail.' },
-            { id: 'ironblood', name: 'Iron-Spined', desc: '+30 Max HP and +20 Poise if inherited.' },
-            { id: 'kenshi', name: 'Born Swordsman', desc: '+25% combat damage if inherited.' },
-            { id: 'falconer', name: 'Falcon Master', desc: 'War beasts deal double damage in duels.' }
-        ];
-
-        const CONSORTS = [
-            { id: 'c_noble', name: 'Lady Chiyo of the Northern Court', dowryKoku: 20, desc: 'High noble pedigree; gives birth to diplomatic administrators.' },
-            { id: 'c_warrior', name: 'Tomoe the Onna-Musha', dowryKoku: 15, desc: 'Fierce warrior consort; children inherit lethal swordsman traits.' },
-            { id: 'c_merchant', name: 'O-Rin of Sakai Guild', dowryKoku: 30, desc: 'Weapon guild heiress; provides +20 Ryō per turn.' },
-            { id: 'c_miko', name: 'Shrine Maiden Kasuga', dowryKoku: 25, desc: 'Blessed by Bishamonten; heirs possess boundless Ki.' }
-        ];
-
-        const DISCIPLE_ROSTER = [
-            { name: "Kojiro", role: "Vanguard Spearman" },
-            { name: "Sanosuke", role: "Nodachi Striker" },
-            { name: "Hayate", role: "Kyūjutsu Archer" },
-            { name: "Hanzo", role: "Shadow Assassin" },
-            { name: "Benkei", role: "Iron Tetsubō Brute" },
-            { name: "Jubei", role: "Twin-Blade Prodigy" }
-        ];
-
+        const SEASONS = ["Spring Planting", "Summer Torrent", "Autumn Harvest", "Winter Blizzard"];
         const REGIONS = [
             "Owari Throne Approaches", "Mikatagahara Ash Plains", "Nagashino Stockade Marsh",
             "Kyoto Execution Crossroads", "Kai Mountain Stronghold", "Echigo Snow Reeds",
             "Azuchi Citadel Gates", "Seto Inland Pirate Shoals"
         ];
-        const TIMES = ["Dawn Mist", "Scorching Midday", "Torrential Dusk", "Moonlit Midnight"];
 
         /* =========================================================================
            STATE MACHINE
@@ -1245,7 +1131,7 @@
         let State = {
             mode: 'EXPLORE',
             regionIdx: 0,
-            timeIdx: 2,
+            seasonIdx: 2,
             godMode: false,
             player: {
                 name: 'Kagehisa',
@@ -1258,22 +1144,31 @@
                 koku: 0,
                 kills: 0,
                 weaponId: 'w_katana',
+                weaponForgeLevels: {}, // weaponId -> 0 to 10
                 bowId: 'b_none',
                 armorId: 'a_tattered',
                 falconId: 'f_none',
-                purchasedEstate: [],
+                purchasedCastle: [],
                 usurpedThrones: [],
+                claimedGifts: [],
                 heirs: [],
                 consorts: [],
-                pupils: [],
+                deeds: [], // Array of procedural land parcels
+                hatamoto: { count: 0, tier: 1 },
+                farms: { acres: 15, irrigationLevel: 1, bushelsStored: 80 },
+                commodities: { rice: 10, iron: 8, powder: 2, silk: 2, timber: 10, sake: 4 },
+                prisoners: [],
+                governance: {},
                 trophies: {
-                    heads: [],
+                    heads: [], // { name, caste, rank: 'Gokujō'|'Jōtō'|'Chūtō'|'Kakyū', prepared: bool, value: num }
                     noses: [],
                     ears: 0,
                     teethCommon: 0,
                     teethGold: 0
                 }
             },
+            currentMarketPrices: {},
+            availableDeeds: [],
             foe: null,
             corpseToHarvest: null,
             chronicleLog: [],
@@ -1281,7 +1176,7 @@
         };
 
         /* =========================================================================
-           INITIALIZATION
+           INITIALIZATION & STAT CALCULATIONS
            ========================================================================= */
         function InitEngine() {
             AudioSys.init();
@@ -1290,12 +1185,14 @@
             if (primer) primer.style.display = 'none';
 
             LoadSave();
+            RefreshMarketPrices();
+            GenerateProceduralDeeds();
             RecalculatePlayerStats();
 
             if (State.chronicleLog.length === 0) {
                 AudioSys.playBonsho();
                 AudioSys.playWarConch();
-                LogProse("The war drums of the Sengoku Jidai shake the valleys. The low shall usurp the high. Command war falcons, loose piercing arrows, dispatch 6 disciples, and conquer the 7 Warlords.", "lead", "下剋上");
+                LogProse("The war drums shake the valley. Sentence war criminals, wash severed heads for Kubi-Jikken, forge +10 Tamahagane steel, and purchase deeded domain lands.", "lead", "天下布武");
                 RenderExplorationCommands();
             } else {
                 RenderLastChronicle();
@@ -1307,7 +1204,7 @@
             const startBtn = document.getElementById('btn-start-game');
             if (startBtn) startBtn.addEventListener('click', InitEngine);
 
-            document.getElementById('btn-gekokujo-open').addEventListener('click', ToggleGekokujoModal);
+            document.getElementById('btn-land-open').addEventListener('click', ToggleLandModal);
             document.getElementById('btn-dynasty-open').addEventListener('click', ToggleDynastyModal);
             document.getElementById('btn-baggage-open').addEventListener('click', ToggleBaggageModal);
             document.getElementById('btn-god-toggle').addEventListener('click', ToggleGodModal);
@@ -1316,31 +1213,63 @@
         function RecalculatePlayerStats() {
             const p = State.player;
             const armor = GEAR_TABLE.armors.find(a => a.id === p.armorId) || GEAR_TABLE.armors[0];
-            const hasManor = p.purchasedEstate.includes('e_manor');
-            const hasShrine = p.purchasedEstate.includes('e_shrine');
-            const takedaBonus = p.usurpedThrones.includes('takeda') ? 30 : 0;
+            const takedaPerk = p.claimedGifts.includes('takeda') ? 30 : 0;
+            const uesugiPerk = p.claimedGifts.includes('uesugi') ? 40 : 0;
 
-            p.maxHp = 100 + armor.maxHpBonus + (hasManor ? 30 : 0);
-            p.maxKi = 100 + (hasShrine ? 25 : 0);
-            p.maxPoise = 100 + takedaBonus;
+            p.maxHp = 100 + armor.maxHpBonus;
+            p.maxKi = 100 + uesugiPerk;
+            p.maxPoise = 100 + takedaPerk;
             p.hp = Math.min(p.hp, p.maxHp);
             p.poise = Math.min(p.poise, p.maxPoise);
         }
 
+        function RefreshMarketPrices() {
+            Object.keys(COMMODITIES).forEach(k => {
+                const c = COMMODITIES[k];
+                const variance = (Math.random() * 0.6) - 0.3;
+                State.currentMarketPrices[k] = Math.max(4, Math.round(c.basePrice * (1.0 + variance)));
+            });
+        }
+
+        function GenerateProceduralDeeds() {
+            const prefixes = ["Mikawa", "Echigo", "Owari", "Kai", "Seto", "Kanto", "Sakai", "Shinano"];
+            const types = [
+                { name: "Paddy Flats", res: "rice", amt: 12, cost: 70, koku: 8 },
+                { name: "Iron Mine Vein", res: "iron", amt: 5, cost: 110, koku: 12 },
+                { name: "Black Powder Mill", res: "powder", amt: 3, cost: 140, koku: 15 },
+                { name: "Loom Workshop", res: "silk", amt: 4, cost: 95, koku: 10 },
+                { name: "Cedar Timberland", res: "timber", amt: 8, cost: 75, koku: 6 },
+                { name: "Spring Brewery", res: "sake", amt: 5, cost: 105, koku: 10 }
+            ];
+            State.availableDeeds = [];
+            for (let i = 0; i < 4; i++) {
+                const pref = prefixes[Math.floor(Math.random() * prefixes.length)];
+                const typ = types[Math.floor(Math.random() * types.length)];
+                State.availableDeeds.push({
+                    id: 'deed_' + Date.now() + '_' + i,
+                    name: `${pref} ${typ.name}`,
+                    res: typ.res,
+                    amt: typ.amt,
+                    cost: typ.cost + Math.floor(Math.random() * 20),
+                    koku: typ.koku
+                });
+            }
+        }
+
         function SaveGame() {
-            try { localStorage.setItem('SENGOKU_SUPREME_V7', JSON.stringify(State)); }
-            catch (e) { console.warn("Save failed", e); }
+            try { localStorage.setItem('SENGOKU_SUPREME_V9', JSON.stringify(State)); }
+            catch (e) {}
         }
 
         function LoadSave() {
             try {
-                const raw = localStorage.getItem('SENGOKU_SUPREME_V7');
+                const raw = localStorage.getItem('SENGOKU_SUPREME_V9');
                 if (raw) State = Object.assign(State, JSON.parse(raw));
-            } catch (e) { console.warn("Creating fresh state."); }
+            } catch (e) {}
         }
 
         function ResetGame() {
-            localStorage.removeItem('SENGOKU_SUPREME_V7');
+            localStorage.removeItem('SENGOKU_SUPREME_V9');
             location.reload();
         }
 
@@ -1365,7 +1294,7 @@
             }
 
             State.chronicleLog.push({ text, type, stampKanji, isPurple });
-            if (State.chronicleLog.length > 40) State.chronicleLog.shift();
+            if (State.chronicleLog.length > 35) State.chronicleLog.shift();
 
             pendingText = text;
             pendingEl = entry;
@@ -1418,7 +1347,7 @@
         }
 
         /* =========================================================================
-           KENJUTSU, KYŪJUTSU & FALCONRY COMBAT
+           KENJUTSU, TATARA FORGE & COMBAT
            ========================================================================= */
         function SetStance(stanceKey) {
             AudioSys.unlock();
@@ -1427,29 +1356,67 @@
             const el = document.getElementById(`stance-${stanceKey}`);
             if (el) el.classList.add('active');
             AudioSys.playSwordClash();
-
             if (stanceKey === 'jodan') LogProse("Jōdan: High Heaven Stance. +35% Attack Damage.", "normal");
-            if (stanceKey === 'chudan') LogProse("Chūdan: Balanced Middle Posture. Point level with enemy throat.", "normal");
-            if (stanceKey === 'gedan') LogProse("Gedan: Low Evasive Stance. +18 Ki recovery per action.", "normal");
+            if (stanceKey === 'chudan') LogProse("Chūdan: Balanced Middle Guard. Standard parrying posture.", "normal");
+            if (stanceKey === 'gedan') LogProse("Gedan: Low Evasive Stance. +20 Ki recovery per action.", "normal");
             UpdateUI();
         }
 
-        function SpawnEnemy(preferredCaste = null) {
-            let pool = ENEMY_ROSTER;
-            if (preferredCaste) pool = pool.filter(e => e.casteKey === preferredCaste);
-            const template = pool[Math.floor(Math.random() * pool.length)];
+        function ChallengeDuelTier(tierKey) {
+            ToggleDuelsModal();
+            let template;
+            if (tierKey === 'ronin') {
+                template = {
+                    caste: 'Wandering Ronin', casteKey: 'ronin', name: 'Masterless Blade-for-Hire',
+                    hp: 95, maxHp: 95, poise: 85, maxPoise: 85, stance: 'jodan',
+                    headValue: 55, noseValue: 20, rank: 'Chūtō',
+                    intents: [
+                        { label: 'SLASHING DRAW', desc: 'Quick step horizontal slash.', dmg: 26, poiseDmg: 28 },
+                        { label: 'HILT STRIKE', desc: 'Thrusts pommel into your teeth.', dmg: 16, poiseDmg: 40 },
+                        { label: 'COLD CIRCLE', desc: 'Circling for an opening.', dmg: 0, poiseDmg: 0 }
+                    ]
+                };
+            } else if (tierKey === 'saint') {
+                template = {
+                    caste: 'Sword Saint', casteKey: 'saint', name: 'Muneyoshi Disciple',
+                    hp: 175, maxHp: 175, poise: 150, maxPoise: 150, stance: 'chudan',
+                    headValue: 180, noseValue: 60, rank: 'Jōtō',
+                    intents: [
+                        { label: 'MUTŌDORI DISARM', desc: 'Disarming strike aimed at your wrist!', dmg: 38, poiseDmg: 70 },
+                        { label: 'LIGHTNING CRESCENT', desc: 'Sweeping lethal slash.', dmg: 48, poiseDmg: 50 },
+                        { label: 'ZEN STILLNESS', desc: 'Calm center of balance.', dmg: 0, poiseDmg: 0 }
+                    ]
+                };
+            } else if (tierKey === 'nanban') {
+                template = {
+                    caste: 'Nanban Mercenary', casteKey: 'nanban', name: 'Iberian Steel Cuirassier',
+                    hp: 150, maxHp: 150, poise: 130, maxPoise: 130, stance: 'chudan',
+                    headValue: 130, noseValue: 45, rank: 'Jōtō',
+                    intents: [
+                        { label: 'TOLEDO THRUST', desc: 'Straight lunging thrust through armor.', dmg: 42, poiseDmg: 45 },
+                        { label: 'FLINTLOCK BLAST', desc: 'Fires powder pistol from hip!', dmg: 52, poiseDmg: 65 },
+                        { label: 'IRON BRACE', desc: 'Hides behind steel target shield.', dmg: 0, poiseDmg: 0 }
+                    ]
+                };
+            } else {
+                template = {
+                    caste: 'Kabukimono', casteKey: 'outlaw', name: 'Kabukimono Street Duelist',
+                    hp: 110, maxHp: 110, poise: 95, maxPoise: 95, stance: 'gedan',
+                    headValue: 75, noseValue: 30, rank: 'Chūtō',
+                    intents: [
+                        { label: 'WILD DUAL SLASH', desc: 'Twin blades cross-cutting.', dmg: 30, poiseDmg: 35 },
+                        { label: 'LIME BLIND FLICK', desc: 'Flicks stinging powder.', dmg: 12, poiseDmg: 50 },
+                        { label: 'TAUNT', desc: 'Mocking laugh.', dmg: 0, poiseDmg: 0 }
+                    ]
+                };
+            }
 
             State.foe = JSON.parse(JSON.stringify(template));
             State.foe.currentIntent = State.foe.intents[Math.floor(Math.random() * State.foe.intents.length)];
             State.mode = 'COMBAT';
 
-            if (State.player.purchasedEstate.includes('e_kubizuka')) {
-                State.foe.poise = Math.max(20, State.foe.poise - 25);
-                LogProse("The sight of your severed head mound terrifies the challenger! (-25 Enemy Starting Poise)", "lead");
-            }
-
             AudioSys.playBonsho();
-            LogProse(`Challenger draws blade: ${State.foe.name} (${State.foe.caste})!`, "combat", "合戦");
+            LogProse(`BLOOD RING DUEL! ${State.foe.name} steps onto the sand!`, "combat", "合戦");
             UpdateUI();
             RenderCombatCommands();
         }
@@ -1462,12 +1429,13 @@
             State.foe = JSON.parse(JSON.stringify(warlord));
             State.foe.isBoss = true;
             State.foe.bossClanKey = warlordId;
+            State.foe.rank = 'Gokujō';
             State.foe.currentIntent = State.foe.intents[Math.floor(Math.random() * State.foe.intents.length)];
             State.mode = 'COMBAT';
 
             AudioSys.playWarConch();
             AudioSys.playBonsho();
-            LogProse(`GEKOKUJŌ DUEL! You breach the castle keep of ${warlord.clanName}. ${warlord.leaderName} steps forth!`, "usurp", warlord.mon, true);
+            LogProse(`GEKOKUJŌ DUEL! You breach the castle keep of ${warlord.clanName}. ${warlord.leaderName} stands, blade drawn!`, "usurp", warlord.mon, true);
             UpdateUI();
             RenderCombatCommands();
         }
@@ -1482,14 +1450,16 @@
             const intent = f.currentIntent;
 
             const weapon = GEAR_TABLE.weapons.find(w => w.id === p.weaponId) || GEAR_TABLE.weapons[0];
+            const forgeLvl = p.weaponForgeLevels[weapon.id] || 0;
+            const forgeMod = 1.0 + (forgeLvl * 0.12);
+
             const bow = GEAR_TABLE.bows.find(b => b.id === p.bowId) || GEAR_TABLE.bows[0];
             const armor = GEAR_TABLE.armors.find(a => a.id === p.armorId) || GEAR_TABLE.armors[0];
             const falcon = GEAR_TABLE.falcons.find(x => x.id === p.falconId) || GEAR_TABLE.falcons[0];
-            const smithyBonus = p.purchasedEstate.includes('e_smithy') ? 14 : 0;
-            const takedaPerk = p.usurpedThrones.includes('takeda') && actionKey === 'heavy' ? 1.35 : 1.0;
 
-            let dmgMod = (p.stance === 'jodan' ? 1.35 : (p.stance === 'gedan' ? 0.85 : 1.0)) * weapon.dmgMod * takedaPerk;
-            let defenseMod = (1.0 - armor.defMod) * (p.usurpedThrones.includes('tokugawa') ? 0.80 : 1.0);
+            let dmgMod = (p.stance === 'jodan' ? 1.35 : (p.stance === 'gedan' ? 0.85 : 1.0)) * weapon.dmgMod * forgeMod;
+            if (p.claimedGifts.includes('oda')) dmgMod *= 1.20;
+            let defenseMod = (1.0 - armor.defMod) * (p.claimedGifts.includes('tokugawa') ? 0.85 : 1.0);
 
             if (State.godMode) { dmgMod = 99.0; defenseMod = 0.0; }
 
@@ -1499,11 +1469,11 @@
 
             switch (actionKey) {
                 case 'swift': {
-                    if (p.ki < 15 && !State.godMode) { LogProse("Insufficient Ki for a swift slash!", "lead"); return; }
+                    if (p.ki < 15 && !State.godMode) { LogProse("Insufficient Ki for a swift cut!", "lead"); return; }
                     if (!State.godMode) p.ki -= 15;
-                    let dmg = Math.round((22 + smithyBonus) * dmgMod);
+                    let dmg = Math.round(25 * dmgMod);
                     f.hp -= dmg;
-                    f.poise -= 18;
+                    f.poise -= 20;
                     AudioSys.playSwordClash();
                     logMsg = `You step inside his guard with a lightning cross-stroke (-${dmg} HP).`;
                     break;
@@ -1511,21 +1481,21 @@
                 case 'heavy': {
                     if (p.ki < 30 && !State.godMode) { LogProse("Breath too ragged for heavy cleave!", "lead"); return; }
                     if (!State.godMode) p.ki -= 30;
-                    let dmg = Math.round((42 + smithyBonus) * dmgMod);
+                    let dmg = Math.round(48 * dmgMod);
                     f.hp -= dmg;
-                    f.poise -= 42;
+                    f.poise -= 50;
                     AudioSys.playFleshCut();
                     TriggerFX('shake');
-                    logMsg = `Two-handed cleave crashes through enemy armor (-${dmg} HP, -42 Poise).`;
+                    logMsg = `Two-handed cleave crashes through enemy armor (-${dmg} HP, -50 Poise).`;
                     break;
                 }
                 case 'iaido': {
                     if (p.ki < 40 && !State.godMode) { LogProse("Not enough Ki to focus quick-draw!", "lead"); return; }
                     if (!State.godMode) p.ki -= 40;
                     let counterBonus = intent.dmg > 0 ? 1.6 : 1.0;
-                    let dmg = Math.round((54 + smithyBonus) * dmgMod * counterBonus);
+                    let dmg = Math.round(58 * dmgMod * counterBonus);
                     f.hp -= dmg;
-                    f.poise -= 55;
+                    f.poise -= 60;
                     AudioSys.playSwordClash();
                     AudioSys.playFleshCut();
                     TriggerFX('blood');
@@ -1534,19 +1504,19 @@
                     break;
                 }
                 case 'bow': {
-                    if (p.bowId === 'b_none') { LogProse("No War Bow or Matchlock equipped! Visit Arsenal.", "lead"); return; }
+                    if (p.bowId === 'b_none') { LogProse("No War Bow equipped!", "lead"); return; }
                     if (p.ki < 25 && !State.godMode) { LogProse("Need 25 Ki to draw bow!", "lead"); return; }
                     if (!State.godMode) p.ki -= 25;
                     AudioSys.playSwordClash();
-                    let shotDmg = Math.round((bow.dmg + smithyBonus) * (p.stance === 'jodan' ? 1.25 : 1.0));
+                    let shotDmg = Math.round(bow.dmg * (p.claimedGifts.includes('mori') ? 1.5 : 1.0));
                     f.hp -= shotDmg;
-                    f.poise -= 25;
+                    f.poise -= 35;
                     TriggerFX('shake');
                     logMsg = `KYŪJUTSU SNIPE! Armor-piercing shaft drives through breastplate (-${shotDmg} HP)!`;
                     break;
                 }
                 case 'falcon': {
-                    if (p.falconId === 'f_none') { LogProse("No War Beast trained! Deed a Falconry Aviary.", "lead"); return; }
+                    if (p.falconId === 'f_none') { LogProse("No War Beast trained!", "lead"); return; }
                     AudioSys.playHawkCry();
                     let hawkDmg = falcon.atk + 15;
                     f.hp -= hawkDmg;
@@ -1554,7 +1524,18 @@
                     TriggerFX('shake');
                     logType = "hawk";
                     stamp = "鷹狩";
-                    logMsg = `WAR BEAST DIVE! Your ${falcon.name} claws the foe's visor! Foe staggered (-${hawkDmg} HP, -50 Poise)!`;
+                    logMsg = `WAR BEAST DIVE! Your ${falcon.name} gouges enemy visor (-${hawkDmg} HP, -50 Poise)!`;
+                    break;
+                }
+                case 'hatamoto': {
+                    if (p.hatamoto.count <= 0) { LogProse("You have no Hatamoto bodyguards in service!", "lead"); return; }
+                    AudioSys.playWarConch();
+                    let guardDmg = p.hatamoto.count * (p.hatamoto.tier * 7);
+                    f.hp -= guardDmg;
+                    f.poise -= 65;
+                    TriggerFX('shake');
+                    stamp = "旗本";
+                    logMsg = `HATAMOTO VOLLEY! Your personal guards step forward with spears and arquebuses (-${guardDmg} HP)!`;
                     break;
                 }
                 case 'parry': {
@@ -1563,37 +1544,27 @@
                     if (intent.dmg > 0) {
                         AudioSys.playParry();
                         TriggerFX('shake');
-                        f.poise -= 75;
-                        let riposte = 28;
+                        f.poise -= 85;
+                        let riposte = 30;
                         f.hp -= riposte;
                         stamp = "見切";
-                        logMsg = `PERFECT PARRY! Metal screams against your guard! Posture broken (-${riposte} HP, -75 Poise)!`;
+                        logMsg = `PERFECT PARRY! Guard shatters opponent balance (-${riposte} HP, -85 Poise)!`;
                     } else {
-                        logMsg = "You brace behind your guard, but the opponent withholds his strike.";
+                        logMsg = "You brace behind your tsuba, but opponent withholds attack.";
                     }
                     break;
                 }
                 case 'evade': {
-                    let evadeChance = p.stance === 'gedan' ? 0.92 : 0.68;
-                    if (p.purchasedEstate.includes('e_stables')) evadeChance += 0.08;
-                    if (!State.godMode) p.ki = Math.min(p.maxKi, p.ki + 18);
-                    if (Math.random() < evadeChance || State.godMode) {
+                    if (!State.godMode) p.ki = Math.min(p.maxKi, p.ki + 20);
+                    if (Math.random() < 0.85 || State.godMode) {
                         AudioSys.playSwordClash();
                         logMsg = `You read the wind and pivot away. Enemy cleaves empty dust!`;
                     } else {
-                        let graze = Math.round(intent.dmg * 0.4 * defenseMod);
+                        let graze = Math.round(intent.dmg * 0.35 * defenseMod);
                         if (!State.godMode) p.hp -= graze;
                         TriggerFX('shake');
-                        logMsg = `You roll away, but the blade tip clips your armor lacing (-${graze} HP).`;
+                        logMsg = `You roll away, but the blade tip clips your shoulder (-${graze} HP).`;
                     }
-                    break;
-                }
-                case 'focus': {
-                    let kiRegen = p.usurpedThrones.includes('uesugi') ? 60 : 45;
-                    p.ki = Math.min(p.maxKi, p.ki + kiRegen);
-                    p.poise = Math.min(p.maxPoise, p.poise + 30);
-                    AudioSys.playBonsho();
-                    logMsg = `You sink your center of gravity and steady your pulse (+${kiRegen} Ki).`;
                     break;
                 }
             }
@@ -1606,7 +1577,7 @@
 
             if (f.poise <= 0) {
                 f.poise = 45;
-                logMsg += ` POSTURE COLLAPSED! Foe stumbles to knees in agony!`;
+                logMsg += ` POSTURE COLLAPSED! Foe drops to knees in agony!`;
             } else if (actionKey !== 'parry' && actionKey !== 'evade' && intent.dmg > 0 && !State.godMode) {
                 AudioSys.playFleshCut();
                 let incomingDmg = Math.round(intent.dmg * defenseMod);
@@ -1617,13 +1588,19 @@
             }
 
             if (p.hp <= 0 && !State.godMode) {
-                p.hp = 0;
-                LogProse(logMsg, logType, stamp);
-                HandlePlayerDeath();
-                return;
+                if (p.claimedGifts.includes('sanada')) {
+                    p.hp = 1;
+                    p.claimedGifts = p.claimedGifts.filter(g => g !== 'sanada');
+                    LogProse("ROKUMONSEN MIRACLE! The Six Coins of Sanada ward off death at 1 HP!", "usurp", "六文銭");
+                } else {
+                    p.hp = 0;
+                    LogProse(logMsg, logType, stamp);
+                    HandlePlayerDeath();
+                    return;
+                }
             }
 
-            if (p.stance === 'gedan' && !State.godMode) p.ki = Math.min(p.maxKi, p.ki + 12);
+            if (p.stance === 'gedan' && !State.godMode) p.ki = Math.min(p.maxKi, p.ki + 15);
             f.currentIntent = f.intents[Math.floor(Math.random() * f.intents.length)];
 
             LogProse(logMsg, logType, stamp);
@@ -1634,15 +1611,15 @@
             const frame = document.getElementById('game-frame');
             if (type === 'shake') {
                 frame.classList.add('shake');
-                setTimeout(() => frame.classList.remove('shake'), 320);
+                setTimeout(() => frame.classList.remove('shake'), 300);
             } else if (type === 'blood') {
                 frame.classList.add('blood-flash', 'shake');
-                setTimeout(() => frame.classList.remove('blood-flash', 'shake'), 450);
+                setTimeout(() => frame.classList.remove('blood-flash', 'shake'), 400);
             }
         }
 
         /* =========================================================================
-           HARVESTING & USURPATION
+           HARVEST & CAPTURE ENGINE
            ========================================================================= */
         function EnterHarvestPhase(foe) {
             State.mode = 'HARVEST';
@@ -1654,7 +1631,7 @@
 
             if (foe.isBoss) {
                 AudioSys.playWarConch();
-                LogProse(`THE DAIMYO HAS FALLEN! ${foe.leaderName} collapses onto the bloodied tatami!`, "usurp", "斬首", true);
+                LogProse(`THE DAIMYO HAS FALLEN! ${foe.leaderName} collapses on the blood-soaked floor!`, "usurp", "斬首", true);
             } else {
                 LogProse(`FATAL STRIKE! ${foe.name} crumples into the red mud.`, "combat", "討取");
             }
@@ -1670,7 +1647,7 @@
                 dock.innerHTML = `
                     <button class="cmd-btn btn-wide-4" style="border-color: var(--shogun-purple);" onclick="ExecuteHarvest('usurp_throne')">
                         <div class="cmd-title" style="color: #dcb3ff;">SEIZE THRONE & SEVER HEAD: ${foe.clanName}</div>
-                        <div class="cmd-desc">Mount head on throne pike & claim province</div>
+                        <div class="cmd-desc">Mount head in keep & claim province</div>
                     </button>
                 `;
                 return;
@@ -1679,19 +1656,19 @@
             dock.innerHTML = `
                 <button class="cmd-btn" onclick="ExecuteHarvest('head')">
                     <div class="cmd-title">Sever Head</div>
-                    <div class="cmd-desc">Kubi-bukuro</div>
+                    <div class="cmd-desc">For Kubi-Jikken</div>
                 </button>
                 <button class="cmd-btn" onclick="ExecuteHarvest('nose_ears')">
                     <div class="cmd-title">Slice Noses</div>
                     <div class="cmd-desc">Brine Tally</div>
                 </button>
+                <button class="cmd-btn" onclick="ExecuteHarvest('capture')">
+                    <div class="cmd-title">Take Captive</div>
+                    <div class="cmd-desc">To Tribunal Dungeon</div>
+                </button>
                 <button class="cmd-btn" onclick="ExecuteHarvest('teeth')">
                     <div class="cmd-title">Extract Teeth</div>
                     <div class="cmd-desc">Gold Bullion</div>
-                </button>
-                <button class="cmd-btn" onclick="ExecuteHarvest('leave')">
-                    <div class="cmd-title">Leave Corpse</div>
-                    <div class="cmd-desc">For Crows</div>
                 </button>
             `;
         }
@@ -1709,35 +1686,50 @@
 
                 p.usurpedThrones.push(c.bossClanKey);
                 p.koku += c.baseKoku;
-                p.trophies.heads.push({ name: `Severed Head of ${c.leaderName}`, caste: 'Daimyo Warlord', value: c.headValue });
+                p.trophies.heads.push({
+                    name: `Severed Head of ${c.leaderName}`,
+                    caste: 'Daimyo Warlord',
+                    rank: 'Gokujō',
+                    prepared: false,
+                    value: c.headValue
+                });
 
-                LogProse(`GEKOKUJŌ TRIUMPH! You saw clean through the neck of ${c.leaderName}. The samurai of ${c.province} surrender (+${c.baseKoku} Koku)!`, "usurp", "将軍", true);
+                LogProse(`GEKOKUJŌ TRIUMPH! Slayed ${c.leaderName}. The samurai of ${c.province} surrender (+${c.baseKoku} Koku)!`, "usurp", "将軍", true);
 
                 if (p.usurpedThrones.length >= 7) {
                     AudioSys.playWarConch();
-                    LogProse(`IMPERIAL DECREE: The Emperor recognises your supremacy: YOU ARE SEI-I TAISHŌGUN (征夷大将軍)!`, "usurp", "覇王", true);
+                    LogProse(`IMPERIAL DECREE: YOU ARE SEI-I TAISHŌGUN (征夷大将軍)!`, "usurp", "覇王", true);
                 }
             } else if (choice === 'head') {
                 AudioSys.playBoneSaw();
                 TriggerFX('shake');
-                p.trophies.heads.push({ name: c.name, caste: c.caste, value: c.headValue });
-                LogProse(`You saw through bone and gristle. The head of ${c.name} drops into your head sack.`, "harvest", "首取");
+                p.trophies.heads.push({
+                    name: c.name,
+                    caste: c.caste,
+                    rank: c.rank || 'Kakyū',
+                    prepared: false,
+                    value: c.headValue
+                });
+                LogProse(`Sawed through neck vertebrae. [${c.rank || 'Kakyū'}] Head of ${c.name} drops into your sack.`, "harvest", "首取");
             } else if (choice === 'nose_ears') {
                 AudioSys.playBoneSaw();
                 p.trophies.noses.push({ caste: c.caste, value: c.noseValue });
                 p.trophies.ears += 2;
-                LogProse(`You slice off the nose and sever both ears into your salted brine cask.`, "harvest", "鼻削");
+                LogProse(`Sliced off nose and ears into salted brine cask.`, "harvest", "鼻削");
+            } else if (choice === 'capture') {
+                AudioSys.playBonsho();
+                p.prisoners.push({
+                    name: c.name,
+                    caste: c.caste,
+                    rank: c.rank || 'Kakyū',
+                    ransomValue: c.headValue * 2
+                });
+                LogProse(`CAPTIVE BOUND! ${c.name} dragged to dungeon for war crimes tribunal sentencing.`, "council", "捕縛");
             } else if (choice === 'teeth') {
                 AudioSys.playBoneSaw();
-                if (Math.random() < c.goldToothChance) {
-                    p.trophies.teethGold += 2;
-                    LogProse("You pry out 2 heavy gold molars!", "harvest", "金歯");
-                } else {
-                    p.trophies.teethCommon += 4;
-                    LogProse("You pry out 4 teeth with your dagger pommel.", "harvest", "抜歯");
-                }
-            } else {
-                LogProse("You clean your edge and leave the corpse behind.", "normal");
+                p.trophies.teethCommon += 4;
+                p.trophies.teethGold += 1;
+                LogProse("Pry out molars and gold with dagger pommel.", "harvest", "抜歯");
             }
 
             State.corpseToHarvest = null;
@@ -1749,52 +1741,36 @@
         }
 
         /* =========================================================================
-           PROGRESSION CYCLE & 6 DISCIPLES
+           PROGRESSION CYCLE & DEED COMMODITY HARVEST
            ========================================================================= */
         function ProgressCycle() {
             State.regionIdx = (State.regionIdx + 1) % REGIONS.length;
-            State.timeIdx = (State.timeIdx + 1) % TIMES.length;
+            State.seasonIdx = (State.seasonIdx + 1) % SEASONS.length;
 
             const p = State.player;
-            let totalIncome = 0;
+            RefreshMarketPrices();
 
-            if (p.purchasedEstate.includes('e_paddy')) totalIncome += 10;
-            if (p.purchasedEstate.includes('e_basin')) totalIncome += 20;
-            if (p.purchasedEstate.includes('e_castletown')) totalIncome += 30;
-            if (p.purchasedEstate.includes('e_brewery')) totalIncome += 18;
-
-            p.usurpedThrones.forEach(throneKey => {
-                let yieldKoku = 20;
-                const gov = p.heirs.find(h => h.assignment === throneKey);
-                if (gov && gov.trait.id === 'administrator') yieldKoku += 15;
-                totalIncome += yieldKoku;
+            // Harvest deeded land parcels
+            let deedLogs = [];
+            p.deeds.forEach(d => {
+                p.commodities[d.res] = (p.commodities[d.res] || 0) + d.amt;
+                deedLogs.push(`+${d.amt} ${d.res}`);
             });
 
-            if (totalIncome > 0) {
-                p.gold += totalIncome;
-                LogProse(`FIEF TRIBUTE: Castle bailiffs tithe +${totalIncome} Ryō to your treasury.`, "market");
-            }
+            // Farm harvest
+            let harvest = Math.round(p.farms.acres * (p.farms.irrigationLevel * 1.5));
+            if (State.seasonIdx === 2) harvest *= 3;
+            p.farms.bushelsStored += harvest;
+            let taxRyō = Math.round(harvest * 0.6);
+            p.gold += taxRyō;
 
-            // Advance disciples
-            p.pupils.forEach(pupil => {
-                if (pupil.status === 'patrol') {
-                    pupil.patrolTimeLeft--;
-                    if (pupil.patrolTimeLeft <= 0) {
-                        pupil.status = 'idle';
-                        pupil.kills++;
-                        pupil.rank++;
-                        const lootGold = 25 * pupil.rank;
-                        const ears = 2;
-                        p.gold += lootGold;
-                        p.trophies.ears += ears;
-                        if (Math.random() < 0.45) {
-                            p.trophies.heads.push({ name: `${pupil.name}'s Prize`, caste: 'Outlaw Samurai', value: 35 });
-                        }
-                        AudioSys.playCoinClink();
-                        LogProse(`DISCIPLE RETURNED: ${pupil.name} brings back +${lootGold} Ryō and +${ears} ears from the frontlines!`, "market");
-                    }
-                }
-            });
+            // Warlords tribute
+            let warlordTribute = p.usurpedThrones.length * 25;
+            p.gold += warlordTribute;
+
+            let logMsg = `SEASON [${SEASONS[State.seasonIdx]}]: Granaries yield +${harvest} rice. Tithes: +${taxRyō + warlordTribute} Ryō.`;
+            if (deedLogs.length > 0) logMsg += ` Deeds produced: ${deedLogs.join(', ')}.`;
+            LogProse(logMsg, "market");
 
             SaveGame();
         }
@@ -1803,215 +1779,24 @@
             AudioSys.unlock();
             FastForwardProse();
             ProgressCycle();
-
-            const roll = Math.random();
-            if (roll < 0.58) {
-                SpawnEnemy();
-            } else if (roll < 0.82) {
-                const ev = RANDOM_EVENTS[Math.floor(Math.random() * RANDOM_EVENTS.length)];
-                LogProse(`ROAD ENCOUNTER: ${ev.title}. ${ev.text}`, "lead");
-                ev.action();
-                UpdateUI();
-                RenderExplorationCommands();
-            } else {
-                AudioSys.playBonsho();
-                LogProse("You ride along the watchtowers. Ashigaru spearmen bow low as you pass.", "normal");
-                UpdateUI();
-                RenderExplorationCommands();
-            }
+            ChallengeDuelTier('ronin');
         }
 
         function RestCamp() {
             AudioSys.unlock();
             FastForwardProse();
             const p = State.player;
-            const heal = p.purchasedEstate.includes('e_manor') ? 60 : 30;
-            p.hp = Math.min(p.maxHp, p.hp + heal);
+            p.hp = p.maxHp;
             p.ki = p.maxKi;
             p.poise = p.maxPoise;
             ProgressCycle();
             AudioSys.playBonsho();
-            LogProse(`You rest inside the fortified keep. Vitality restored (+${heal} HP).`, "normal");
-            UpdateUI();
-        }
-
-        function RecruitDisciple() {
-            const p = State.player;
-            if (!p.purchasedEstate.includes('e_dojo')) {
-                LogProse("You must deed a Kenjutsu Training Dojo in your fief first!", "lead");
-                return;
-            }
-            if (p.pupils.length >= 6) {
-                LogProse("Your dojo is at full capacity (6/6 Disciples)!", "lead");
-                return;
-            }
-            const cost = 40;
-            if (p.gold < cost && !State.godMode) {
-                LogProse("You need 40 Ryō to arm and feed a new apprentice.", "lead");
-                return;
-            }
-            if (!State.godMode) p.gold -= cost;
-
-            const tpl = DISCIPLE_ROSTER[p.pupils.length % DISCIPLE_ROSTER.length];
-            p.pupils.push({
-                name: `${tpl.name} the ${tpl.role}`,
-                status: 'idle',
-                patrolTimeLeft: 0,
-                kills: 0,
-                rank: 1
-            });
-
-            AudioSys.playBonsho();
-            LogProse(`DISCIPLE ENROLLED: ${tpl.name} swears his allegiance to your school!`, "market", "弟子");
-            UpdateUI();
-            RenderMarketPane();
-        }
-
-        function DispatchPupil(idx) {
-            const pupil = State.player.pupils[idx];
-            if (!pupil || pupil.status === 'patrol') return;
-            pupil.status = 'patrol';
-            pupil.patrolTimeLeft = 2;
-            AudioSys.playBonsho();
-            LogProse(`DISPATCHED: ${pupil.name} leaves on a headhunting patrol.`, "market");
-            UpdateUI();
-            RenderMarketPane();
-        }
-
-        function DispatchAllPupils() {
-            let count = 0;
-            State.player.pupils.forEach(pupil => {
-                if (pupil.status === 'idle') {
-                    pupil.status = 'patrol';
-                    pupil.patrolTimeLeft = 2;
-                    count++;
-                }
-            });
-            if (count > 0) {
-                AudioSys.playBonsho();
-                LogProse(`WAR EXPEDITION: All ${count} disciples march out on border raids!`, "market", "出陣");
-            } else {
-                LogProse("No idle disciples currently available in the dojo.", "normal");
-            }
-            UpdateUI();
-            RenderMarketPane();
-        }
-
-        /* =========================================================================
-           DYNASTY & SUCCESSION
-           ========================================================================= */
-        const HEIR_GIVEN_NAMES = ["Nobukatsu", "Masahide", "Katsuyori", "Kagekatsu", "Hidetada", "Chiyome", "Ina", "Tsuru"];
-
-        function MarryConsort(consortId) {
-            const p = State.player;
-            if (p.consorts.includes(consortId)) return;
-            const cost = 120;
-            if (p.gold < cost && !State.godMode) { LogProse("You need 120 Ryō for wedding gifts and dowry banquet.", "lead"); return; }
-            if (!State.godMode) p.gold -= cost;
-
-            p.consorts.push(consortId);
-            const c = CONSORTS.find(x => x.id === consortId);
-            p.koku += c.dowryKoku;
-            AudioSys.playBonsho();
-            LogProse(`MATRIMONY: You wed ${c.name}! Dowry grants +${c.dowryKoku} Koku to your clan.`, "lead", "婚儀");
-            UpdateUI();
-            RenderDynastyPane();
-        }
-
-        function SireHeir() {
-            const p = State.player;
-            if (p.consorts.length === 0) { LogProse("You must marry a consort first to secure your bloodline!", "lead"); return; }
-            const cost = 80;
-            if (p.gold < cost && !State.godMode) { LogProse("You need 80 Ryō for infant rites and nursemaids.", "lead"); return; }
-            if (!State.godMode) p.gold -= cost;
-
-            const name = HEIR_GIVEN_NAMES[Math.floor(Math.random() * HEIR_GIVEN_NAMES.length)];
-            const gender = Math.random() < 0.5 ? 'Male' : 'Female';
-            const trait = HEIR_TRAITS[Math.floor(Math.random() * HEIR_TRAITS.length)];
-
-            p.heirs.push({
-                id: 'heir_' + Date.now(),
-                name: name,
-                gender: gender,
-                age: 16,
-                trait: trait,
-                assignment: null
-            });
-
-            AudioSys.playBonsho();
-            LogProse(`AN HEIR IS BORN: ${name} (${gender}) is recognized as legitimate successor! Trait: [${trait.name}] - ${trait.desc}`, "lead", "誕生");
-            UpdateUI();
-            RenderDynastyPane();
-        }
-
-        function AssignGovernor(heirId, provinceKey) {
-            const p = State.player;
-            const heir = p.heirs.find(h => h.id === heirId);
-            if (!heir || !p.usurpedThrones.includes(provinceKey)) return;
-
-            p.heirs.forEach(h => { if (h.assignment === provinceKey) h.assignment = null; });
-            heir.assignment = provinceKey;
-
-            AudioSys.playBonsho();
-            LogProse(`GOVERNOR APPOINTMENT: ${heir.name} is installed as Daikan over ${CLAN_WARLORDS[provinceKey].province}!`, "market", "代官");
-            UpdateUI();
-            RenderDynastyPane();
-        }
-
-        function InheritAsHeir(heirId) {
-            const p = State.player;
-            const heir = p.heirs.find(h => h.id === heirId);
-            if (!heir) return;
-
-            p.name = heir.name;
-            p.generation++;
-            p.hp = p.maxHp;
-            p.ki = p.maxKi;
-            p.poise = p.maxPoise;
-
-            p.heirs = p.heirs.filter(h => h.id !== heirId);
-            State.mode = 'EXPLORE';
-
-            AudioSys.playWarConch();
-            LogProse(`DYNASTIC SUCCESSION: ${p.name} unsheathes their sire's bloodstained katana. Generation ${p.generation} takes the throne!`, "usurp", "継承", true);
-            UpdateUI();
-            RenderExplorationCommands();
-        }
-
-        function HandlePlayerDeath() {
-            State.mode = 'DEAD';
-            AudioSys.playBonsho();
-            TriggerFX('blood');
-
-            LogProse("Your skull strikes the sodden mud. Your vision fades into cold rain...", "combat", "討死");
-
-            const dock = document.getElementById('command-dock');
-            if (State.player.heirs.length > 0) {
-                let heirButtons = State.player.heirs.map(h => `
-                    <button class="cmd-btn btn-wide-2" style="border-color: var(--gold-bright);" onclick="InheritAsHeir('${h.id}')">
-                        <div class="cmd-title">${h.name}</div>
-                        <div class="cmd-desc">${h.trait.name}</div>
-                    </button>
-                `).join('');
-                dock.innerHTML = `
-                    <div style="grid-column: span 4; text-align: center; padding: 4px;">
-                        <span style="font-size:0.75rem; color: var(--crimson-glow); font-weight:700;">CHOOSE SUCCESSOR HEIR</span>
-                    </div>
-                    ${heirButtons}
-                `;
-            } else {
-                dock.innerHTML = `
-                    <button class="cmd-btn btn-wide-4" onclick="ResetGame()" style="border-color: var(--crimson-glow);">
-                        <div class="cmd-title" style="color: var(--crimson-glow);">LINEAGE EXTINCT — REINCARNATE</div>
-                        <div class="cmd-desc">No heirs remain to inherit your clan</div>
-                    </button>
-                `;
-            }
+            LogProse("You rest in the fortified Tenshu keep. Vitals, Ki, and Poise knit completely.", "normal");
             UpdateUI();
         }
 
         /* =========================================================================
-           STATIONARY BOTTOM COMMAND DOCK RENDERERS (ROWS OF 4)
+           STATIONARY BOTTOM DOCK RENDERERS (ROWS OF 4)
            ========================================================================= */
         function RenderEncounter() {
             if (State.mode === 'COMBAT') RenderCombatCommands();
@@ -2043,46 +1828,615 @@
                     <div class="cmd-title">War Beast</div>
                     <div class="cmd-cost">Free Talons</div>
                 </button>
+                <button class="cmd-btn" onclick="ResolveCombatAction('hatamoto')">
+                    <div class="cmd-title">Hatamoto</div>
+                    <div class="cmd-cost">Guard Volley</div>
+                </button>
                 <button class="cmd-btn" onclick="ResolveCombatAction('parry')">
                     <div class="cmd-title">Deflect</div>
                     <div class="cmd-cost">10 Ki</div>
                 </button>
                 <button class="cmd-btn" onclick="ResolveCombatAction('evade')">
                     <div class="cmd-title">Evade</div>
-                    <div class="cmd-cost">+18 Ki</div>
-                </button>
-                <button class="cmd-btn" onclick="ResolveCombatAction('focus')">
-                    <div class="cmd-title">Breathe</div>
-                    <div class="cmd-cost">+45 Ki</div>
+                    <div class="cmd-cost">+20 Ki</div>
                 </button>
             `;
         }
 
         function RenderExplorationCommands() {
             const dock = document.getElementById('command-dock');
-            // Exactly 4 buttons: 1 row of 4
+            // Exactly 8 buttons: 2 rows of 4
             dock.innerHTML = `
                 <button class="cmd-btn" onclick="TravelPatrol()">
-                    <div class="cmd-title">March/Patrol</div>
-                    <div class="cmd-desc">Seek Foe</div>
+                    <div class="cmd-title">March/War</div>
+                    <div class="cmd-desc">Patrol Realm</div>
+                </button>
+                <button class="cmd-btn" onclick="ToggleDuelsModal()" style="border-color: var(--crimson-pure);">
+                    <div class="cmd-title" style="color:#ff9e9e;">Blood Duels</div>
+                    <div class="cmd-desc">Freely Slay</div>
+                </button>
+                <button class="cmd-btn" onclick="ToggleCouncilModal()" style="border-color: #3fa9a9;">
+                    <div class="cmd-title" style="color:#7ef7f7;">Council Hall</div>
+                    <div class="cmd-desc">8 Executions</div>
+                </button>
+                <button class="cmd-btn" onclick="ToggleCastleModal()">
+                    <div class="cmd-title">Forge &amp; Arms</div>
+                    <div class="cmd-desc">+10 Weapons</div>
+                </button>
+                <button class="cmd-btn" onclick="ToggleLandModal()" style="border-color: var(--koku-green);">
+                    <div class="cmd-title" style="color:#a8ff9e;">Land Deeds</div>
+                    <div class="cmd-desc">Fief Parcels</div>
+                </button>
+                <button class="cmd-btn" onclick="ToggleMarketTradeModal()">
+                    <div class="cmd-title">Market Trade</div>
+                    <div class="cmd-desc">Commodities</div>
+                </button>
+                <button class="cmd-btn" onclick="ToggleHatamotoModal()" style="border-color: var(--hawk-azure);">
+                    <div class="cmd-title" style="color:#a2d6ff;">Hatamoto</div>
+                    <div class="cmd-desc">Guard Unit</div>
                 </button>
                 <button class="cmd-btn" onclick="RestCamp()">
-                    <div class="cmd-title">Rest Keep</div>
+                    <div class="cmd-title">Tenshu Rest</div>
                     <div class="cmd-desc">Heal Vitality</div>
-                </button>
-                <button class="cmd-btn" onclick="ToggleMarketModal()">
-                    <div class="cmd-title">Arsenal/Fief</div>
-                    <div class="cmd-desc">Weapons &amp; Disciples</div>
-                </button>
-                <button class="cmd-btn" onclick="ToggleGekokujoModal()" style="border-color: var(--shogun-purple);">
-                    <div class="cmd-title" style="color: #dcb3ff;">Gekokujō</div>
-                    <div class="cmd-desc">7 Warlords</div>
                 </button>
             `;
         }
 
         /* =========================================================================
-           MODAL LOGIC & RENDERERS
+           MODAL: COUNCIL & 8 BRUTAL PUNISHMENTS
+           ========================================================================= */
+        let currentCouncilTab = 'crimes';
+        function ToggleCouncilModal() {
+            const m = document.getElementById('council-modal');
+            m.classList.toggle('open');
+            if (m.classList.contains('open')) RenderCouncilPane();
+        }
+
+        function SwitchCouncilTab(t) {
+            currentCouncilTab = t;
+            document.querySelectorAll('#council-modal .tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(`tab-c-${t}`).classList.add('active');
+            RenderCouncilPane();
+        }
+
+        function RenderCouncilPane() {
+            const pane = document.getElementById('council-pane');
+            pane.innerHTML = '';
+            const p = State.player;
+
+            if (currentCouncilTab === 'crimes') {
+                pane.innerHTML = `<div style="font-size:0.68rem; color:var(--crimson-glow); margin-bottom:4px;">WAR CRIMES TRIBUNAL (${p.prisoners.length} In Chains):</div>`;
+                if (p.prisoners.length === 0) {
+                    pane.innerHTML += `<div style="color:var(--parchment-dim); font-size:0.7rem; padding:8px;">No prisoners held. Select "Take Captive" after battle to bring them to tribunal.</div>`;
+                    return;
+                }
+                p.prisoners.forEach((pri, idx) => {
+                    pane.innerHTML += `
+                        <div class="trade-row" style="flex-direction:column; align-items:flex-start;">
+                            <div class="trade-info" style="width:100%;">
+                                <div class="trade-name">${pri.name} (${pri.caste}) [Rank: ${pri.rank}]</div>
+                                <div class="trade-desc">Guilty of Armed Insubordination. Select brutal punishment:</div>
+                            </div>
+                            <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:3px; width:100%; margin-top:4px;">
+                                <button class="trade-btn" style="color:var(--crimson-glow);" onclick="ExecutePunishment(${idx}, 'tameshigiri')">1. TAMESHIGIRI (TEST SWORD: +1 FORGE)</button>
+                                <button class="trade-btn" style="color:var(--crimson-glow);" onclick="ExecutePunishment(${idx}, 'kogokumon')">2. KOGOKUMON (PILLAR SPIKE HEAD)</button>
+                                <button class="trade-btn" onclick="ExecutePunishment(${idx}, 'kamayude')">3. KAMA-YUDE (BOIL IN CAULDRON)</button>
+                                <button class="trade-btn" onclick="ExecutePunishment(${idx}, 'nokogiribiki')">4. NOKOGIRIBIKI (BAMBOO SAW)</button>
+                                <button class="trade-btn" onclick="ExecutePunishment(${idx}, 'haritsuke')">5. HARITSUKE (SPEAR CRUCIFIXION)</button>
+                                <button class="trade-btn" onclick="ExecutePunishment(${idx}, 'seppuku')">6. SEPPUKU (HONORABLE BEHEAD)</button>
+                                <button class="trade-btn" onclick="ExecutePunishment(${idx}, 'conscript')">7. FORCED CONSCRIPTION</button>
+                                <button class="trade-btn" onclick="ExecutePunishment(${idx}, 'ransom')">8. EXTRACT RANSOM (+${pri.ransomValue} Ryō)</button>
+                            </div>
+                        </div>
+                    `;
+                });
+            } else if (currentCouncilTab === 'kubi') {
+                pane.innerHTML = `
+                    <div style="font-size:0.68rem; color:var(--gold-bright); margin-bottom:4px;">KUBI-ARAI CHAMBER (HEAD INSPECTION &amp; PREPARATION):</div>
+                    <div style="font-size:0.60rem; color:var(--parchment-dim); margin-bottom:6px;">Wash blood in cedar tubs, comb topknots with camellia oil, blacken teeth with Ohaguro iron dye, and mount on cedar boards. Prepared heads fetch up to 3x bounty!</div>
+                `;
+                if (p.trophies.heads.length === 0) {
+                    pane.innerHTML += `<div style="color:var(--parchment-dim); font-size:0.7rem; padding:8px;">No severed heads held in head sacks.</div>`;
+                    return;
+                }
+                p.trophies.heads.forEach((h, idx) => {
+                    pane.innerHTML += `
+                        <div class="trade-row">
+                            <div class="trade-info">
+                                <div class="trade-name">${h.name} [${h.rank}] ${h.prepared ? '<span style="color:var(--ki-cyan);">[MOUNTED ON CEDAR BOARD]</span>' : '<span style="color:var(--crimson-glow);">[RAW &amp; UNWASHED]</span>'}</div>
+                                <div class="trade-desc">Bounty Worth: <strong>${h.value} Ryō</strong></div>
+                            </div>
+                            <div style="display:flex; gap:3px;">
+                                <button class="trade-btn" ${h.prepared || p.gold < 8 ? 'disabled' : ''} onclick="PrepareHead(${idx})">WASH &amp; BLACKEN (8 Ryō)</button>
+                                <button class="trade-btn" onclick="InspectSingleHead(${idx})">SUBMIT (+${h.value})</button>
+                            </div>
+                        </div>
+                    `;
+                });
+            } else if (currentCouncilTab === 'gifts') {
+                p.usurpedThrones.forEach(throneKey => {
+                    const w = CLAN_WARLORDS[throneKey];
+                    const isClaimed = p.claimedGifts.includes(throneKey);
+                    pane.innerHTML += `
+                        <div class="trade-row">
+                            <div class="trade-info">
+                                <div class="trade-name">${w.giftName} ${isClaimed ? '[BESTOWED]' : ''}</div>
+                                <div class="trade-desc">${w.giftDesc}</div>
+                            </div>
+                            <button class="trade-btn" ${isClaimed ? 'disabled' : ''} onclick="ClaimWarlordGift('${throneKey}')">CLAIM</button>
+                        </div>
+                    `;
+                });
+            } else if (currentCouncilTab === 'governance') {
+                pane.innerHTML = `<div style="font-size:0.68rem; color:var(--gold-weathered);">BAKUKAKU MINISTERS INSTALLED:</div>`;
+                ["Grand Chamberlain", "Chief Treasurer", "Justice Minister", "Shrine Commissioner"].forEach(r => {
+                    pane.innerHTML += `
+                        <div class="trade-row">
+                            <div class="trade-info">
+                                <div class="trade-name">${r}</div>
+                                <div class="trade-desc">Governs domain justice and fiscal policy.</div>
+                            </div>
+                            <button class="trade-btn" onclick="LogProse('${r} decree enacted.', 'council');">ENACT</button>
+                        </div>
+                    `;
+                });
+            }
+        }
+
+        function ExecutePunishment(idx, punType) {
+            AudioSys.unlock();
+            const p = State.player;
+            const pri = p.prisoners[idx];
+            if (!pri) return;
+
+            if (punType === 'tameshigiri') {
+                AudioSys.playFleshCut();
+                AudioSys.playSwordClash();
+                p.weaponForgeLevels[p.weaponId] = (p.weaponForgeLevels[p.weaponId] || 0) + 1;
+                LogProse(`TAMESHIGIRI EXECUTED! The captive's torso is cleaved in two strokes. Your blade is tempered to +${p.weaponForgeLevels[p.weaponId]}!`, "council", "試斬");
+            } else if (punType === 'kogokumon') {
+                AudioSys.playBoneSaw();
+                p.trophies.heads.push({
+                    name: `Pillar-Spiked Head of ${pri.name}`,
+                    caste: pri.caste,
+                    rank: pri.rank,
+                    prepared: true,
+                    value: pri.ransomValue
+                });
+                LogProse(`KOGOKUMON! Head mounted on an iron spike with clan signpost. High-grade trophy collected.`, "council", "獄門");
+            } else if (punType === 'kamayude') {
+                AudioSys.playBonsho();
+                p.koku += 30;
+                LogProse(`KAMA-YUDE! ${pri.name} boiled alive in an iron cauldron before the crowds (+30 Koku Prestige).`, "council", "釜茹");
+            } else if (punType === 'nokogiribiki') {
+                AudioSys.playBoneSaw();
+                p.trophies.ears += 4;
+                p.trophies.teethCommon += 6;
+                LogProse(`NOKOGIRIBIKI! Commoners take turns with dull bamboo saws. Salted ears and teeth harvested.`, "council", "鋸挽");
+            } else if (punType === 'haritsuke') {
+                AudioSys.playWarConch();
+                LogProse(`HARITSUKE! Pierced by crossed spears on the public scaffold. Peasant rebellion quashed.`, "council", "磔");
+            } else if (punType === 'seppuku') {
+                AudioSys.playBoneSaw();
+                p.trophies.heads.push({
+                    name: `Seppuku Head of ${pri.name}`,
+                    caste: pri.caste,
+                    rank: pri.rank,
+                    prepared: true,
+                    value: Math.round(pri.ransomValue * 1.5)
+                });
+                p.gold += 50;
+                LogProse(`SEPPUKU! Clean kaishakunin stroke. Family yields 50 Ryō voluntary tribute.`, "council", "切腹");
+            } else if (punType === 'conscript') {
+                if (p.hatamoto.count < 12) {
+                    p.hatamoto.count++;
+                    LogProse(`${pri.name} forced into Hatamoto frontlines.`, "council");
+                }
+            } else if (punType === 'ransom') {
+                AudioSys.playCoinClink();
+                p.gold += pri.ransomValue;
+                LogProse(`RANSOM EXTRACTED: +${pri.ransomValue} Ryō received.`, "council");
+            }
+
+            p.prisoners.splice(idx, 1);
+            UpdateUI();
+            RenderCouncilPane();
+        }
+
+        function PrepareHead(idx) {
+            AudioSys.unlock();
+            const p = State.player;
+            const h = p.trophies.heads[idx];
+            if (!h || p.gold < 8) return;
+            p.gold -= 8;
+            h.prepared = true;
+            h.value = Math.round(h.value * 2.5);
+            AudioSys.playCoinClink();
+            LogProse(`KUBI-ARAI: Head of ${h.name} cleansed, topknot oiled, teeth blackened with Ohaguro on cedar board! Bounty raised to ${h.value} Ryō!`, "council", "首洗");
+            UpdateUI();
+            RenderCouncilPane();
+        }
+
+        function InspectSingleHead(idx) {
+            AudioSys.unlock();
+            const p = State.player;
+            const h = p.trophies.heads[idx];
+            p.gold += h.value;
+            p.trophies.heads.splice(idx, 1);
+            AudioSys.playCoinClink();
+            LogProse(`KUBI-JIKKEN: Head submitted (+${h.value} Ryō).`, "market");
+            UpdateUI();
+            RenderCouncilPane();
+        }
+
+        function ClaimWarlordGift(throneKey) {
+            AudioSys.unlock();
+            const p = State.player;
+            if (p.claimedGifts.includes(throneKey)) return;
+            p.claimedGifts.push(throneKey);
+            const w = CLAN_WARLORDS[throneKey];
+            AudioSys.playBonsho();
+            RecalculatePlayerStats();
+            LogProse(`BESTOWED RELIC: You claim ${w.giftName}!`, "council", "宝物");
+            UpdateUI();
+            RenderCouncilPane();
+        }
+
+        /* =========================================================================
+           MODAL: FREE BLOOD DUEL GROUNDS
+           ========================================================================= */
+        function ToggleDuelsModal() {
+            const m = document.getElementById('duels-modal');
+            m.classList.toggle('open');
+            if (m.classList.contains('open')) RenderDuelsPane();
+        }
+
+        function RenderDuelsPane() {
+            const pane = document.getElementById('duels-pane');
+            pane.innerHTML = `
+                <div class="trade-row">
+                    <div class="trade-info">
+                        <div class="trade-name">CHALLENGE WANDERING RONIN</div>
+                        <div class="trade-desc">Swift duel. Rewards: Chūtō Head, Rice, and Iron.</div>
+                    </div>
+                    <button class="trade-btn" onclick="ChallengeDuelTier('ronin')">DUEL</button>
+                </div>
+                <div class="trade-row">
+                    <div class="trade-info">
+                        <div class="trade-name">CHALLENGE KABUKIMONO DUELIST</div>
+                        <div class="trade-desc">Twin blades. Rewards: Chūtō Head, Kyoto Silk, and Gold Teeth.</div>
+                    </div>
+                    <button class="trade-btn" onclick="ChallengeDuelTier('kabuki')">DUEL</button>
+                </div>
+                <div class="trade-row">
+                    <div class="trade-info">
+                        <div class="trade-name">CHALLENGE MASTERLESS SWORD SAINT</div>
+                        <div class="trade-desc">Lethal duel. Rewards: Jōtō Head, Raw Iron bars, and High Ryō.</div>
+                    </div>
+                    <button class="trade-btn" onclick="ChallengeDuelTier('saint')">DUEL</button>
+                </div>
+                <div class="trade-row">
+                    <div class="trade-info">
+                        <div class="trade-name">CHALLENGE NANBAN STEEL MERCENARY</div>
+                        <div class="trade-desc">Rapier &amp; pistol. Rewards: Jōtō Head, Black Powder, and Toledo Steel.</div>
+                    </div>
+                    <button class="trade-btn" onclick="ChallengeDuelTier('nanban')">DUEL</button>
+                </div>
+            `;
+        }
+
+        /* =========================================================================
+           MODAL: PROCEDURAL LAND REGISTRY (TOCHI-CHŌ)
+           ========================================================================= */
+        function ToggleLandModal() {
+            const m = document.getElementById('land-modal');
+            m.classList.toggle('open');
+            if (m.classList.contains('open')) RenderLandPane();
+        }
+
+        function RenderLandPane() {
+            const pane = document.getElementById('land-pane');
+            pane.innerHTML = `
+                <div style="font-size:0.68rem; color:var(--gold-bright); margin-bottom:4px;">AVAILABLE LAND DEEDS (SEASONAL REGISTRY):</div>
+            `;
+            const p = State.player;
+            State.availableDeeds.forEach((d, idx) => {
+                pane.innerHTML += `
+                    <div class="trade-row">
+                        <div class="trade-info">
+                            <div class="trade-name">${d.name} (+${d.koku} Koku)</div>
+                            <div class="trade-desc">Harvests: <strong>+${d.amt} ${d.res}</strong> every season turn.</div>
+                        </div>
+                        <button class="trade-btn" ${p.gold < d.cost ? 'disabled' : ''} onclick="BuyLandDeed(${idx})">BUY (${d.cost} Ryō)</button>
+                    </div>
+                `;
+            });
+
+            pane.innerHTML += `<div style="font-size:0.68rem; color:var(--koku-green); margin-top:8px; margin-bottom:4px;">OWNED DEEDED PARCELS (${p.deeds.length}):</div>`;
+            if (p.deeds.length === 0) {
+                pane.innerHTML += `<div style="color:var(--parchment-dim); font-size:0.7rem; padding:6px;">No land parcels owned. Purchase deeds above.</div>`;
+            } else {
+                p.deeds.forEach(d => {
+                    pane.innerHTML += `
+                        <div class="trade-row">
+                            <div class="trade-info">
+                                <div class="trade-name">${d.name}</div>
+                                <div class="trade-desc">Active yield: +${d.amt} ${d.res} per season turn.</div>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+        }
+
+        function BuyLandDeed(idx) {
+            AudioSys.unlock();
+            const p = State.player;
+            const d = State.availableDeeds[idx];
+            if (!d || p.gold < d.cost) return;
+            p.gold -= d.cost;
+            p.koku += d.koku;
+            p.deeds.push(d);
+            State.availableDeeds.splice(idx, 1);
+            AudioSys.playBonsho();
+            LogProse(`FIEF DEEDED: Acquired ${d.name}! Grants +${d.amt} ${d.res} every season.`, "market", "領地");
+            UpdateUI();
+            RenderLandPane();
+        }
+
+        /* =========================================================================
+           MODAL: CASTLE, 22 WEAPONS & TATARA FORGE
+           ========================================================================= */
+        let currentCastleTab = 'forge';
+        function ToggleCastleModal() {
+            const m = document.getElementById('castle-modal');
+            m.classList.toggle('open');
+            if (m.classList.contains('open')) RenderCastlePane();
+        }
+
+        function SwitchCastleTab(t) {
+            currentCastleTab = t;
+            document.querySelectorAll('#castle-modal .tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(`tab-cas-${t}`).classList.add('active');
+            RenderCastlePane();
+        }
+
+        function RenderCastlePane() {
+            const pane = document.getElementById('castle-pane');
+            pane.innerHTML = '';
+            const p = State.player;
+
+            if (currentCastleTab === 'forge') {
+                const w = GEAR_TABLE.weapons.find(x => x.id === p.weaponId) || GEAR_TABLE.weapons[0];
+                const lvl = p.weaponForgeLevels[w.id] || 0;
+                const costRyō = 40 + (lvl * 25);
+                const costIron = 2 + (lvl * 2);
+                pane.innerHTML = `
+                    <div class="trade-row" style="flex-direction:column; align-items:flex-start;">
+                        <div class="trade-info">
+                            <div class="trade-name" style="color:var(--gold-bright);">EQUIPPED: ${w.name} [FORGE +${lvl}/10]</div>
+                            <div class="trade-desc">Temper tamahagane steel. Current Damage Bonus: <strong>+${Math.round(lvl * 12)}%</strong></div>
+                            <div class="trade-desc" style="color:var(--ki-cyan);">Upgrade Cost: ${costRyō} Ryō &amp; ${costIron} Raw Iron Bars</div>
+                        </div>
+                        <button class="trade-btn" style="margin-top:6px; width:100%;" ${lvl >= 10 || p.gold < costRyō || (p.commodities.iron || 0) < costIron ? 'disabled' : ''} onclick="UpgradeWeaponForge()">
+                            ${lvl >= 10 ? 'MAXIMUM FORGE (+10)' : `TEMPER BLADE TO +${lvl + 1}`}
+                        </button>
+                    </div>
+                `;
+            } else if (currentCastleTab === 'weapons') {
+                GEAR_TABLE.weapons.forEach(w => {
+                    const isEquipped = p.weaponId === w.id;
+                    const lvl = p.weaponForgeLevels[w.id] || 0;
+                    pane.innerHTML += `
+                        <div class="trade-row">
+                            <div class="trade-info">
+                                <div class="trade-name">${w.name} ${lvl > 0 ? `(+${lvl})` : ''} ${isEquipped ? '[EQUIPPED]' : ''}</div>
+                                <div class="trade-desc">${w.desc} | Damage: +${Math.round((w.dmgMod - 1) * 100)}%</div>
+                            </div>
+                            <button class="trade-btn" ${isEquipped || p.gold < w.cost ? 'disabled' : ''} onclick="BuyGear('weapons', '${w.id}')">
+                                ${isEquipped ? 'EQUIPPED' : `BUY (${w.cost})`}
+                            </button>
+                        </div>
+                    `;
+                });
+            } else if (currentCastleTab === 'bows') {
+                GEAR_TABLE.bows.forEach(b => {
+                    const isEquipped = p.bowId === b.id;
+                    pane.innerHTML += `
+                        <div class="trade-row">
+                            <div class="trade-info">
+                                <div class="trade-name">${b.name} ${isEquipped ? '[EQUIPPED]' : ''}</div>
+                                <div class="trade-desc">${b.desc} | Damage: ${b.dmg} HP</div>
+                            </div>
+                            <button class="trade-btn" ${isEquipped || p.gold < b.cost ? 'disabled' : ''} onclick="BuyGear('bows', '${b.id}')">
+                                ${isEquipped ? 'EQUIPPED' : `BUY (${b.cost})`}
+                            </button>
+                        </div>
+                    `;
+                });
+            } else if (currentCastleTab === 'armor') {
+                GEAR_TABLE.armors.forEach(a => {
+                    const isEquipped = p.armorId === a.id;
+                    pane.innerHTML += `
+                        <div class="trade-row">
+                            <div class="trade-info">
+                                <div class="trade-name">${a.name} ${isEquipped ? '[EQUIPPED]' : ''}</div>
+                                <div class="trade-desc">${a.desc} | Def: ${Math.round(a.defMod * 100)}%, +${a.maxHpBonus} HP</div>
+                            </div>
+                            <button class="trade-btn" ${isEquipped || p.gold < a.cost ? 'disabled' : ''} onclick="BuyGear('armors', '${a.id}')">
+                                ${isEquipped ? 'EQUIPPED' : `BUY (${a.cost})`}
+                            </button>
+                        </div>
+                    `;
+                });
+            } else if (currentCastleTab === 'beasts') {
+                GEAR_TABLE.falcons.forEach(f => {
+                    const isEquipped = p.falconId === f.id;
+                    pane.innerHTML += `
+                        <div class="trade-row">
+                            <div class="trade-info">
+                                <div class="trade-name">${f.name} ${isEquipped ? '[ACTIVE]' : ''}</div>
+                                <div class="trade-desc">${f.desc} | Dive: +${f.atk} Dmg</div>
+                            </div>
+                            <button class="trade-btn" ${isEquipped || p.gold < f.cost ? 'disabled' : ''} onclick="BuyGear('falcons', '${f.id}')">
+                                ${isEquipped ? 'ACTIVE' : `TAME (${f.cost})`}
+                            </button>
+                        </div>
+                    `;
+                });
+            } else if (currentCastleTab === 'keep') {
+                pane.innerHTML = `
+                    <div class="trade-row">
+                        <div class="trade-info">
+                            <div class="trade-name">CYCLOPEAN ISHIGAKI STONE WALLS [Cost: 180 Ryō]</div>
+                            <div class="trade-desc">Megiddo sloped walls; grants +30 Koku.</div>
+                        </div>
+                        <button class="trade-btn" ${p.gold < 180 ? 'disabled' : ''} onclick="p.gold -= 180; p.koku += 30; UpdateUI();">BUILD</button>
+                    </div>
+                `;
+            }
+        }
+
+        function UpgradeWeaponForge() {
+            AudioSys.unlock();
+            const p = State.player;
+            const wId = p.weaponId;
+            const lvl = p.weaponForgeLevels[wId] || 0;
+            if (lvl >= 10) return;
+            const costRyō = 40 + (lvl * 25);
+            const costIron = 2 + (lvl * 2);
+            if (p.gold < costRyō || (p.commodities.iron || 0) < costIron) return;
+
+            p.gold -= costRyō;
+            p.commodities.iron -= costIron;
+            p.weaponForgeLevels[wId] = lvl + 1;
+
+            AudioSys.playSwordClash();
+            LogProse(`TATARA FORGED: Weapon honed to +${lvl + 1}! Tamahagane edge gleaming!`, "lead", "鍛冶");
+            UpdateUI();
+            RenderCastlePane();
+        }
+
+        function BuyGear(cat, id) {
+            AudioSys.unlock();
+            const p = State.player;
+            const item = GEAR_TABLE[cat].find(x => x.id === id);
+            if (!item || p.gold < item.cost) return;
+            p.gold -= item.cost;
+            if (cat === 'weapons') p.weaponId = item.id;
+            if (cat === 'bows') p.bowId = item.id;
+            if (cat === 'armors') p.armorId = item.id;
+            if (cat === 'falcons') p.falconId = item.id;
+            AudioSys.playSwordClash();
+            RecalculatePlayerStats();
+            LogProse(`EQUIPPED: ${item.name}.`, "market");
+            UpdateUI();
+            RenderCastlePane();
+        }
+
+        /* =========================================================================
+           COMMODITIES MARKET
+           ========================================================================= */
+        function ToggleMarketTradeModal() {
+            const m = document.getElementById('market-trade-modal');
+            m.classList.toggle('open');
+            if (m.classList.contains('open')) RenderMarketTradePane();
+        }
+
+        function RenderMarketTradePane() {
+            const pane = document.getElementById('market-trade-pane');
+            pane.innerHTML = '';
+            const p = State.player;
+
+            Object.keys(COMMODITIES).forEach(k => {
+                const c = COMMODITIES[k];
+                const price = State.currentMarketPrices[k] || c.basePrice;
+                const owned = p.commodities[k] || 0;
+                pane.innerHTML += `
+                    <div class="trade-row">
+                        <div class="trade-info">
+                            <div class="trade-name">${c.name}</div>
+                            <div class="trade-desc">Market: <strong>${price} Ryō</strong> | Owned: ${owned}</div>
+                        </div>
+                        <div style="display:flex; gap:3px;">
+                            <button class="trade-btn" ${p.gold < price ? 'disabled' : ''} onclick="BuyCommodity('${k}')">BUY (-${price})</button>
+                            <button class="trade-btn" ${owned <= 0 ? 'disabled' : ''} onclick="SellCommodity('${k}')">SELL (+${price})</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function BuyCommodity(k) {
+            AudioSys.unlock();
+            const p = State.player;
+            const price = State.currentMarketPrices[k];
+            if (p.gold < price && !State.godMode) return;
+            if (!State.godMode) p.gold -= price;
+            p.commodities[k] = (p.commodities[k] || 0) + 1;
+            AudioSys.playCoinClink();
+            UpdateUI();
+            RenderMarketTradePane();
+        }
+
+        function SellCommodity(k) {
+            AudioSys.unlock();
+            const p = State.player;
+            if (!p.commodities[k] || p.commodities[k] <= 0) return;
+            const price = State.currentMarketPrices[k];
+            p.commodities[k]--;
+            p.gold += price;
+            AudioSys.playCoinClink();
+            UpdateUI();
+            RenderMarketTradePane();
+        }
+
+        /* =========================================================================
+           HATAMOTO BODYGUARD UNIT
+           ========================================================================= */
+        function ToggleHatamotoModal() {
+            const m = document.getElementById('hatamoto-modal');
+            m.classList.toggle('open');
+            if (m.classList.contains('open')) RenderHatamotoPane();
+        }
+
+        function RenderHatamotoPane() {
+            const pane = document.getElementById('hatamoto-pane');
+            pane.innerHTML = '';
+            const p = State.player;
+
+            pane.innerHTML = `
+                <div class="trade-row">
+                    <div class="trade-info">
+                        <div class="trade-name">RECRUIT BODYGUARD (50 Ryō) [${p.hatamoto.count}/12]</div>
+                        <div class="trade-desc">Hatamoto unleash coordinated volleys in battle.</div>
+                    </div>
+                    <button class="trade-btn" ${p.hatamoto.count >= 12 || p.gold < 50 ? 'disabled' : ''} onclick="RecruitHatamoto()">RECRUIT</button>
+                </div>
+                <div class="trade-row">
+                    <div class="trade-info">
+                        <div class="trade-name">UPGRADE TRAINING: TIER ${p.hatamoto.tier} [Cost: 110 Ryō]</div>
+                        <div class="trade-desc">Increases Hatamoto combat damage.</div>
+                    </div>
+                    <button class="trade-btn" ${p.gold < 110 || p.hatamoto.tier >= 3 ? 'disabled' : ''} onclick="p.gold -= 110; p.hatamoto.tier++; RenderHatamotoPane();">UPGRADE</button>
+                </div>
+            `;
+        }
+
+        function RecruitHatamoto() {
+            AudioSys.unlock();
+            const p = State.player;
+            if (p.hatamoto.count >= 12 || p.gold < 50) return;
+            p.gold -= 50;
+            p.hatamoto.count++;
+            AudioSys.playBonsho();
+            LogProse("HATAMOTO ENROLLED: A sworn retainer takes up your clan banner.", "lead");
+            UpdateUI();
+            RenderHatamotoPane();
+        }
+
+        /* =========================================================================
+           GEKOKUJŌ (7 WARLORDS)
            ========================================================================= */
         function ToggleGekokujoModal() {
             const m = document.getElementById('gekokujo-modal');
@@ -2098,23 +2452,25 @@
             Object.keys(CLAN_WARLORDS).forEach(k => {
                 const w = CLAN_WARLORDS[k];
                 const isUsurped = p.usurpedThrones.includes(k);
-                const div = document.createElement('div');
-                div.className = 'trade-row';
-                div.innerHTML = `
-                    <div class="trade-info">
-                        <div class="trade-name" style="color: ${isUsurped ? 'var(--shogun-purple)' : 'var(--gold-bright)'};">
-                            ${w.leaderName} ${isUsurped ? '<strong>[USURPED]</strong>' : ''}
+                pane.innerHTML += `
+                    <div class="trade-row">
+                        <div class="trade-info">
+                            <div class="trade-name" style="color: ${isUsurped ? 'var(--shogun-purple)' : 'var(--gold-bright)'};">
+                                ${w.leaderName} ${isUsurped ? '[USURPED]' : ''}
+                            </div>
+                            <div class="trade-desc">${w.clanName} (${w.baseKoku} Koku) | Relic: ${w.giftName}</div>
                         </div>
-                        <div class="trade-desc">Clan: <strong>${w.clanName}</strong> (${w.baseKoku} Koku) | ${w.title}</div>
+                        <button class="trade-btn" ${isUsurped ? 'disabled' : ''} onclick="ChallengeWarlord('${k}')">
+                            ${isUsurped ? 'SEIZED' : 'DUEL'}
+                        </button>
                     </div>
-                    <button class="trade-btn" ${isUsurped ? 'disabled' : ''} onclick="ChallengeWarlord('${k}')">
-                        ${isUsurped ? 'SEIZED' : 'DUEL'}
-                    </button>
                 `;
-                pane.appendChild(div);
             });
         }
 
+        /* =========================================================================
+           DYNASTY & SUCCESSION
+           ========================================================================= */
         let currentDynTab = 'heirs';
         function ToggleDynastyModal() {
             const m = document.getElementById('dynasty-modal');
@@ -2122,10 +2478,10 @@
             if (m.classList.contains('open')) RenderDynastyPane();
         }
 
-        function SwitchDynastyTab(tab) {
-            currentDynTab = tab;
+        function SwitchDynastyTab(t) {
+            currentDynTab = t;
             document.querySelectorAll('#dynasty-modal .tab-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById(`dyn-tab-${tab}`).classList.add('active');
+            document.getElementById(`tab-dyn-${t}`).classList.add('active');
             RenderDynastyPane();
         }
 
@@ -2138,61 +2494,36 @@
                 pane.innerHTML = `
                     <div class="trade-row">
                         <div class="trade-info">
-                            <div class="trade-name">SIRE A NEW HEIR (80 Ryō)</div>
-                            <div class="trade-desc">Consorts bear children with unique administrative and combat traits.</div>
+                            <div class="trade-name">SIRE HEIR (80 Ryō)</div>
+                            <div class="trade-desc">Consorts bear children to inherit your throne.</div>
                         </div>
                         <button class="trade-btn" onclick="SireHeir()">SIRE</button>
                     </div>
-                    <div style="font-size:0.68rem; color:var(--gold-bright); margin-top:6px;">LIVING HEIRS OF GENERATION ${p.generation}:</div>
                 `;
-                if (p.heirs.length === 0) {
-                    pane.innerHTML += `<div style="color:var(--parchment-dim); font-size:0.7rem; padding:8px;">No heirs sired yet. Marry a consort first.</div>`;
-                } else {
-                    p.heirs.forEach(h => {
-                        pane.innerHTML += `
-                            <div class="trade-row">
-                                <div class="trade-info">
-                                    <div class="trade-name">${h.name} (${h.gender}) — [${h.trait.name}]</div>
-                                    <div class="trade-desc">${h.trait.desc}</div>
-                                    <div class="trade-desc" style="color:var(--ki-cyan);">Station: ${h.assignment ? `Daikan of ${CLAN_WARLORDS[h.assignment].province}` : 'In Castle Keep'}</div>
-                                </div>
+                p.heirs.forEach(h => {
+                    pane.innerHTML += `
+                        <div class="trade-row">
+                            <div class="trade-info">
+                                <div class="trade-name">${h.name} (${h.gender})</div>
+                                <div class="trade-desc">Trait: ${h.trait}</div>
                             </div>
-                        `;
-                    });
-                }
-            } else if (currentDynTab === 'governors') {
-                pane.innerHTML = `<div style="font-size:0.68rem; color:var(--gold-weathered);">ASSIGN HEIRS AS PROVINCIAL DAIKAN (GOVERNORS):</div>`;
-                if (p.usurpedThrones.length === 0) {
-                    pane.innerHTML += `<div style="color:var(--parchment-dim); font-size:0.7rem; padding:8px;">Hold no conquered provinces yet. Slay Daimyos under Gekokujō!</div>`;
-                } else {
-                    p.usurpedThrones.forEach(throneKey => {
-                        const w = CLAN_WARLORDS[throneKey];
-                        const currentGov = p.heirs.find(h => h.assignment === throneKey);
-                        pane.innerHTML += `
-                            <div class="trade-row">
-                                <div class="trade-info">
-                                    <div class="trade-name">${w.province}</div>
-                                    <div class="trade-desc">Governor: <strong>${currentGov ? currentGov.name : 'Unassigned Bailiff'}</strong></div>
-                                </div>
-                                <select class="trade-btn" onchange="AssignGovernor(this.value, '${throneKey}')">
-                                    <option value="">Select Heir...</option>
-                                    ${p.heirs.map(h => `<option value="${h.id}" ${h.assignment === throneKey ? 'selected' : ''}>${h.name} (${h.trait.name})</option>`).join('')}
-                                </select>
-                            </div>
-                        `;
-                    });
-                }
+                        </div>
+                    `;
+                });
             } else if (currentDynTab === 'consorts') {
-                pane.innerHTML = `<div style="font-size:0.68rem; color:var(--gold-bright);">POLITICAL MATCHES &amp; CONSORTS:</div>`;
-                CONSORTS.forEach(c => {
+                const consorts = [
+                    { id: 'c1', name: 'Lady Chiyo of the Northern Court', dowry: 20 },
+                    { id: 'c2', name: 'Tomoe the Onna-Musha', dowry: 15 }
+                ];
+                consorts.forEach(c => {
                     const isWed = p.consorts.includes(c.id);
                     pane.innerHTML += `
                         <div class="trade-row">
                             <div class="trade-info">
-                                <div class="trade-name">${c.name} ${isWed ? '<span style="color:var(--ki-cyan);">[WED]</span>' : ''}</div>
-                                <div class="trade-desc">${c.desc} | Dowry: +${c.dowryKoku} Koku</div>
+                                <div class="trade-name">${c.name} ${isWed ? '[WED]' : ''}</div>
+                                <div class="trade-desc">Dowry: +${c.dowry} Koku</div>
                             </div>
-                            <button class="trade-btn" ${isWed ? 'disabled' : ''} onclick="MarryConsort('${c.id}')">
+                            <button class="trade-btn" ${isWed ? 'disabled' : ''} onclick="MarryConsort('${c.id}', ${c.dowry})">
                                 ${isWed ? 'IN KEEP' : 'MARRY (120)'}
                             </button>
                         </div>
@@ -2201,227 +2532,115 @@
             }
         }
 
-        let currentMarketTab = 'kubi';
-        function ToggleMarketModal() {
-            const m = document.getElementById('market-modal');
-            m.classList.toggle('open');
-            if (m.classList.contains('open')) RenderMarketPane();
-        }
-
-        function SwitchMarketTab(tab) {
-            currentMarketTab = tab;
-            document.querySelectorAll('#market-modal .tab-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById(`tab-btn-${tab}`).classList.add('active');
-            RenderMarketPane();
-        }
-
-        function RenderMarketPane() {
-            const pane = document.getElementById('market-content-pane');
-            pane.innerHTML = '';
+        function MarryConsort(id, dowry) {
             const p = State.player;
+            if (p.consorts.includes(id) || p.gold < 120) return;
+            p.gold -= 120;
+            p.koku += dowry;
+            p.consorts.push(id);
+            AudioSys.playBonsho();
+            LogProse(`WEDDING BANQUET: Dowry brings +${dowry} Koku to clan.`, "lead", "婚儀");
+            UpdateUI();
+            RenderDynastyPane();
+        }
 
-            if (currentMarketTab === 'kubi') {
-                if (p.trophies.heads.length === 0 && p.trophies.noses.length === 0 && p.trophies.ears === 0 && p.trophies.teethCommon === 0 && p.trophies.teethGold === 0) {
-                    pane.innerHTML = `<div style="color:var(--parchment-dim); font-size:0.72rem; padding:12px;">Head sack and brine barrels are empty. Slay challengers to harvest trophies.</div>`;
-                    return;
-                }
-                pane.innerHTML = `
-                    <div class="trade-row">
-                        <div class="trade-info">
-                            <div class="trade-name" style="color:var(--crimson-glow);">SUBMIT ALL TROPHIES (KUBI-JIKKEN)</div>
-                            <div class="trade-desc">Inspect all severed heads on cedar boards; cash in all salted ears, noses, and teeth.</div>
-                        </div>
-                        <button class="trade-btn" onclick="SellAllTrophies()">SUBMIT ALL</button>
+        function SireHeir() {
+            const p = State.player;
+            if (p.consorts.length === 0 || p.gold < 80) return;
+            p.gold -= 80;
+            const names = ["Nobukatsu", "Masahide", "Katsuyori", "Kagekatsu", "Hidetada"];
+            const traits = ["Brutal Flenser", "Tax Magistrate", "Master Tactician", "Iron-Spined"];
+            const heir = {
+                id: 'heir_' + Date.now(),
+                name: names[Math.floor(Math.random() * names.length)],
+                gender: Math.random() < 0.5 ? 'Male' : 'Female',
+                trait: traits[Math.floor(Math.random() * traits.length)]
+            };
+            p.heirs.push(heir);
+            AudioSys.playBonsho();
+            LogProse(`AN HEIR IS BORN: ${heir.name}!`, "lead", "誕生");
+            UpdateUI();
+            RenderDynastyPane();
+        }
+
+        function InheritAsHeir(heirId) {
+            const p = State.player;
+            const heir = p.heirs.find(h => h.id === heirId);
+            if (!heir) return;
+
+            p.name = heir.name;
+            p.generation++;
+            p.hp = p.maxHp;
+            p.ki = p.maxKi;
+            p.poise = p.maxPoise;
+            p.heirs = p.heirs.filter(h => h.id !== heirId);
+            State.mode = 'EXPLORE';
+
+            AudioSys.playWarConch();
+            LogProse(`DYNASTIC SUCCESSION: ${p.name} ascends as Generation ${p.generation}!`, "usurp", "継承", true);
+            UpdateUI();
+            RenderExplorationCommands();
+        }
+
+        function HandlePlayerDeath() {
+            State.mode = 'DEAD';
+            AudioSys.playBonsho();
+            TriggerFX('blood');
+
+            LogProse("Your skull strikes the sodden mud. Your vision fades...", "combat", "討死");
+
+            const dock = document.getElementById('command-dock');
+            if (State.player.heirs.length > 0) {
+                let heirButtons = State.player.heirs.map(h => `
+                    <button class="cmd-btn" style="border-color: var(--gold-bright);" onclick="InheritAsHeir('${h.id}')">
+                        <div class="cmd-title">${h.name}</div>
+                        <div class="cmd-desc">${h.trait}</div>
+                    </button>
+                `).join('');
+                dock.innerHTML = `
+                    <div style="grid-column: span 4; text-align: center; padding: 4px;">
+                        <span style="font-size:0.72rem; color: var(--crimson-glow); font-weight:700;">CHOOSE SUCCESSOR HEIR</span>
                     </div>
+                    ${heirButtons}
                 `;
-                p.trophies.heads.forEach((h, idx) => {
-                    pane.innerHTML += `
-                        <div class="trade-row">
-                            <div class="trade-info">
-                                <div class="trade-name">${h.name.toUpperCase()}</div>
-                                <div class="trade-desc">Caste: ${h.caste} | Worth ${h.value} Ryō.</div>
-                            </div>
-                            <button class="trade-btn" onclick="SellSingleHead(${idx})">SUBMIT (+${h.value})</button>
-                        </div>
-                    `;
-                });
-            } else if (currentMarketTab === 'weapons') {
-                GEAR_TABLE.weapons.forEach(w => {
-                    const isEquipped = p.weaponId === w.id;
-                    const canAfford = p.gold >= w.cost || State.godMode;
-                    pane.innerHTML += `
-                        <div class="trade-row">
-                            <div class="trade-info">
-                                <div class="trade-name">${w.name} ${isEquipped ? '<span style="color:var(--ki-cyan);">[EQUIPPED]</span>' : ''}</div>
-                                <div class="trade-desc">${w.desc} | Dmg: +${Math.round((w.dmgMod - 1) * 100)}%</div>
-                            </div>
-                            <button class="trade-btn" ${isEquipped || !canAfford ? 'disabled' : ''} onclick="BuyGear('weapons', '${w.id}')">
-                                ${isEquipped ? 'EQUIPPED' : `BUY (${w.cost})`}
-                            </button>
-                        </div>
-                    `;
-                });
-            } else if (currentMarketTab === 'bows') {
-                GEAR_TABLE.bows.forEach(b => {
-                    const isEquipped = p.bowId === b.id;
-                    const canAfford = p.gold >= b.cost || State.godMode;
-                    pane.innerHTML += `
-                        <div class="trade-row">
-                            <div class="trade-info">
-                                <div class="trade-name">${b.name} ${isEquipped ? '<span style="color:var(--ki-cyan);">[EQUIPPED]</span>' : ''}</div>
-                                <div class="trade-desc">${b.desc} | Shot Damage: ${b.dmg} HP</div>
-                            </div>
-                            <button class="trade-btn" ${isEquipped || !canAfford ? 'disabled' : ''} onclick="BuyGear('bows', '${b.id}')">
-                                ${isEquipped ? 'EQUIPPED' : `BUY (${b.cost})`}
-                            </button>
-                        </div>
-                    `;
-                });
-            } else if (currentMarketTab === 'armor') {
-                GEAR_TABLE.armors.forEach(a => {
-                    const isEquipped = p.armorId === a.id;
-                    const canAfford = p.gold >= a.cost || State.godMode;
-                    pane.innerHTML += `
-                        <div class="trade-row">
-                            <div class="trade-info">
-                                <div class="trade-name">${a.name} ${isEquipped ? '<span style="color:var(--ki-cyan);">[EQUIPPED]</span>' : ''}</div>
-                                <div class="trade-desc">${a.desc} | Def: ${Math.round(a.defMod * 100)}%, +${a.maxHpBonus} Max HP</div>
-                            </div>
-                            <button class="trade-btn" ${isEquipped || !canAfford ? 'disabled' : ''} onclick="BuyGear('armors', '${a.id}')">
-                                ${isEquipped ? 'EQUIPPED' : `BUY (${a.cost})`}
-                            </button>
-                        </div>
-                    `;
-                });
-            } else if (currentMarketTab === 'falconry') {
-                if (!p.purchasedEstate.includes('e_aviary')) {
-                    pane.innerHTML = `<div style="color:var(--parchment-dim); font-size:0.72rem; padding:12px;">Deed a <strong>Takaba Falconry Aviary</strong> under CASTLE &amp; FIEF before training war beasts!</div>`;
-                    return;
-                }
-                GEAR_TABLE.falcons.forEach(f => {
-                    const isEquipped = p.falconId === f.id;
-                    const canAfford = p.gold >= f.cost || State.godMode;
-                    pane.innerHTML += `
-                        <div class="trade-row">
-                            <div class="trade-info">
-                                <div class="trade-name">${f.name} ${isEquipped ? '<span style="color:var(--hawk-azure);">[ACTIVE]</span>' : ''}</div>
-                                <div class="trade-desc">${f.desc} | Dive: +${f.atk} Dmg &amp; Blinds Foe</div>
-                            </div>
-                            <button class="trade-btn" ${isEquipped || !canAfford ? 'disabled' : ''} onclick="BuyGear('falcons', '${f.id}')">
-                                ${isEquipped ? 'TRAINED' : `TAME (${f.cost})`}
-                            </button>
-                        </div>
-                    `;
-                });
-            } else if (currentMarketTab === 'estate') {
-                GEAR_TABLE.estate.forEach(e => {
-                    const isOwned = p.purchasedEstate.includes(e.id);
-                    const canAfford = p.gold >= e.cost || State.godMode;
-                    pane.innerHTML += `
-                        <div class="trade-row">
-                            <div class="trade-info">
-                                <div class="trade-name">${e.name} ${isOwned ? '<span style="color:var(--koku-green);">[OWNED]</span>' : ''}</div>
-                                <div class="trade-desc">${e.desc} | +${e.koku} Koku</div>
-                            </div>
-                            <button class="trade-btn" ${isOwned || !canAfford ? 'disabled' : ''} onclick="BuyEstate('${e.id}')">
-                                ${isOwned ? 'DEEDED' : `BUY (${e.cost})`}
-                            </button>
-                        </div>
-                    `;
-                });
-            } else if (currentMarketTab === 'pupils') {
-                pane.innerHTML = `
-                    <div class="trade-row">
-                        <div class="trade-info">
-                            <div class="trade-name">RECRUIT APPRENTICE (40 Ryō) [${p.pupils.length}/6]</div>
-                            <div class="trade-desc">Arm greenhorns to patrol borders and bring back ears, heads, and gold.</div>
-                        </div>
-                        <div style="display:flex; gap:4px;">
-                            <button class="trade-btn" ${p.pupils.length >= 6 ? 'disabled' : ''} onclick="RecruitDisciple()">RECRUIT</button>
-                            <button class="trade-btn" ${p.pupils.length === 0 ? 'disabled' : ''} onclick="DispatchAllPupils()">ALL OUT</button>
-                        </div>
-                    </div>
+            } else {
+                dock.innerHTML = `
+                    <button class="cmd-btn btn-wide-4" onclick="ResetGame()" style="border-color: var(--crimson-glow);">
+                        <div class="cmd-title" style="color: var(--crimson-glow);">LINEAGE EXTINCT — REINCARNATE</div>
+                        <div class="cmd-desc">No heirs remain to inherit your clan</div>
+                    </button>
                 `;
-                p.pupils.forEach((pupil, idx) => {
+            }
+            UpdateUI();
+        }
+
+        /* =========================================================================
+           SATCHEL & GOD CHEATS
+           ========================================================================= */
+        function ToggleBaggageModal() {
+            const m = document.getElementById('inv-modal');
+            m.classList.toggle('open');
+            if (m.classList.contains('open')) {
+                const pane = document.getElementById('baggage-pane');
+                pane.innerHTML = '';
+                const p = State.player;
+                const weapon = GEAR_TABLE.weapons.find(w => w.id === p.weaponId) || GEAR_TABLE.weapons[0];
+                const lvl = p.weaponForgeLevels[weapon.id] || 0;
+
+                pane.innerHTML += `
+                    <div style="font-size:0.70rem; color:var(--gold-bright); margin-bottom:4px;"><strong>CURRENT LOADOUT:</strong></div>
+                    <div class="trade-row"><div class="trade-info"><div class="trade-name">BLADE: ${weapon.name} (+${lvl})</div><div class="trade-desc">${weapon.desc}</div></div></div>
+                    <div style="font-size:0.70rem; color:var(--crimson-glow); margin-top:8px; margin-bottom:4px;"><strong>HEAD SACK (KUBI-BUKURO):</strong></div>
+                `;
+                p.trophies.heads.forEach(h => {
                     pane.innerHTML += `
                         <div class="trade-row">
-                            <div class="trade-info">
-                                <div class="trade-name">${pupil.name} — Rank ${pupil.rank}</div>
-                                <div class="trade-desc">Status: <strong>${pupil.status.toUpperCase()}</strong> ${pupil.status === 'patrol' ? `(${pupil.patrolTimeLeft} turns left)` : ''} | Kills: ${pupil.kills}</div>
-                            </div>
-                            <button class="trade-btn" ${pupil.status === 'patrol' ? 'disabled' : ''} onclick="DispatchPupil(${idx})">
-                                ${pupil.status === 'patrol' ? 'PATROLLING' : 'DISPATCH'}
-                            </button>
+                            <div class="trade-name" style="color:var(--crimson-glow);">${h.name} [${h.rank}]</div>
+                            <div class="trade-desc">${h.prepared ? 'Prepared' : 'Raw'} | Worth ${h.value} Ryō</div>
                         </div>
                     `;
                 });
             }
-        }
-
-        function SellSingleHead(idx) {
-            const p = State.player;
-            const h = p.trophies.heads[idx];
-            p.gold += h.value;
-            p.trophies.heads.splice(idx, 1);
-            AudioSys.playCoinClink();
-            LogProse(`KUBI-JIKKEN: Head of ${h.name} submitted (+${h.value} Ryō).`, "market");
-            UpdateUI();
-            RenderMarketPane();
-        }
-
-        function SellAllTrophies() {
-            const p = State.player;
-            let sum = 0;
-            p.trophies.heads.forEach(h => sum += h.value);
-            p.trophies.heads = [];
-            p.trophies.noses.forEach(n => sum += n.value);
-            p.trophies.noses = [];
-            sum += (p.trophies.ears * 6);
-            sum += (p.trophies.teethGold * 25) + (p.trophies.teethCommon * 6);
-            p.trophies.ears = 0;
-            p.trophies.teethGold = 0;
-            p.trophies.teethCommon = 0;
-            p.gold += sum;
-
-            AudioSys.playBonsho();
-            AudioSys.playCoinClink();
-            LogProse(`GRAND KUBI-JIKKEN: All trophies inspected on cedar boards (+${sum} Ryō)!`, "market", "実検");
-            UpdateUI();
-            RenderMarketPane();
-        }
-
-        function BuyGear(cat, id) {
-            const p = State.player;
-            const item = GEAR_TABLE[cat].find(x => x.id === id);
-            if (!item) return;
-            if (p.gold < item.cost && !State.godMode) return;
-            if (!State.godMode) p.gold -= item.cost;
-
-            if (cat === 'weapons') p.weaponId = item.id;
-            if (cat === 'bows') p.bowId = item.id;
-            if (cat === 'armors') p.armorId = item.id;
-            if (cat === 'falcons') p.falconId = item.id;
-
-            AudioSys.playSwordClash();
-            RecalculatePlayerStats();
-            LogProse(`EQUIPPED: ${item.name}.`, "market");
-            UpdateUI();
-            RenderMarketPane();
-        }
-
-        function BuyEstate(id) {
-            const p = State.player;
-            const item = GEAR_TABLE.estate.find(e => e.id === id);
-            if (!item || p.purchasedEstate.includes(id)) return;
-            if (p.gold < item.cost && !State.godMode) return;
-            if (!State.godMode) p.gold -= item.cost;
-            p.koku += item.koku;
-            p.purchasedEstate.push(item.id);
-            AudioSys.playBonsho();
-            RecalculatePlayerStats();
-            LogProse(`FIEF EXPANSION: ${item.name} acquired (+${item.koku} Koku).`, "market", "領地");
-            UpdateUI();
-            RenderMarketPane();
         }
 
         function ToggleGodModal() {
@@ -2431,51 +2650,17 @@
                 document.getElementById('god-pane').innerHTML = `
                     <div class="trade-row">
                         <div class="trade-info">
-                            <div class="trade-name" style="color:var(--god-gold);">INVINCIBILITY &amp; 99x ATK</div>
-                            <div class="trade-desc">Zero damage, infinite stamina, instant decapitations.</div>
+                            <div class="trade-name" style="color:var(--god-gold);">INVINCIBILITY &amp; 99x DAMAGE</div>
                         </div>
                         <button class="trade-btn" onclick="State.godMode = !State.godMode; UpdateUI(); ToggleGodModal();">
                             ${State.godMode ? 'DEACTIVATE' : 'ACTIVATE'}
                         </button>
                     </div>
                     <div class="trade-row">
-                        <div class="trade-info">
-                            <div class="trade-name">+2,000 RYŌ TREASURY</div>
-                        </div>
-                        <button class="trade-btn" onclick="State.player.gold += 2000; AudioSys.playCoinClink(); UpdateUI();">ADD GOLD</button>
+                        <div class="trade-info"><div class="trade-name">+2,000 RYŌ &amp; +20 IRON</div></div>
+                        <button class="trade-btn" onclick="State.player.gold += 2000; State.player.commodities.iron += 20; AudioSys.playCoinClink(); UpdateUI();">ADD</button>
                     </div>
                 `;
-            }
-        }
-
-        function ToggleBaggageModal() {
-            const m = document.getElementById('inv-modal');
-            m.classList.toggle('open');
-            if (m.classList.contains('open')) {
-                const pane = document.getElementById('baggage-content-pane');
-                pane.innerHTML = '';
-                const p = State.player;
-                const weapon = GEAR_TABLE.weapons.find(w => w.id === p.weaponId) || GEAR_TABLE.weapons[0];
-                const bow = GEAR_TABLE.bows.find(b => b.id === p.bowId) || GEAR_TABLE.bows[0];
-                const armor = GEAR_TABLE.armors.find(a => a.id === p.armorId) || GEAR_TABLE.armors[0];
-                const falcon = GEAR_TABLE.falcons.find(f => f.id === p.falconId) || GEAR_TABLE.falcons[0];
-
-                pane.innerHTML += `
-                    <div style="font-size:0.72rem; color:var(--gold-bright); margin-bottom:4px;"><strong>CURRENT LOADOUT:</strong></div>
-                    <div class="trade-row"><div class="trade-info"><div class="trade-name">BLADE: ${weapon.name}</div><div class="trade-desc">${weapon.desc}</div></div></div>
-                    <div class="trade-row"><div class="trade-info"><div class="trade-name">WAR BOW: ${bow.name}</div><div class="trade-desc">${bow.desc}</div></div></div>
-                    <div class="trade-row"><div class="trade-info"><div class="trade-name">ARMOR: ${armor.name}</div><div class="trade-desc">${armor.desc}</div></div></div>
-                    <div class="trade-row"><div class="trade-info"><div class="trade-name">WAR BEAST: ${falcon.name}</div><div class="trade-desc">${falcon.desc}</div></div></div>
-                    <div style="font-size:0.72rem; color:var(--crimson-glow); margin-top:8px; margin-bottom:4px;"><strong>HEAD SACK (KUBI-BUKURO):</strong></div>
-                `;
-                p.trophies.heads.forEach(h => {
-                    pane.innerHTML += `
-                        <div class="trade-row">
-                            <div class="trade-name" style="color:var(--crimson-glow);">${h.name}</div>
-                            <div class="trade-desc">${h.caste} | ${h.value} Ryō</div>
-                        </div>
-                    `;
-                });
             }
         }
 
@@ -2485,10 +2670,9 @@
         function UpdateUI() {
             const p = State.player;
             const armor = GEAR_TABLE.armors.find(a => a.id === p.armorId) || GEAR_TABLE.armors[0];
-            const falcon = GEAR_TABLE.falcons.find(f => f.id === p.falconId) || GEAR_TABLE.falcons[0];
 
             document.getElementById('lbl-region').textContent = REGIONS[State.regionIdx];
-            document.getElementById('lbl-time').textContent = TIMES[State.timeIdx];
+            document.getElementById('lbl-time').textContent = `${SEASONS[State.seasonIdx]} Dusk`;
 
             let title = "Usurper";
             if (p.usurpedThrones.length === 7) title = "Sei-i Taishōgun";
@@ -2504,12 +2688,12 @@
 
             document.getElementById('lbl-gold').textContent = p.gold;
             document.getElementById('lbl-koku').textContent = p.koku;
+            document.getElementById('lbl-rice-bushels').textContent = p.farms.bushelsStored;
+            document.getElementById('lbl-prisoners-count').textContent = p.prisoners.length;
             document.getElementById('lbl-thrones-count').textContent = `${p.usurpedThrones.length}/7`;
-            document.getElementById('lbl-falcon-name').textContent = falcon.name.split(' ')[0].toUpperCase();
-            document.getElementById('lbl-pupil-count').textContent = `${p.pupils.length}/6`;
+            document.getElementById('lbl-hatamoto-count').textContent = `${p.hatamoto.count}/12`;
+            document.getElementById('lbl-deeds-count').textContent = p.deeds.length;
             document.getElementById('lbl-heads-count').textContent = p.trophies.heads.length;
-            document.getElementById('lbl-noses-count').textContent = p.trophies.noses.length;
-            document.getElementById('lbl-ear-tooth-count').textContent = `${p.trophies.ears}/${p.trophies.teethCommon + p.trophies.teethGold}`;
 
             const monEl = document.getElementById('lbl-clan-mon');
             if (p.usurpedThrones.length === 7) {
